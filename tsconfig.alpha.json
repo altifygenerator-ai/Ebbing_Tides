@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "rootDir": "src",
+    "outDir": "public/alpha/js",
+    "skipLibCheck": true,
+    "declaration": false,
+    "sourceMap": true
+  },
+  "include": [
+    "src/game/**/*.ts",
+    "src/data/**/*.ts",
+    "src/services/localSave.ts",
+    "src/alpha/**/*.ts"
+  ],
+  "exclude": ["src/app/**/*"]
+}

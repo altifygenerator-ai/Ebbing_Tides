@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "assetId": "port.veyrholm.establishing",
+      "type": "PORT_ESTABLISHING",
+      "region": "skeldra",
+      "status": "APPROVED_ANCHOR",
+      "artStyleVersion": "v0.21",
+      "regionalStyleVersion": "skeldra.port.0.1",
+      "era": "628 CR",
+      "path": "/art/ports/veyrholm_establishing.png",
+      "sourceMaster": "Veyrholm_PORT_ESTABLISHING_APPROVED.png",
+      "notes": "Canonical Veyrholm environment anchor. UI is rendered separately."
+    },
+    {
+      "assetId": "port.ironhaven.establishing",
+      "type": "PORT_ESTABLISHING",
+      "region": "skeldra",
+      "status": "APPROVED_ANCHOR",
+      "artStyleVersion": "v0.21",
+      "regionalStyleVersion": "skeldra.port.0.1",
+      "era": "628 CR",
+      "path": "/art/ports/ironhaven_establishing.png",
+      "sourceMaster": "Ironhaven_PORT_ESTABLISHING_APPROVED.png",
+      "notes": "Canonical Ironhaven environment anchor."
+    },
+    {
+      "assetId": "ui.navigation.approved_reference",
+      "type": "UI_REFERENCE",
+      "status": "APPROVED_ANCHOR",
+      "artStyleVersion": "v0.21",
+      "era": "628 CR",
+      "path": "/art/reference/navigation_map_approved_anchor.png",
+      "sourceMaster": "Navigation_Map_APPROVED_ANCHOR.png",
+      "notes": "Visual DNA only; canonical map geometry remains coded data."
+    },
+    {
+      "assetId": "ship.skeldra.coastal_sloop.reference",
+      "type": "SHIP_REFERENCE",
+      "region": "skeldra",
+      "status": "CURATED_REFERENCE",
+      "artStyleVersion": "v0.21",
+      "regionalStyleVersion": "skeldra.ship.0.1",
+      "era": "628 CR",
+      "path": "/art/ships/skeldra_coastal_sloop_reference.png",
+      "sourceMaster": "weathered_sloop_in_a_northern_harbor.png",
+      "notes": "Regional/category ship DNA; not a rigid hull template."
+    },
+    {
+      "assetId": "ship.skeldra.coastal_sloop.token",
+      "type": "SHIP_TOKEN",
+      "region": "skeldra",
+      "status": "CURATED_REFERENCE",
+      "artStyleVersion": "v0.21",
+      "regionalStyleVersion": "skeldra.ship.0.1",
+      "era": "628 CR",
+      "path": "/art/ships/skeldra_coastal_sloop_token.png",
+      "sourceMaster": "weathered_coastal_sailing_ship_token.png",
+      "notes": "Functional navigation token."
+    },
+    {
+      "assetId": "character.skeldra.naval_captain.reference",
+      "type": "PORTRAIT",
+      "region": "skeldra",
+      "status": "APPROVED_ANCHOR",
+      "artStyleVersion": "v0.21",
+      "regionalStyleVersion": "skeldra.clothing.0.2",
+      "era": "628 CR",
+      "path": "/art/characters/skeldran_naval_captain_anchor.png",
+      "sourceMaster": "Skeldran_Naval_Officer_Captain_APPROVED_ANCHOR.png",
+      "notes": "Canonical Skeldran naval-command visual anchor; not assigned to a named NPC."
+    },
+    {
+      "assetId": "character.skeldra.sailor.reference",
+      "type": "PORTRAIT",
+      "region": "skeldra",
+      "status": "CURATED_REFERENCE",
+      "artStyleVersion": "v0.21",
+      "era": "628 CR",
+      "path": "/art/characters/weathered_sailor_reference.png",
+      "sourceMaster": "weathered_sailor_in_a_foggy_harbor.png",
+      "notes": "Curated character portrait reference; not a named canonical character."
+    },
+    {
+      "assetId": "item.weapon.common_boarding_axe",
+      "type": "ITEM_ICON",
+      "status": "APPROVED_DIRECTION",
+      "artStyleVersion": "ITEM_ICON_STYLE_0.2",
+      "era": "628 CR",
+      "path": "/art/items/common_boarding_axe.png",
+      "sourceMaster": "01_Common_Boarding_Axe_APPROVED_REFERENCE.png",
+      "notes": "Painted-object inventory direction."
+    },
+    {
+      "assetId": "item.weapon.skeldran_naval_saber",
+      "type": "ITEM_ICON",
+      "region": "skeldra",
+      "status": "APPROVED_DIRECTION",
+      "artStyleVersion": "ITEM_ICON_STYLE_0.2",
+      "regionalStyleVersion": "skeldra.weapon.0.1",
+      "era": "628 CR",
+      "path": "/art/items/skeldran_naval_saber.png",
+      "sourceMaster": "Skeldran_Naval_Saber_APPROVED_STYLE_REFERENCE.png",
+      "notes": "Any generated inscription is non-canonical; runtime text must use locked rune canon."
+    },
+    {
+      "assetId": "item.weapon.skeldran_naval_pistol",
+      "type": "ITEM_ICON",
+      "region": "skeldra",
+      "status": "APPROVED_DIRECTION",
+      "artStyleVersion": "FIREARM_STYLE_0.1",
+      "regionalStyleVersion": "skeldra.firearm.0.1",
+      "era": "628 CR",
+      "path": "/art/items/skeldran_naval_pistol.png",
+      "sourceMaster": "02_Skeldran_Naval_Pistol.png",
+      "notes": "Mechanical/style derivative from approved firearm family."
+    }
+  ]
+}
