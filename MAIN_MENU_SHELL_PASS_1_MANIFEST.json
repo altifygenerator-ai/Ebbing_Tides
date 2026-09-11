@@ -1,0 +1,20 @@
+{
+  "name": "Ebbing Tides Main Menu Shell Pass 1",
+  "targetBaseline": "A0.2C or later presentation-compatible baseline",
+  "parallelTrack": "presentation-only; intended to merge after A0.2D",
+  "saveSchemaChanged": false,
+  "gameplayMechanicsChanged": false,
+  "existingRuntimeFilesModified": [
+    "public/alpha/index.html"
+  ],
+  "newRuntimeFiles": [
+    "src/alpha/startMenu.ts",
+    "public/alpha/start-menu.css",
+    "public/audio/menu/ebbing_tides_main_menu_sea_wind_v1.ogg",
+    "public/audio/menu/ebbing_tides_main_menu_sea_wind_v1.mp3",
+    "public/audio/menu/source_manifest.json"
+  ],
+  "musicAssetId": "audio.music.main_menu.sea_wind_v1",
+  "backgroundAsset": "/art/location/ports/veyrholm.png",
+  "mechanicsBoundary": "No GameState/save/economy/NPC/combat/navigation/progression/information/law/world-simulation code touched."
+}

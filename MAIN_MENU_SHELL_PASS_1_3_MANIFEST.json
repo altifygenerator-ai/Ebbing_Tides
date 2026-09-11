@@ -1,0 +1,25 @@
+{
+  "package": "Ebbing Tides Main Menu Shell Pass 1.3 Runtime Bridge Hotfix",
+  "base": "0.6.0-alpha.d.a0-3a with Main Menu Shell Pass 1/1.1/1.2",
+  "packageVersion": "0.6.0-alpha.d.a0-3a",
+  "saveSchema": 12,
+  "scope": "launcher/presentation integration only",
+  "files": [
+    "src/alpha/main.ts",
+    "src/alpha/startMenu.ts",
+    "public/alpha/start-menu.css",
+    "public/alpha/js/alpha/main.js",
+    "public/alpha/js/alpha/main.js.map",
+    "public/alpha/js/alpha/startMenu.js",
+    "public/alpha/js/alpha/startMenu.js.map",
+    "tests/alpha-06d-main-menu-shell-pass1.test.mjs",
+    "APPLY_MAIN_MENU_SHELL_PASS_1_3_RUNTIME_BRIDGE_HOTFIX.md",
+    "docs/MAIN_MENU_SHELL_PASS_1_3_RUNTIME_BRIDGE_HOTFIX.md"
+  ],
+  "expectedVerification": {
+    "typecheck": "PASS",
+    "alphaBuild": "PASS",
+    "tests": "378/378 PASS",
+    "artLayouts": "2/2 PASS"
+  }
+}

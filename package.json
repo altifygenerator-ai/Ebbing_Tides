@@ -1,6 +1,6 @@
 {
   "name": "ebbing-tides",
-  "version": "0.1.0-alpha.1",
+  "version": "0.6.0-alpha.d.r2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,9 @@
     "typecheck:alpha": "tsc -p tsconfig.alpha.json --noEmit",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "alpha:registry": "node scripts/generate-alpha-06c-registry-artifacts.mjs",
+    "alpha:art-layouts": "node scripts/verify-art-layouts.mjs"
   },
   "dependencies": {
     "next": "^16.0.0",

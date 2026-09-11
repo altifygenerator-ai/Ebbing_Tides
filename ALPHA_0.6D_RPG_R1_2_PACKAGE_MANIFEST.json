@@ -1,0 +1,25 @@
+{
+  "package": "0.6.0-alpha.d.rpg-r1.2",
+  "base": "0.6.0-alpha.d.rpg-r1.1",
+  "saveSchema": 12,
+  "scope": "Final R1 readability and alignment cleanup before R2 design discussion",
+  "changes": [
+    "paired Known Powers / People Who Know You accordion headers remain symmetrical at normal desktop widths",
+    "long relationship accordion title stays on one line at normal desktop widths and may wrap on narrow layouts",
+    "specialization skill and bonus text uses readable parchment-ink contrast",
+    "Character Creator Homeland / Culture / Faith summary uses readable parchment-ink contrast"
+  ],
+  "mechanicsChanged": false,
+  "deferred": [
+    "R2 design and implementation",
+    "R3 broad RPG consequence sweep",
+    "final Culture-primary / Religion-accent painted character UI"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "301/301 PASS",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: next executable not installed in packaging environment"
+  }
+}

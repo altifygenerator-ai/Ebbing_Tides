@@ -37,7 +37,7 @@ test('same world seed produces the same alpha world facts and prices', () => {
 });
 
 test('Veyrholm begins with a state-derived food delivery opportunity to Ironhaven', () => {
-  const state = createGame(choices({ homePortId: 'port.veyrholm' }), 'contract-seed');
+  const state = createGame(choices({ startingLocationId: 'port.veyrholm' }), 'contract-seed');
   const contract = state.contracts.find((c) =>
     c.sourcePortId === 'port.veyrholm' &&
     c.destinationPortId === 'port.ironhaven' &&
@@ -135,7 +135,7 @@ test('naval combat uses persistent ship systems and records a resolution', () =>
 });
 
 test('Character Mind receives a lore firewall and cannot directly grant canonical effects', () => {
-  const state = createGame(choices({ homePortId: 'port.ironhaven' }), 'mind-seed');
+  const state = createGame(choices({ startingLocationId: 'port.ironhaven' }), 'mind-seed');
   const context = buildCharacterMindContext(state, 'character.pastor_elias_korr');
   assert.ok(context.loreFirewall.some((line) => /Do not invent world facts/i.test(line)));
   assert.ok(context.currentWorldFacts.some((line) => /grain stock/i.test(line)));

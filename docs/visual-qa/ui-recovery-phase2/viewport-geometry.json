@@ -1,0 +1,720 @@
+{
+  "generatedAt": "2026-09-08",
+  "logicalViewport": "1600x900",
+  "logicalMainContent": "1428x844",
+  "results": [
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "document": {
+        "scrollWidth": 1920,
+        "scrollHeight": 1080,
+        "clientWidth": 1920,
+        "clientHeight": 1080
+      },
+      "body": {
+        "scrollWidth": 1920,
+        "scrollHeight": 1080
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1748,
+        "height": 1024,
+        "right": 1920,
+        "bottom": 1080
+      },
+      "uiScale": "1.2132701421800949",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "inventory",
+      "variant": "male",
+      "artHost": {
+        "x": 182,
+        "y": 118,
+        "width": 1728,
+        "height": 952,
+        "right": 1910,
+        "bottom": 1070
+      },
+      "artCanvas": {
+        "x": 182,
+        "y": 181.13,
+        "width": 1728,
+        "height": 825.73,
+        "right": 1910,
+        "bottom": 1006.86
+      },
+      "grid": {
+        "x": 1226.7,
+        "y": 332.61,
+        "width": 612.2,
+        "height": 484.59,
+        "right": 1838.91,
+        "bottom": 817.2
+      },
+      "detail": {
+        "x": 1212.2,
+        "y": 820.34,
+        "width": 620.48,
+        "height": 165.97,
+        "right": 1832.69,
+        "bottom": 986.31
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "document": {
+        "scrollWidth": 1600,
+        "scrollHeight": 900,
+        "clientWidth": 1600,
+        "clientHeight": 900
+      },
+      "body": {
+        "scrollWidth": 1600,
+        "scrollHeight": 900
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1428,
+        "height": 844,
+        "right": 1600,
+        "bottom": 900
+      },
+      "uiScale": "1",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "inventory",
+      "variant": "male",
+      "artHost": {
+        "x": 182,
+        "y": 118,
+        "width": 1408,
+        "height": 772,
+        "right": 1590,
+        "bottom": 890
+      },
+      "artCanvas": {
+        "x": 182,
+        "y": 167.58,
+        "width": 1408,
+        "height": 672.83,
+        "right": 1590,
+        "bottom": 840.41
+      },
+      "grid": {
+        "x": 1033.2,
+        "y": 291.13,
+        "width": 498.7,
+        "height": 394.64,
+        "right": 1531.91,
+        "bottom": 685.77
+      },
+      "detail": {
+        "x": 1021.39,
+        "y": 688.33,
+        "width": 505.45,
+        "height": 135.16,
+        "right": 1526.84,
+        "bottom": 823.48
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "scrollWidth": 1440,
+        "scrollHeight": 900,
+        "clientWidth": 1440,
+        "clientHeight": 900
+      },
+      "body": {
+        "scrollWidth": 1440,
+        "scrollHeight": 900
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1268,
+        "height": 844,
+        "right": 1440,
+        "bottom": 900
+      },
+      "uiScale": "0.8879551820728291",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "inventory",
+      "variant": "male",
+      "artHost": {
+        "x": 182,
+        "y": 118,
+        "width": 1248,
+        "height": 772,
+        "right": 1430,
+        "bottom": 890
+      },
+      "artCanvas": {
+        "x": 182,
+        "y": 205.81,
+        "width": 1248,
+        "height": 596.36,
+        "right": 1430,
+        "bottom": 802.17
+      },
+      "grid": {
+        "x": 936.45,
+        "y": 315.39,
+        "width": 441.95,
+        "height": 349.66,
+        "right": 1378.41,
+        "bottom": 665.05
+      },
+      "detail": {
+        "x": 925.98,
+        "y": 667.31,
+        "width": 447.92,
+        "height": 119.75,
+        "right": 1373.91,
+        "bottom": 787.06
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "document": {
+        "scrollWidth": 1366,
+        "scrollHeight": 768,
+        "clientWidth": 1366,
+        "clientHeight": 768
+      },
+      "body": {
+        "scrollWidth": 1366,
+        "scrollHeight": 768
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1194,
+        "height": 712,
+        "right": 1366,
+        "bottom": 768
+      },
+      "uiScale": "0.8361344537815126",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "inventory",
+      "variant": "male",
+      "artHost": {
+        "x": 182,
+        "y": 118,
+        "width": 1174,
+        "height": 640,
+        "right": 1356,
+        "bottom": 758
+      },
+      "artCanvas": {
+        "x": 182,
+        "y": 157.48,
+        "width": 1174,
+        "height": 561,
+        "right": 1356,
+        "bottom": 718.48
+      },
+      "grid": {
+        "x": 891.7,
+        "y": 260.61,
+        "width": 415.7,
+        "height": 328.86,
+        "right": 1307.41,
+        "bottom": 589.47
+      },
+      "detail": {
+        "x": 881.86,
+        "y": 591.59,
+        "width": 421.33,
+        "height": 112.63,
+        "right": 1303.19,
+        "bottom": 704.22
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "document": {
+        "scrollWidth": 1920,
+        "scrollHeight": 1080,
+        "clientWidth": 1920,
+        "clientHeight": 1080
+      },
+      "body": {
+        "scrollWidth": 1920,
+        "scrollHeight": 1080
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1748,
+        "height": 1024,
+        "right": 1920,
+        "bottom": 1080
+      },
+      "uiScale": "1.2132701421800949",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "market",
+      "variant": "default",
+      "marketBody": {
+        "x": 182,
+        "y": 118,
+        "width": 1728,
+        "height": 952,
+        "right": 1910,
+        "bottom": 1070
+      },
+      "ledger": {
+        "x": 204,
+        "y": 140,
+        "width": 1324.22,
+        "height": 908,
+        "right": 1528.22,
+        "bottom": 1048
+      },
+      "summary": {
+        "x": 1542.22,
+        "y": 140,
+        "width": 345.78,
+        "height": 291.17,
+        "right": 1888,
+        "bottom": 431.17
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "document": {
+        "scrollWidth": 1600,
+        "scrollHeight": 900,
+        "clientWidth": 1600,
+        "clientHeight": 900
+      },
+      "body": {
+        "scrollWidth": 1600,
+        "scrollHeight": 900
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1428,
+        "height": 844,
+        "right": 1600,
+        "bottom": 900
+      },
+      "uiScale": "1",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "market",
+      "variant": "default",
+      "marketBody": {
+        "x": 182,
+        "y": 118,
+        "width": 1408,
+        "height": 772,
+        "right": 1590,
+        "bottom": 890
+      },
+      "ledger": {
+        "x": 204,
+        "y": 140,
+        "width": 1065,
+        "height": 728,
+        "right": 1269,
+        "bottom": 868
+      },
+      "summary": {
+        "x": 1283,
+        "y": 140,
+        "width": 285,
+        "height": 240,
+        "right": 1568,
+        "bottom": 380
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "scrollWidth": 1440,
+        "scrollHeight": 900,
+        "clientWidth": 1440,
+        "clientHeight": 900
+      },
+      "body": {
+        "scrollWidth": 1440,
+        "scrollHeight": 900
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1268,
+        "height": 844,
+        "right": 1440,
+        "bottom": 900
+      },
+      "uiScale": "0.8879551820728291",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "market",
+      "variant": "default",
+      "marketBody": {
+        "x": 182,
+        "y": 118,
+        "width": 1248,
+        "height": 772,
+        "right": 1430,
+        "bottom": 890
+      },
+      "ledger": {
+        "x": 204,
+        "y": 140,
+        "width": 936.94,
+        "height": 728,
+        "right": 1140.94,
+        "bottom": 868
+      },
+      "summary": {
+        "x": 1154.94,
+        "y": 140,
+        "width": 253.06,
+        "height": 213.09,
+        "right": 1408,
+        "bottom": 353.09
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "document": {
+        "scrollWidth": 1366,
+        "scrollHeight": 768,
+        "clientWidth": 1366,
+        "clientHeight": 768
+      },
+      "body": {
+        "scrollWidth": 1366,
+        "scrollHeight": 768
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1194,
+        "height": 712,
+        "right": 1366,
+        "bottom": 768
+      },
+      "uiScale": "0.8361344537815126",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "market",
+      "variant": "default",
+      "marketBody": {
+        "x": 182,
+        "y": 118,
+        "width": 1174,
+        "height": 640,
+        "right": 1356,
+        "bottom": 758
+      },
+      "ledger": {
+        "x": 204,
+        "y": 140,
+        "width": 877.7,
+        "height": 596,
+        "right": 1081.7,
+        "bottom": 736
+      },
+      "summary": {
+        "x": 1095.7,
+        "y": 140,
+        "width": 238.3,
+        "height": 200.67,
+        "right": 1334,
+        "bottom": 340.67
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "document": {
+        "scrollWidth": 1920,
+        "scrollHeight": 1080,
+        "clientWidth": 1920,
+        "clientHeight": 1080
+      },
+      "body": {
+        "scrollWidth": 1920,
+        "scrollHeight": 1080
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1748,
+        "height": 1024,
+        "right": 1920,
+        "bottom": 1080
+      },
+      "uiScale": "1.2132701421800949",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "inventory",
+      "variant": "female",
+      "artHost": {
+        "x": 182,
+        "y": 118,
+        "width": 1728,
+        "height": 952,
+        "right": 1910,
+        "bottom": 1070
+      },
+      "artCanvas": {
+        "x": 182,
+        "y": 181.13,
+        "width": 1728,
+        "height": 825.73,
+        "right": 1910,
+        "bottom": 1006.86
+      },
+      "grid": {
+        "x": 1237.92,
+        "y": 338.88,
+        "width": 603.92,
+        "height": 486.58,
+        "right": 1841.84,
+        "bottom": 825.45
+      },
+      "detail": {
+        "x": 1221.53,
+        "y": 828.75,
+        "width": 611.17,
+        "height": 161.94,
+        "right": 1832.7,
+        "bottom": 990.69
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "document": {
+        "scrollWidth": 1600,
+        "scrollHeight": 900,
+        "clientWidth": 1600,
+        "clientHeight": 900
+      },
+      "body": {
+        "scrollWidth": 1600,
+        "scrollHeight": 900
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1428,
+        "height": 844,
+        "right": 1600,
+        "bottom": 900
+      },
+      "uiScale": "1",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "inventory",
+      "variant": "female",
+      "artHost": {
+        "x": 182,
+        "y": 118,
+        "width": 1408,
+        "height": 772,
+        "right": 1590,
+        "bottom": 890
+      },
+      "artCanvas": {
+        "x": 182,
+        "y": 167.58,
+        "width": 1408,
+        "height": 672.83,
+        "right": 1590,
+        "bottom": 840.41
+      },
+      "grid": {
+        "x": 1042.34,
+        "y": 296.23,
+        "width": 491.95,
+        "height": 396.25,
+        "right": 1534.3,
+        "bottom": 692.48
+      },
+      "detail": {
+        "x": 1028.98,
+        "y": 695.17,
+        "width": 497.86,
+        "height": 131.88,
+        "right": 1526.84,
+        "bottom": 827.05
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "scrollWidth": 1440,
+        "scrollHeight": 900,
+        "clientWidth": 1440,
+        "clientHeight": 900
+      },
+      "body": {
+        "scrollWidth": 1440,
+        "scrollHeight": 900
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1268,
+        "height": 844,
+        "right": 1440,
+        "bottom": 900
+      },
+      "uiScale": "0.8879551820728291",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "inventory",
+      "variant": "female",
+      "artHost": {
+        "x": 182,
+        "y": 118,
+        "width": 1248,
+        "height": 772,
+        "right": 1430,
+        "bottom": 890
+      },
+      "artCanvas": {
+        "x": 182,
+        "y": 205.81,
+        "width": 1248,
+        "height": 596.36,
+        "right": 1430,
+        "bottom": 802.17
+      },
+      "grid": {
+        "x": 944.55,
+        "y": 319.91,
+        "width": 435.97,
+        "height": 351.08,
+        "right": 1380.52,
+        "bottom": 670.98
+      },
+      "detail": {
+        "x": 932.7,
+        "y": 673.38,
+        "width": 441.2,
+        "height": 116.84,
+        "right": 1373.91,
+        "bottom": 790.22
+      },
+      "automatedViewportPass": true
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "document": {
+        "scrollWidth": 1366,
+        "scrollHeight": 768,
+        "clientWidth": 1366,
+        "clientHeight": 768
+      },
+      "body": {
+        "scrollWidth": 1366,
+        "scrollHeight": 768
+      },
+      "main": {
+        "x": 172,
+        "y": 56,
+        "width": 1194,
+        "height": 712,
+        "right": 1366,
+        "bottom": 768
+      },
+      "uiScale": "0.8361344537815126",
+      "horizontalScroll": false,
+      "verticalScroll": false,
+      "screen": "inventory",
+      "variant": "female",
+      "artHost": {
+        "x": 182,
+        "y": 118,
+        "width": 1174,
+        "height": 640,
+        "right": 1356,
+        "bottom": 758
+      },
+      "artCanvas": {
+        "x": 182,
+        "y": 157.48,
+        "width": 1174,
+        "height": 561,
+        "right": 1356,
+        "bottom": 718.48
+      },
+      "grid": {
+        "x": 899.31,
+        "y": 264.86,
+        "width": 410.08,
+        "height": 330.19,
+        "right": 1309.39,
+        "bottom": 595.05
+      },
+      "detail": {
+        "x": 888.19,
+        "y": 597.3,
+        "width": 415,
+        "height": 109.89,
+        "right": 1303.19,
+        "bottom": 707.19
+      },
+      "automatedViewportPass": true
+    }
+  ],
+  "allNoDocumentScroll": true
+}

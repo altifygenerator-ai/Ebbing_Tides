@@ -1,0 +1,297 @@
+{
+  "package": "0.6.0-alpha.d.r2",
+  "base": "0.6.0-alpha.d.a0-3c + R2 readiness gate",
+  "saveSchema": 12,
+  "scope": "Dynamic trade law, customs, smuggling, privateering, wartime law",
+  "verification": {
+    "typecheck": "PASS",
+    "alphaBuild": "PASS",
+    "tests": "457/457 PASS",
+    "dedicatedR2": "15/15 PASS",
+    "r2Readiness": "8/8 PASS",
+    "durabilityCohesion": "36/36 PASS",
+    "artLayouts": "2/2 PASS"
+  },
+  "files": [
+    {
+      "path": "APPLY_R2.md",
+      "sha256": "df5d9b7804472decff820eb75d793a73a7bbee620ef093ce115503354246db38",
+      "bytes": 1197
+    },
+    {
+      "path": "README_R2.md",
+      "sha256": "40adc2316d2cc12b6b35df971f0283740a104bc300544e98b3de26f60b4cb934",
+      "bytes": 1429
+    },
+    {
+      "path": "docs/ALPHA_06D_R2_TRADE_LAW_CUSTOMS_PRIVATEERING.md",
+      "sha256": "050ae5df7ebbb51f05037e9d96d37c72411cfb1caa16ae36d60d1fd03c1cb805",
+      "bytes": 1888
+    },
+    {
+      "path": "package.json",
+      "sha256": "62bef3de6386e66ccaed06e2b69af63767057411793672b79d60ab3037801cc3",
+      "bytes": 791
+    },
+    {
+      "path": "public/alpha/js/alpha/main.js",
+      "sha256": "65dc967de1853489c48162711b5146c3c904e94c42bf7539529540dc20884374",
+      "bytes": 238765
+    },
+    {
+      "path": "public/alpha/js/alpha/main.js.map",
+      "sha256": "224be5b99b74aad629b3b0b069e1a476c4f2cfbe12ffe5f7b8a8504bd2c0aa12",
+      "bytes": 200203
+    },
+    {
+      "path": "public/alpha/js/data/seed/tradePolicies.js",
+      "sha256": "d405629efb14305261c4b57347925e30c016802ff02868e86899e02e8e8a7098",
+      "bytes": 1185
+    },
+    {
+      "path": "public/alpha/js/data/seed/tradePolicies.js.map",
+      "sha256": "10a6bac004d254c57982e4478f7bdc6f54f691a93f176859f42193c4b8a84bf8",
+      "bytes": 776
+    },
+    {
+      "path": "public/alpha/js/game/contracts.js",
+      "sha256": "d0f817c6923fcff61265f1abeb5ab70f92e84f33e9537c6f83bac354a503e4e2",
+      "bytes": 10310
+    },
+    {
+      "path": "public/alpha/js/game/contracts.js.map",
+      "sha256": "5e778cbc7162eef3159d085ba4652e670c7310810c9c36944dd400b3b7b8b9a1",
+      "bytes": 9308
+    },
+    {
+      "path": "public/alpha/js/game/createGame.js",
+      "sha256": "7a21fe10d67b657bdbf908b63c49f3b5c86bc51523911c8b952f202033fd6889",
+      "bytes": 22413
+    },
+    {
+      "path": "public/alpha/js/game/createGame.js.map",
+      "sha256": "0724dd8da9dc5652b25c11e3cd0d97bab439031e4b610f4ae013d55cb6610200",
+      "bytes": 20961
+    },
+    {
+      "path": "public/alpha/js/game/customs.js",
+      "sha256": "4ad6839ec96af1deada13b166de422e569b6a9960921cc79c2fa7c0bd8d438b9",
+      "bytes": 16917
+    },
+    {
+      "path": "public/alpha/js/game/customs.js.map",
+      "sha256": "3743a634a1168b76cd1f1a9b5e9a205669b534b24316921fbc731305820f6514",
+      "bytes": 16543
+    },
+    {
+      "path": "public/alpha/js/game/economy.js",
+      "sha256": "0c2ccd0de8c6ac2e46acce176bb0f7ab12e295cebfc962e6c071f7b43542e82c",
+      "bytes": 6674
+    },
+    {
+      "path": "public/alpha/js/game/economy.js.map",
+      "sha256": "67e2814662a567c0a9b6954909abd4cf6ea23364bb41924d49db73673716f3d4",
+      "bytes": 7313
+    },
+    {
+      "path": "public/alpha/js/game/reputationLaw.js",
+      "sha256": "17f598766fd79237128ae644ef1d26e07b050e1dd7b237bbb595fe0fc93c22cd",
+      "bytes": 37149
+    },
+    {
+      "path": "public/alpha/js/game/reputationLaw.js.map",
+      "sha256": "9be69ca13c8aadc508e9c9be28e42661f7afd29cdf3c7031c5028b305ecb6226",
+      "bytes": 38221
+    },
+    {
+      "path": "public/alpha/js/game/tradeLaw.js",
+      "sha256": "ff3ab82e980a7d0f01b5baa189b2621e470ace8294020e55148091fc0d26f7f3",
+      "bytes": 10013
+    },
+    {
+      "path": "public/alpha/js/game/tradeLaw.js.map",
+      "sha256": "607c6329ccd95b5afd9bc3bc2464ccb09034638522bcc6e42b7c0d30150ccb6d",
+      "bytes": 9636
+    },
+    {
+      "path": "public/alpha/js/game/travel.js",
+      "sha256": "5783ce4626ab3e554253f66a5842a569c0b303bf1566aa02ce5e8b9ae64ff8f8",
+      "bytes": 46468
+    },
+    {
+      "path": "public/alpha/js/game/travel.js.map",
+      "sha256": "e388ed5d066a28341833a6df51c0ed6373356083b7156f615f2f7c9840254c3c",
+      "bytes": 45445
+    },
+    {
+      "path": "public/alpha/js/game/vesselLifecycle.js",
+      "sha256": "5dee850573d9c86d7c02567b3301c17ca8bc47258f02b8fb1fac1a8e7287fee0",
+      "bytes": 4403
+    },
+    {
+      "path": "public/alpha/js/game/vesselLifecycle.js.map",
+      "sha256": "5fdbb0d3c6a2f3ca3b6edb318f964a31826b5747bbec371889e43d951e5f4623",
+      "bytes": 3634
+    },
+    {
+      "path": "public/alpha/js/services/localSave.js",
+      "sha256": "46271a54ad2691e835818356dda780acff26c0a177a224eb19063361f249638c",
+      "bytes": 25288
+    },
+    {
+      "path": "public/alpha/js/services/localSave.js.map",
+      "sha256": "4b784fb42348898e94b5e9773d0749d4b991ff67fa0c2e5ca1db7fa1e463277b",
+      "bytes": 26535
+    },
+    {
+      "path": "public/alpha/styles.css",
+      "sha256": "6a587b86e8b083bdc9af79343637df1f6cbfa181af1eefa30d651bd1e1c11ca8",
+      "bytes": 298385
+    },
+    {
+      "path": "src/alpha/main.ts",
+      "sha256": "0109f9669100da16f517f6dd61ba5fbc81f929f63d929b032210a4f4d09961ff",
+      "bytes": 230627
+    },
+    {
+      "path": "src/data/seed/tradePolicies.ts",
+      "sha256": "a896357fa2ae01f424d0c2394569fb36467a7cca46302a2b789160b2e2ff7722",
+      "bytes": 1632
+    },
+    {
+      "path": "src/game/contracts.ts",
+      "sha256": "1e3b2f0719d6d31284567499cf1babbea5c570dffcb38799fe55ca69f406aac5",
+      "bytes": 9564
+    },
+    {
+      "path": "src/game/createGame.ts",
+      "sha256": "18bedc4c8eccf3470e973aa674973d7889988cec013452cf2f5e91c77e277f12",
+      "bytes": 21370
+    },
+    {
+      "path": "src/game/customs.ts",
+      "sha256": "83f436bff5e5fde6f70025f2c2b25f28ef76ba2721441260865a6e1df7ae4c90",
+      "bytes": 15961
+    },
+    {
+      "path": "src/game/economy.ts",
+      "sha256": "91c9d26771700b1a92ee0f639e9df43b0b1527fc599d132c3230e4585c333a57",
+      "bytes": 6513
+    },
+    {
+      "path": "src/game/reputationLaw.ts",
+      "sha256": "9876692114854e2a6a337ff031cc665da05f68e924fe677c808fed5b97108ae5",
+      "bytes": 36140
+    },
+    {
+      "path": "src/game/tradeLaw.ts",
+      "sha256": "6296c56675ed427fe135c03d6243c81a37be5caf8ba5f9e2d77bb35aaf851b11",
+      "bytes": 10039
+    },
+    {
+      "path": "src/game/travel.ts",
+      "sha256": "d5054223cc6bc0d7e5fdc289b7aba5113460dfe6036894fa94c6ec5e0ca1b444",
+      "bytes": 45689
+    },
+    {
+      "path": "src/game/types.ts",
+      "sha256": "d8bbeba7360d153be380ef6b427fbbfc011f266eb65425786281d87d8c9ae959",
+      "bytes": 35547
+    },
+    {
+      "path": "src/game/vesselLifecycle.ts",
+      "sha256": "c1d4e28cd1ae2f15f5cfa2c9fecf61cf753458189c536f13e8ed096a34344472",
+      "bytes": 4702
+    },
+    {
+      "path": "src/services/localSave.ts",
+      "sha256": "46eef70559092f535f4312d883413770a0fcf799fbd22f877f1f1b8ab42e757d",
+      "bytes": 24370
+    },
+    {
+      "path": "tests/alpha-05-update-d.test.mjs",
+      "sha256": "c9d8f66003a0b1419308f8200e745638f0b8f9fab2388aa38496f41579a93158",
+      "bytes": 5238
+    },
+    {
+      "path": "tests/alpha-06d-a0-2b-progression-cadence.test.mjs",
+      "sha256": "e8288a0fcaadc6fe427d74d0ad99e235f4c13aa0c68547df228406b21661edd9",
+      "bytes": 6290
+    },
+    {
+      "path": "tests/alpha-06d-a0-2c-prepared-effects-arcane-strain.test.mjs",
+      "sha256": "8fb800bd6f3cff437161e29f928c59c4df700820e9bc8b3bc5b566887e0126ce",
+      "bytes": 13367
+    },
+    {
+      "path": "tests/alpha-06d-a0-2d-law-information-lifecycle.test.mjs",
+      "sha256": "6c534500bbe9cf45d025ca17a0792b2c2a13e8220c699d3b870441be6a7ce516",
+      "bytes": 10601
+    },
+    {
+      "path": "tests/alpha-06d-a0-3b-character-build-learning-sources.test.mjs",
+      "sha256": "9f26cfabd51dfca33363625707e7873fc54be7bd9b8bc1ded626b38fc45d5233",
+      "bytes": 14046
+    },
+    {
+      "path": "tests/alpha-06d-a0-3b1-creator-interaction-ux-lock.test.mjs",
+      "sha256": "902f28de31ea8183d9d528dec2eec9fc23fa9932438c8f707fb535533c6cf55a",
+      "bytes": 7067
+    },
+    {
+      "path": "tests/alpha-06d-a0-3b2-character-presence-journal-review-cleanup.test.mjs",
+      "sha256": "f2282c79bee1e0a53c1912592a37fe146d3841176eda6ea42e832c8ef78859e3",
+      "bytes": 4456
+    },
+    {
+      "path": "tests/alpha-06d-a0-3b3-review-journal-symbol-lock.test.mjs",
+      "sha256": "6d8695afebe6083558240ae6e7b54ae1cd654a46bb85ce76054037824af1e056",
+      "bytes": 3811
+    },
+    {
+      "path": "tests/alpha-06d-a0-3c-world-cause-bridge.test.mjs",
+      "sha256": "1a868613e98a68ba3ef7a0e0e393e92987fbaa962d03517fc4cf202199615bf5",
+      "bytes": 16884
+    },
+    {
+      "path": "tests/alpha-06d-character-manuscript-pass1.test.mjs",
+      "sha256": "0e04f63e048b7f2df96507a19ac7cb50fc4c287cc39d2b0031085f911901f0d3",
+      "bytes": 3445
+    },
+    {
+      "path": "tests/alpha-06d-character-manuscript-pass1d.test.mjs",
+      "sha256": "2eecdd478e0baa676d595409562917740c19975df98b0bd6a1c7da077103adf0",
+      "bytes": 1178
+    },
+    {
+      "path": "tests/alpha-06d-character-structural-s2.test.mjs",
+      "sha256": "d676327d36be2a26208ef27ffa4ae0b17955689464bd63096c9e9e46b0f1f0d3",
+      "bytes": 4399
+    },
+    {
+      "path": "tests/alpha-06d-character-structural-s3.test.mjs",
+      "sha256": "0be93bb9d557f3d5f4aaedaf042dde1cfda6364a005d6c3f466d525b7a1cae33",
+      "bytes": 5337
+    },
+    {
+      "path": "tests/alpha-06d-r1-1-standing-relationship-accordion.test.mjs",
+      "sha256": "b8aaddaef3637738b1c75dedd95acf5fb9ca06ed5bbf39bcba67c6d0bc09df7b",
+      "bytes": 3441
+    },
+    {
+      "path": "tests/alpha-06d-r1-2-final-readability-alignment.test.mjs",
+      "sha256": "76866d86e21560b92f847c29c00cc17912ae800a572179f2d2c6e5f678244b7b",
+      "bytes": 1681
+    },
+    {
+      "path": "tests/alpha-06d-r1-reputation-relationships-law.test.mjs",
+      "sha256": "26199f676e00f520123b13041875f1ab8a19dba923969c971d985a9467901d0c",
+      "bytes": 11959
+    },
+    {
+      "path": "tests/alpha-06d-r2-trade-law-customs-privateering.test.mjs",
+      "sha256": "b0927408c18d066845f31492e2959ac5bb0fa68a18bc7f4b1c4f1cf8dd49c6ad",
+      "bytes": 14955
+    }
+  ]
+}

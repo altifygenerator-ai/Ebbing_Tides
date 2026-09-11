@@ -1,0 +1,124 @@
+{
+  "package": "Ebbing Tides Alpha 0.6D Character / RPG Pass 1A",
+  "applyTarget": "0.6.0-alpha.d.character1",
+  "resultVersion": "0.6.0-alpha.d.character1a",
+  "saveSchema": 11,
+  "verification": {
+    "tests": "266/266",
+    "typecheck": "PASS",
+    "alphaBuild": "PASS",
+    "artLayouts": "2/2 PASS"
+  },
+  "files": [
+    {
+      "path": "APPLY_CHARACTER_RPG_PASS_1A.md",
+      "bytes": 2551,
+      "sha256": "451b153c4b18dcd0a4048e79f92cec06ceb7c8cfbd86fc0649b9ed1b9f522667"
+    },
+    {
+      "path": "README.md",
+      "bytes": 650,
+      "sha256": "1337312c4f7f468a41e198df809785fdc5bdf8efb23a968cab41217d859937c1"
+    },
+    {
+      "path": "docs/visual-qa/art-layout-calibration/resolution-verification.json",
+      "bytes": 4121,
+      "sha256": "790cc3c2e462008bbdf0aa6f028f2f01a3e0724470976a62e839c81049a3fc9b"
+    },
+    {
+      "path": "package.json",
+      "bytes": 800,
+      "sha256": "220cbebf85a90903ee9b7b225422846fdb9f2dffa63b25b05a2e016318811b93"
+    },
+    {
+      "path": "public/alpha/js/data/seed/assets.js",
+      "bytes": 89708,
+      "sha256": "d87f49e27ac8df4f26328f97213c03994e49fa4ecdbc40f310a852c85aa2ed2b"
+    },
+    {
+      "path": "public/alpha/js/data/seed/assets.js.map",
+      "bytes": 40676,
+      "sha256": "3b7224b7de33c801f4c4782c336dd3b0a82f452fdc7e70f920c5ea57b112a692"
+    },
+    {
+      "path": "public/alpha/js/ui/screenArchitecture.js",
+      "bytes": 9985,
+      "sha256": "6f64e2a6ad98d274f836c85e088c24748175dee1af008d4fdf0eec7c4e128a34"
+    },
+    {
+      "path": "public/alpha/js/ui/screenArchitecture.js.map",
+      "bytes": 7959,
+      "sha256": "b138a28159672c1623abcb23cfc7294faab965ea64b9aa2abb95dd59540dd04b"
+    },
+    {
+      "path": "public/alpha/styles.css",
+      "bytes": 189668,
+      "sha256": "d2aefe348d0a21b4ba92a1d089de0a5e71b5768fdbee74199ef1e8a7a4fabb8a"
+    },
+    {
+      "path": "public/art/ui/manuscript/manuscript_divider.png",
+      "bytes": 1052,
+      "sha256": "1105d42b88e30fa1b42a9391db45237fb50ee0dabfa16855474abb60d79636f9"
+    },
+    {
+      "path": "public/art/ui/manuscript/manuscript_header_ornament.png",
+      "bytes": 1323,
+      "sha256": "432ab71b59cce346d6fce91c354093b6b94d6e258533294d71ea1c89e4f92618"
+    },
+    {
+      "path": "public/art/ui/manuscript/manuscript_journal_spread.webp",
+      "bytes": 71572,
+      "sha256": "03a0b12fcc741267c0979fc4074d3585fe56bc357333e3defe4f7eec0e797a9e"
+    },
+    {
+      "path": "public/art/ui/manuscript/manuscript_page_ledger.webp",
+      "bytes": 82706,
+      "sha256": "f17eea17ea27c6cc95c168f19d310d6cc337a9de1c6c2aff606a3dde4be76071"
+    },
+    {
+      "path": "public/art/ui/manuscript/manuscript_page_ornate.webp",
+      "bytes": 84798,
+      "sha256": "5f085498aa03bea11759f428e95c111f5eda467cf900c987e3e695949055f827"
+    },
+    {
+      "path": "public/art/ui/manuscript/manuscript_portrait_frame.png",
+      "bytes": 11257,
+      "sha256": "b926d302eb8c521d46982f37ef77779a68a4fafce0ac54ecbab842e7c715218d"
+    },
+    {
+      "path": "public/art/ui/manuscript/manuscript_section_frame.png",
+      "bytes": 8758,
+      "sha256": "468beac11f270489a7441e65c1899c4403ce233bdc8404fdcfc18547cf0d40c9"
+    },
+    {
+      "path": "public/art/ui/manuscript/manuscript_tab_skin.png",
+      "bytes": 2909,
+      "sha256": "6ee5679b2be899ca4bcfc4c84c7a2d1774c1bcb77bf6eecf0eb7e7ffce3edd5e"
+    },
+    {
+      "path": "src/data/seed/assets.ts",
+      "bytes": 82415,
+      "sha256": "5646c3e02e364ac7abd7a86640ca1d2ea2e15a33ca22353d5c350c8bc2cf5b0b"
+    },
+    {
+      "path": "src/ui/screenArchitecture.ts",
+      "bytes": 10312,
+      "sha256": "74bc52af861e6bd4c85ccb916a07e43b5da096ad47d7085614755aa69451f556"
+    },
+    {
+      "path": "tests/alpha-05-update-d.test.mjs",
+      "bytes": 5061,
+      "sha256": "654d7b93d923beda201064b60d9fe63c816a7efdf353d7e00761ca1b1364e071"
+    },
+    {
+      "path": "tests/alpha-06d-character-manuscript-pass1.test.mjs",
+      "bytes": 4246,
+      "sha256": "7dd5e3b20405f158649eedefc1bcf9d535fc6eee58fa3f16f993b4326911078f"
+    },
+    {
+      "path": "tests/alpha-06d-character-manuscript-pass1a.test.mjs",
+      "bytes": 3728,
+      "sha256": "71a3f539d95fe123444a79cf8ad672917d9660a693f261700e0a0427588ab6bd"
+    }
+  ]
+}

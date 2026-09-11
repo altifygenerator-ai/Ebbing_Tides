@@ -1,0 +1,26 @@
+{
+  "package": "0.6.0-alpha.d.rpg-r1.1",
+  "base": "0.6.0-alpha.d.rpg-r1",
+  "saveSchema": 12,
+  "scope": "Standing, personal relationships, and local standing scalable captain-record UI cleanup",
+  "changes": [
+    "native code-owned accordions for Known Powers, Personal Relationships, and Local Standing",
+    "collapsed summaries keep counts and priority context visible",
+    "urgent legal state and active warrants surface even when the Standing & Law body is collapsed",
+    "large relationship and port lists collapse by default while small lists remain open",
+    "full expanded personal relationship list is no longer capped at six entries",
+    "accordion geometry is explicitly reserved as code-owned for the later painted character-interface phase"
+  ],
+  "deferred": [
+    "R2 smuggling, customs, contraband, privateering, Letters of Marque, and war authorization",
+    "R3 broad RPG gameplay consequence sweep",
+    "final Culture-primary / Religion-accent painted character UI"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "298/298 PASS",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: next executable not installed in packaging environment"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "package": "0.6.0-alpha.d.a0-3b2",
+  "saveSchema": 12,
+  "phase": "A0.3B2 \u2014 Character Presence / Journal / Review Cleanup",
+  "base": "0.6.0-alpha.d.a0-3b1",
+  "scope": [
+    "known NPC portrait/presence presentation in People, Government, Religion and dialogue",
+    "Captain DP badge contrast",
+    "journal continuation heading grammar",
+    "creator Review density/clipping cleanup"
+  ],
+  "verification": {
+    "typecheck": "PASS",
+    "alphaBuild": "PASS",
+    "tests": "411/411 PASS",
+    "dedicatedA03B2": "8/8 PASS",
+    "longRunNpcEconomy": "13/13 PASS",
+    "artLayouts": "2/2 PASS",
+    "cleanOverlay": "PASS: applied only A0.3B2 overlay to pristine reconstructed A0.3B1 base; typecheck/build/dedicated/full/art-layout/durability all pass"
+  },
+  "schemaMigration": "none",
+  "visualApproval": "required before locking this presentation cleanup",
+  "nextMajorPhase": "A0.3C \u2014 Minimal Live Kingdom / Policy / Religion / World-Event Bridge",
+  "overlayNotes": [
+    "Compiled alpha/main.js and map correspond to the changed src/alpha/main.ts.",
+    "Unrelated alpha-build regeneration of data/seed/assets.js and art-layout generatedAt output is intentionally excluded.",
+    "No new portrait artwork is included; unassigned named NPCs retain honest fallback identity plates."
+  ]
+}

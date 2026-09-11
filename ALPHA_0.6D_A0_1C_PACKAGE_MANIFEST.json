@@ -1,0 +1,63 @@
+{
+  "package": "0.6.0-alpha.d.a0-1c",
+  "base": "0.6.0-alpha.d.a0-1b",
+  "saveSchema": 12,
+  "scope": "A0 P0 corrective repair 1C: economy source of truth, NPC trade integration, provisioning cohesion and adjacent recurring-contract durability",
+  "changes": [
+    "removes target-seeking autonomous market restock",
+    "adds deterministic settlement production, consumption and coarse non-materialized supply into the same canonical market inventory",
+    "moves current Skeldran production identity into data and derives future settlement flows from canonical settlement/regional economic profiles",
+    "builds initial markets from the active runtime port registry for additive world expansion",
+    "routes materialized NPC merchant cargo through actual source and destination market stock, ship capacity and NPC money",
+    "routes NPC and player ship provisioning through actual staple food market stock",
+    "changes the existing Harbor stores label/button to live price and availability without altering layout geometry",
+    "uses commodity cargoUnits consistently in sailing load calculations",
+    "clears stale accepted contract IDs and prunes ignored routine delivery opportunities from long-term operational state",
+    "adds integrated economy/planner/expansion cohesion regressions including a 1000-day campaign test"
+  ],
+  "cohesion": {
+    "a0_1a_vessel_lifecycle": "unchanged; no alternate combat/prize/economic outcome owner introduced",
+    "a0_1b_npc_planner": "preserved; port recovery now consumes the authoritative settlement provisioning source and 1000-day productivity remains intact",
+    "market": "one stock state is shared by player trade, NPC trade, provisioning, production, consumption, price and delivery-contract shortage detection",
+    "navigation": "ship-speed cargo load now uses the same cargoUnits owner as hold-capacity/trading",
+    "contracts": "shortage jobs continue to read market state; routine expiry is bounded so recurring economic conditions do not create permanent operational garbage",
+    "expansion": "engine logic uses active port registry plus canonical settlement/regional economic profiles; named current-port differences live in seed data rather than engine branches",
+    "future_world_events": "should modify production/consumption/access/aggregate-supply inputs rather than stack duplicate price modifiers",
+    "presentation": "accepted geometry unchanged; only stores price/availability is dynamically truthful"
+  },
+  "stressVerification": {
+    "days": 1000,
+    "simulatedHours": 24000,
+    "operationalShipNpcs": 6,
+    "productiveAfterRun": 6,
+    "npcArrivals": 1116,
+    "plannerInterrupts": 0,
+    "simulationEvents": 6,
+    "processedRetained": 0,
+    "cancelledRetained": 0,
+    "marketRows": 96,
+    "negativeStocks": 0,
+    "overStorageCapacityStocks": 0,
+    "zeroStocks": 1,
+    "freshJsonBytes": 69139,
+    "finalJsonBytes": 578518,
+    "growthMultiple": 8.37
+  },
+  "saveCompatibility": "schema v12 unchanged; economy flows are derived from existing market/settlement state and no persistent field migration is required",
+  "presentationChanged": "minimal functional text only: Harbor stores cost/availability is live; no layout/art geometry redesign",
+  "deferred": [
+    "A0.2A information durability and ownership",
+    "A0.2B progression cadence",
+    "A0.2C prepared effects and Arcane Strain",
+    "A0.2D law information lifecycle",
+    "A0.3C live kingdom/event bridge",
+    "R2 dynamic trade law/customs/smuggling/privateering"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "320/320 PASS",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: local next executable not installed"
+  }
+}

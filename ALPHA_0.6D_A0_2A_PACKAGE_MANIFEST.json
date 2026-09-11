@@ -1,0 +1,47 @@
+{
+  "package": "0.6.0-alpha.d.a0-2a",
+  "base": "0.6.0-alpha.d.a0-1c",
+  "saveSchema": 12,
+  "scope": "A0 P1 corrective repair 2A: information durability, ownership, recurrence and non-omniscient public-news foundation",
+  "changes": [
+    "makes PlayerState.knowledge the single mutable player campaign-knowledge ledger",
+    "imports and clears legacy CharacterCapabilityState.knowledgeEntries on create/load without a save-schema bump",
+    "adds stable claim identity plus observation/refresh/staleness/contradiction/supersession metadata",
+    "compacts legacy duplicate semantic claims so refreshed information does not create unbounded parallel rows",
+    "makes port assessment refreshable after aging or meaningful change while preserving one claim per port/lens",
+    "adds recurring live market rumors sourced from A0.1C authoritative market state",
+    "adds physically delayed public event reports sourced from canonical world events",
+    "prevents vague old rumors from granting permanent ship identification",
+    "makes Korr food-pressure dialogue read live Ironhaven grain state instead of stale authored shortage assumptions",
+    "adds optional normalized Supabase player_knowledge metadata migration",
+    "adds eleven A0.2A lifecycle/ownership/propagation regressions"
+  ],
+  "cohesion": {
+    "a0_1a_vessel_lifecycle": "unchanged; information/recognition cannot resurrect terminal ships or create another combat outcome owner",
+    "a0_1b_npc_planner": "NPC arrival events are read as potential harbor news only after physical information delay; information never moves or replans NPCs",
+    "a0_1c_economy": "live market stock is read to generate trade information; the information layer never changes inventory, price or economic flow",
+    "knowledge_owner": "PlayerState.knowledge owns mutable player campaign intelligence; legacy character capability knowledge is compatibility input only",
+    "world_truth": "WorldEvent remains canonical truth; KnowledgeRecord describes what the player has learned about that world",
+    "law_boundary": "crime/witness/authority reporting is intentionally excluded from generic public-event propagation until A0.2D",
+    "navigation": "information travel uses active port registry plus the same navigable sea-path/physical-distance foundations",
+    "character_mind": "deterministic local claims read current authoritative state rather than authored stale assumptions",
+    "expansion": "newly activated runtime ports inherit information travel/recurrence through generic registry/path logic, with no named-region engine fork",
+    "presentation": "accepted geometry unchanged; Journal information state wording only"
+  },
+  "saveCompatibility": "schema v12 unchanged; create/load normalizes legacy knowledge ownership in place, and optional normalized Supabase columns are additive",
+  "presentationChanged": "minimal wording only: Journal can show aging/stale/contradicted/superseded information; no structural UI/art changes",
+  "deferred": [
+    "A0.2B progression cadence",
+    "A0.2C prepared effects and Arcane Strain",
+    "A0.2D law information lifecycle",
+    "A0.3C live kingdom/event bridge",
+    "R2 dynamic trade law/customs/smuggling/privateering"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "331/331 PASS",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: local next executable not installed"
+  }
+}

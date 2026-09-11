@@ -1,0 +1,444 @@
+{
+  "note": "Deduplicated source-package coverage. Production-selected art is represented by exact runtime copies. Source-only alternates/reference sheets are retained in the downloadable checkpoint as high-quality WebP at their original pixel dimensions to avoid duplicating hundreds of megabytes of PNG storage.",
+  "groups": {
+    "canonical": {
+      "approved_anchors/Asterra_PORT_ESTABLISHING_APPROVED_DIRECTION.png": {
+        "originalSha256": "a211c7062eb36ab64dba64ec268c283c2e9ffeefa2e803186a27da15314180c5",
+        "representedBy": "public/art/location/ports/asterra.png",
+        "representation": "exact production copy"
+      },
+      "approved_anchors/Blackhaven_PORT_ESTABLISHING_APPROVED.png": {
+        "originalSha256": "c54b1de6f95de69d1fa70c14e3a47345f96c1411cdec08ece9ba033f822bab6c",
+        "representedBy": "public/art/location/ports/blackhaven.png",
+        "representation": "exact production copy"
+      },
+      "approved_anchors/Ironhaven_PORT_ESTABLISHING_APPROVED.png": {
+        "originalSha256": "487cff108f480d8ef800c6f6b78e3cf43b0b0728db264022bec823bfb818b852",
+        "representedBy": "public/art/location/ports/ironhaven.png",
+        "representation": "exact production copy"
+      },
+      "approved_anchors/Nagara_PORT_ESTABLISHING_APPROVED_NEAR_FINAL.png": {
+        "originalSha256": "7cd4b02836cb84aa2a5e1a5cbd581e246ed8d1b5b5860301b56418e606a10571",
+        "representedBy": "public/art/location/ports/nagara.png",
+        "representation": "exact production copy"
+      },
+      "approved_anchors/Navigation_Map_APPROVED_ANCHOR.png": {
+        "originalSha256": "54eda575d2f56835bc53503496d298c0df1ad20e937ebe6e91a6e32a0ad684e7",
+        "representedBy": "public/art/reference/navigation_map_approved_anchor.png",
+        "representation": "exact production copy"
+      },
+      "approved_anchors/Tyras_PORT_ESTABLISHING_APPROVED.png": {
+        "originalSha256": "7192b213faad2a95c3594461167dfff47eb31ed93109602d83832dd2f46df952",
+        "representedBy": "public/art/location/ports/tyras.png",
+        "representation": "exact production copy"
+      },
+      "approved_anchors/Vespera_PORT_ESTABLISHING_APPROVED.png": {
+        "originalSha256": "d775ad334f7bedeb8a23fdafebd7453a5beeb8573d5dbf76732ed05818bbe904",
+        "representedBy": "public/art/location/ports/vespera.png",
+        "representation": "exact production copy"
+      },
+      "approved_anchors/Veyrholm_PORT_ESTABLISHING_APPROVED.png": {
+        "originalSha256": "352c40e50e22d71ef91a47e280171a75b48ba76cf0642a87698c373ddf307cc1",
+        "representedBy": "public/art/location/ports/veyrholm.png",
+        "representation": "exact production copy"
+      },
+      "asteria/environment_poi/2026-09-07--f451a073-8e20-414d-a3cf-3e9fade448c9/environment_poi.asteria.thalassor-s-teeth__environment-poi__v1__ade448c9__02.png": {
+        "originalSha256": "5a9599262560d41cb3e3802647e5e935f4108f0f625f65b34b374baf027ac55a",
+        "representedBy": "public/art/location/pois/thalassor_s_teeth.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--236627aa-244e-46a8-9e5c-34dcd52448c4/port_environment.asteria.eirenos__establishing__v1__d52448c4__03.png": {
+        "originalSha256": "5d3f23ecab885dac9a84aeeaf182cce78d7b6635838bb3e7f455026faaa75e71",
+        "representedBy": "public/art/source-supplement/canonical/asteria/port_environment/2026-09-07--236627aa-244e-46a8-9e5c-34dcd52448c4/port_environment.asteria.eirenos__establishing__v1__d52448c4__03.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "asteria/port_environment/2026-09-07--236627aa-244e-46a8-9e5c-34dcd52448c4/port_environment.asteria.eirenos__establishing__v1__d52448c4__04.png": {
+        "originalSha256": "195fd3880e8337cea344ec60e171a42269deded45ecae740f5d3b78e2be2c972",
+        "representedBy": "public/art/location/ports/eirenos.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--371adb9b-1a3a-4304-84d8-024803fc17dd/port_environment.asteria.delphara__establishing__v1__03fc17dd__04.png": {
+        "originalSha256": "8dd743b505314a17a4f941cdc420f826ebc414a408ee4adddeba509b5f590f2e",
+        "representedBy": "public/art/location/ports/delphara.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--8267d8dd-0a05-49e0-bcf9-99cccfe631e8/port_environment.asteria.asterra__establishing__v1__cfe631e8__02.png": {
+        "originalSha256": "380c34d23aff68be04373e4575348374b108610b73afcab20a67029d82ab214d",
+        "representedBy": "public/art/source-supplement/canonical/asteria/port_environment/2026-09-07--8267d8dd-0a05-49e0-bcf9-99cccfe631e8/port_environment.asteria.asterra__establishing__v1__cfe631e8__02.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "asteria/port_environment/2026-09-07--97d3ffac-6794-4e1d-9952-ce8396cd8269/port_environment.asteria.myrine__establishing__v1__96cd8269__04.png": {
+        "originalSha256": "b26877ed88cbac29a071bcd4b395826f76e0d7226f8265c724506116643ec50b",
+        "representedBy": "public/art/location/ports/myrine.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--cbfaa740-3b2f-46f1-8687-b4160db674fc/port_environment.asteria.thalassa__establishing__v1__0db674fc__01.png": {
+        "originalSha256": "320316e4510e2a6953711c15a7100134dcf7aaf8212318f2b4749866d535e0bc",
+        "representedBy": "public/art/location/ports/thalassa.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--cc92ac49-2a63-4daf-91b9-2ebbab7d5eae/port_environment.asteria.rhadessa__establishing__v1__ab7d5eae__04.png": {
+        "originalSha256": "4efe71b967e08496b28d9bc9453cc9a6ef48ba4540d8c0bc348ab84d4518f319",
+        "representedBy": "public/art/location/ports/rhadessa.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--db28ee33-f7ab-416a-828a-ca27a093cac2/port_environment.asteria.korinthos__establishing__v1__a093cac2__04.png": {
+        "originalSha256": "fefbe48854c3fd03761cda8c6f35c5b557cfd2cf6fb3cb37633512a288a3bf32",
+        "representedBy": "public/art/location/ports/korinthos.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--f49d7d76-03d1-4312-9a6c-601759ac5cf4/port_environment.asteria.aurelia__establishing__v1__59ac5cf4__04.png": {
+        "originalSha256": "9a419f97605f984a7a2e28bebb2b65520f1efc7b7fbdf4899eef924080e3b6a4",
+        "representedBy": "public/art/location/ports/aurelia.png",
+        "representation": "exact production copy"
+      },
+      "global/map-art/world-map/world_atlas_visual_dna_v04.png": {
+        "originalSha256": "8f43a6b9c6a02d027dca3911c5ac828428da48177fbdba4347f27c3d07673f1d",
+        "representedBy": "public/art/maps/world_atlas_visual_dna_v04.png",
+        "representation": "exact production copy"
+      },
+      "global/map-art/world-settlement-maritime-geography/ChatGPT Image Sep 7, 2026, 02_36_49 AM (1).png": {
+        "originalSha256": "b0c8286dd1e967720cfccccecf66c17bee3442e7503927cae2b1573350337673",
+        "representedBy": "public/art/canon/world_settlement_maritime_geography_canon_0_1_map.png",
+        "representation": "exact production copy"
+      },
+      "global/map-art/world-settlement-maritime-geography/world-settlement-maritime-geography-canon-v0.1.png.png": {
+        "originalSha256": "b0c8286dd1e967720cfccccecf66c17bee3442e7503927cae2b1573350337673",
+        "representedBy": "public/art/canon/world_settlement_maritime_geography_canon_0_1_map.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/environment_poi/2026-09-07--0539b5d2-7674-4cea-8fb8-52c4117c12a6/environment_poi.outer_isles.widow-s-passage__environment-poi__v1__117c12a6__03.png": {
+        "originalSha256": "f4b5c07246c567e0fe18c9318d7c20d8b6ef124a6d42eb078ef45e1afce59044",
+        "representedBy": "public/art/location/pois/widow_s_passage.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/environment_poi/2026-09-07--814bb2db-492e-425b-9bc3-a0d383a3970e/environment_poi.outer_isles.black-cape__environment-poi__v1__83a3970e__03.png": {
+        "originalSha256": "bbedc13ffd89970bf4af0da5121dc121977b8c42b1d6c07e729d5050527ec31d",
+        "representedBy": "public/art/location/pois/black_cape.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/environment_poi/2026-09-07--913c1283-50fa-405f-b1c4-e038e2c5e93e/environment_poi.outer_isles.western-deep__environment-poi__v1__e2c5e93e__02.png": {
+        "originalSha256": "b4ed821345e0f99a83c2f9d788c85573485d47e7dd6a6e8b02bd199c93dd9e51",
+        "representedBy": "public/art/location/pois/western_deep.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/environment_poi/2026-09-07--e4baf58b-197d-4582-a635-946566318e0f/environment_poi.outer_isles.greywater-wrecks__environment-poi__v1__66318e0f__04.png": {
+        "originalSha256": "2ba0b75cc6f4e92a1c0b41ca4798d2625e03fdf52868954330dfc4ce8ee89926",
+        "representedBy": "public/art/location/pois/greywater_wrecks.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--0100c1ea-2a07-4e88-9669-6b8c7469bc8d/port_environment.outer_isles.gullreach__establishing__v1__7469bc8d__03.png": {
+        "originalSha256": "0eae8f37c2de2998b6f7a89ed643bce00b2b949c13fddf4358a469ff1d09467a",
+        "representedBy": "public/art/location/ports/gullreach.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--145c8c85-00cc-438e-b070-845d3350f7d2/port_environment.outer_isles.greywater__establishing__v1__3350f7d2__04.png": {
+        "originalSha256": "131a7b0149a70609c07359718f998c5cc3607e4a71ff8422f2d6b56b53f76076",
+        "representedBy": "public/art/location/ports/greywater.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--3a8edfb5-f01c-489d-808b-d9085500e599/port_environment.outer_isles.port-meridian__establishing__v1__5500e599__02.png": {
+        "originalSha256": "210ae541bc0caf76d0a26472901ad9d761874afdc36aa6773774c5fee8aa3def",
+        "representedBy": "public/art/location/ports/port_meridian.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--3ee3289d-7adc-44c4-9856-56b58c913e52/port_environment.outer_isles.blackhaven__establishing__v1__8c913e52__03.png": {
+        "originalSha256": "5676b9e0b6ee7ed4a8e71a6dbed02285e2bef67b636044307798e8b24fae10f2",
+        "representedBy": "public/art/source-supplement/canonical/outer_isles/port_environment/2026-09-07--3ee3289d-7adc-44c4-9856-56b58c913e52/port_environment.outer_isles.blackhaven__establishing__v1__8c913e52__03.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/port_environment/2026-09-07--e07deeef-09fb-4b34-b2eb-28c1a3c936da/port_environment.outer_isles.saint-corren__establishing__v1__a3c936da__02.png": {
+        "originalSha256": "eed5b5e0eb7266594bacbf64c4241d6aa858f4acbde5ffa98795a7cd2c529413",
+        "representedBy": "public/art/location/ports/saint_corren.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--e3cc680a-37f9-4ae2-950e-29fab20abe75/port_environment.outer_isles.ardaran__establishing__v1__b20abe75__02.png": {
+        "originalSha256": "7652d815ccf562858a84e0f0c8b3921a4a4880636ba960e5546414bda0eb241d",
+        "representedBy": "public/art/location/ports/ardaran.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--febfda54-9a2b-4665-8e53-d858466a4602/port_environment.outer_isles.saltwake__establishing__v1__466a4602__01.png": {
+        "originalSha256": "f6174bf73ca54a2cdbfc075b20a2b9593e0111fe5c7b6e1b374f039650ac8599",
+        "representedBy": "public/art/location/ports/saltwake.png",
+        "representation": "exact production copy"
+      },
+      "skeldra/map_art/skeldra-region/skeldra_regional_chart_v05c_crisp.webp": {
+        "originalSha256": "0231381bcadd3c740cb1b830517ad59138b5dba481d679e7b8973798959e3ab6",
+        "representedBy": "public/art/maps/skeldra_regional_chart_v05c_crisp.webp",
+        "representation": "exact production copy"
+      },
+      "vespera/port_environment/2026-09-07--6ad0084e-c3ca-4f08-b66e-2c97c4efa3ad/port_environment.vespera.vespera__establishing__v1__c4efa3ad__01.png": {
+        "originalSha256": "72a5f821cc507d73334527cab49eb1d524d68836142472f750a98d6a286681ed",
+        "representedBy": "public/art/source-supplement/canonical/vespera/port_environment/2026-09-07--6ad0084e-c3ca-4f08-b66e-2c97c4efa3ad/port_environment.vespera.vespera__establishing__v1__c4efa3ad__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      }
+    },
+    "approved": {
+      "asteria/environment_poi/2026-09-07--f451a073-8e20-414d-a3cf-3e9fade448c9/environment_poi.asteria.thalassor-s-teeth__environment-poi__v1__ade448c9__02.png": {
+        "originalSha256": "5a9599262560d41cb3e3802647e5e935f4108f0f625f65b34b374baf027ac55a",
+        "representedBy": "public/art/location/pois/thalassor_s_teeth.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--236627aa-244e-46a8-9e5c-34dcd52448c4/port_environment.asteria.eirenos__establishing__v1__d52448c4__03.png": {
+        "originalSha256": "5d3f23ecab885dac9a84aeeaf182cce78d7b6635838bb3e7f455026faaa75e71",
+        "representedBy": "public/art/source-supplement/approved/asteria/port_environment/2026-09-07--236627aa-244e-46a8-9e5c-34dcd52448c4/port_environment.asteria.eirenos__establishing__v1__d52448c4__03.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "asteria/port_environment/2026-09-07--236627aa-244e-46a8-9e5c-34dcd52448c4/port_environment.asteria.eirenos__establishing__v1__d52448c4__04.png": {
+        "originalSha256": "195fd3880e8337cea344ec60e171a42269deded45ecae740f5d3b78e2be2c972",
+        "representedBy": "public/art/location/ports/eirenos.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--371adb9b-1a3a-4304-84d8-024803fc17dd/port_environment.asteria.delphara__establishing__v1__03fc17dd__02.png": {
+        "originalSha256": "5d2ade87e8a24e412e7e20eef5ad907d8aa2b75ca1d92c071ebb7ccb50a02468",
+        "representedBy": "public/art/source-supplement/approved/asteria/port_environment/2026-09-07--371adb9b-1a3a-4304-84d8-024803fc17dd/port_environment.asteria.delphara__establishing__v1__03fc17dd__02.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "asteria/port_environment/2026-09-07--371adb9b-1a3a-4304-84d8-024803fc17dd/port_environment.asteria.delphara__establishing__v1__03fc17dd__04.png": {
+        "originalSha256": "8dd743b505314a17a4f941cdc420f826ebc414a408ee4adddeba509b5f590f2e",
+        "representedBy": "public/art/location/ports/delphara.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--8267d8dd-0a05-49e0-bcf9-99cccfe631e8/port_environment.asteria.asterra__establishing__v1__cfe631e8__02.png": {
+        "originalSha256": "380c34d23aff68be04373e4575348374b108610b73afcab20a67029d82ab214d",
+        "representedBy": "public/art/source-supplement/approved/asteria/port_environment/2026-09-07--8267d8dd-0a05-49e0-bcf9-99cccfe631e8/port_environment.asteria.asterra__establishing__v1__cfe631e8__02.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "asteria/port_environment/2026-09-07--97d3ffac-6794-4e1d-9952-ce8396cd8269/port_environment.asteria.myrine__establishing__v1__96cd8269__01.png": {
+        "originalSha256": "5b499a97f4c3763bded5ce56f8a74aab7b06bda53684627168ab122e4aff9106",
+        "representedBy": "public/art/source-supplement/approved/asteria/port_environment/2026-09-07--97d3ffac-6794-4e1d-9952-ce8396cd8269/port_environment.asteria.myrine__establishing__v1__96cd8269__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "asteria/port_environment/2026-09-07--97d3ffac-6794-4e1d-9952-ce8396cd8269/port_environment.asteria.myrine__establishing__v1__96cd8269__04.png": {
+        "originalSha256": "b26877ed88cbac29a071bcd4b395826f76e0d7226f8265c724506116643ec50b",
+        "representedBy": "public/art/location/ports/myrine.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--cbfaa740-3b2f-46f1-8687-b4160db674fc/port_environment.asteria.thalassa__establishing__v1__0db674fc__01.png": {
+        "originalSha256": "320316e4510e2a6953711c15a7100134dcf7aaf8212318f2b4749866d535e0bc",
+        "representedBy": "public/art/location/ports/thalassa.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--cbfaa740-3b2f-46f1-8687-b4160db674fc/port_environment.asteria.thalassa__establishing__v1__0db674fc__04.png": {
+        "originalSha256": "2b1170ea0c42940c989d3f4898bcf4ba3eaa1c4d1300e669a1cea521f6073443",
+        "representedBy": "public/art/source-supplement/approved/asteria/port_environment/2026-09-07--cbfaa740-3b2f-46f1-8687-b4160db674fc/port_environment.asteria.thalassa__establishing__v1__0db674fc__04.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "asteria/port_environment/2026-09-07--cc92ac49-2a63-4daf-91b9-2ebbab7d5eae/port_environment.asteria.rhadessa__establishing__v1__ab7d5eae__01.png": {
+        "originalSha256": "6e640aa1783a35f5364603a2e732bc2d6328fa2e4814319b59b5214937e8809f",
+        "representedBy": "public/art/source-supplement/approved/asteria/port_environment/2026-09-07--cc92ac49-2a63-4daf-91b9-2ebbab7d5eae/port_environment.asteria.rhadessa__establishing__v1__ab7d5eae__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "asteria/port_environment/2026-09-07--cc92ac49-2a63-4daf-91b9-2ebbab7d5eae/port_environment.asteria.rhadessa__establishing__v1__ab7d5eae__04.png": {
+        "originalSha256": "4efe71b967e08496b28d9bc9453cc9a6ef48ba4540d8c0bc348ab84d4518f319",
+        "representedBy": "public/art/location/ports/rhadessa.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--db28ee33-f7ab-416a-828a-ca27a093cac2/port_environment.asteria.korinthos__establishing__v1__a093cac2__02.png": {
+        "originalSha256": "2a87cc0b3c10ecec0288f72e0c5bf59522c8e0de7fa5cabc0fa39e2e520d50e0",
+        "representedBy": "public/art/source-supplement/approved/asteria/port_environment/2026-09-07--db28ee33-f7ab-416a-828a-ca27a093cac2/port_environment.asteria.korinthos__establishing__v1__a093cac2__02.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "asteria/port_environment/2026-09-07--db28ee33-f7ab-416a-828a-ca27a093cac2/port_environment.asteria.korinthos__establishing__v1__a093cac2__04.png": {
+        "originalSha256": "fefbe48854c3fd03761cda8c6f35c5b557cfd2cf6fb3cb37633512a288a3bf32",
+        "representedBy": "public/art/location/ports/korinthos.png",
+        "representation": "exact production copy"
+      },
+      "asteria/port_environment/2026-09-07--f49d7d76-03d1-4312-9a6c-601759ac5cf4/port_environment.asteria.aurelia__establishing__v1__59ac5cf4__01.png": {
+        "originalSha256": "11904a1d5ba77d076d01b898e18d138914315e5389dc6be4a786603f2b895771",
+        "representedBy": "public/art/source-supplement/approved/asteria/port_environment/2026-09-07--f49d7d76-03d1-4312-9a6c-601759ac5cf4/port_environment.asteria.aurelia__establishing__v1__59ac5cf4__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "asteria/port_environment/2026-09-07--f49d7d76-03d1-4312-9a6c-601759ac5cf4/port_environment.asteria.aurelia__establishing__v1__59ac5cf4__04.png": {
+        "originalSha256": "9a419f97605f984a7a2e28bebb2b65520f1efc7b7fbdf4899eef924080e3b6a4",
+        "representedBy": "public/art/location/ports/aurelia.png",
+        "representation": "exact production copy"
+      },
+      "clothing_and_armor/Brigandine_Concealed_Plate_Coat_APPROVED.png": {
+        "originalSha256": "7c558f493a0b18ebe020f750abbd26423f3c926b737c795662cf627af4cacccf",
+        "representedBy": "public/art/items/common_brigandine_coat.png",
+        "representation": "exact production copy"
+      },
+      "clothing_and_armor/Clothing_Armor_Worn_Foundation_0.1_initial_sheet.png": {
+        "originalSha256": "80a752a32a2c5ae803f5c5ecc4265030d9b709c188338ce0e30e595c489dd4b6",
+        "representedBy": "public/art/source-supplement/approved/clothing_and_armor/Clothing_Armor_Worn_Foundation_0.1_initial_sheet.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "clothing_and_armor/Common_Padded_Reinforced_Jack_APPROVED.png": {
+        "originalSha256": "3b8374f3281b121b6878026e3568bbab9363f239d2e9563f8f333a5939f7b70e",
+        "representedBy": "public/art/items/common_reinforced_jack.png",
+        "representation": "exact production copy"
+      },
+      "clothing_and_armor/Eastern_Maritime_Jacket_APPROVED.png": {
+        "originalSha256": "9245325f03ed82f65b00e3e19f30c3c85008701d294d57b92e749f18635cc6dc",
+        "representedBy": "public/art/source-supplement/approved/clothing_and_armor/Eastern_Maritime_Jacket_APPROVED.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "clothing_and_armor/Naval_Breastplate_APPROVED.png": {
+        "originalSha256": "1f4fa5e54634787f2fe6a4a80ec488f6d492f707e26cd795dba2a66dda185446",
+        "representedBy": "public/art/items/naval_breastplate.png",
+        "representation": "exact production copy"
+      },
+      "clothing_and_armor/Serathi_Merchant_Maritime_Garment_APPROVED.png": {
+        "originalSha256": "4a58196e5259f13eaa89d76bf8a1a4298a36b68c56d16b6bc895bfdd95736ca7",
+        "representedBy": "public/art/source-supplement/approved/clothing_and_armor/Serathi_Merchant_Maritime_Garment_APPROVED.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "clothing_and_armor/Skeldra_Clothing_Armor_Family_0.1_pre_refinement.png": {
+        "originalSha256": "502cb72162b1de76e0714087c9f2781e021eebebc93d13d86131582541db6070",
+        "representedBy": "public/art/source-supplement/approved/clothing_and_armor/Skeldra_Clothing_Armor_Family_0.1_pre_refinement.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "items_and_equipment/FIREARM_STYLE_0.1_APPROVED_DIRECTION_sheet.png": {
+        "originalSha256": "ac3cac8e7d9cd5f3fdf605bfa14b6818f97e28537a04430ac649efb2f2992ea6",
+        "representedBy": "public/art/source-supplement/approved/items_and_equipment/FIREARM_STYLE_0.1_APPROVED_DIRECTION_sheet.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "items_and_equipment/Sabre_Asterian_Officer_reference.png": {
+        "originalSha256": "afadea7b845cec9fedd9f68832c045f51db60fe4ca8e0c26ea7210ea2d7b1974",
+        "representedBy": "public/art/source-supplement/approved/items_and_equipment/Sabre_Asterian_Officer_reference.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "items_and_equipment/Sabre_Common_Naval_reference.png": {
+        "originalSha256": "9f1f982e4a37cbafeca4e50290ef9baa13bae1c92960e6b57f6c121bb94a0375",
+        "representedBy": "public/art/source-supplement/approved/items_and_equipment/Sabre_Common_Naval_reference.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "items_and_equipment/Sabre_Serathi_reference.png": {
+        "originalSha256": "6eaf3bb247302bec7bc06f485cb631c2d076bb66cb87dd92368c8dbf176c7560",
+        "representedBy": "public/art/source-supplement/approved/items_and_equipment/Sabre_Serathi_reference.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "items_and_equipment/Sabre_Skeldran_Naval_reference.png": {
+        "originalSha256": "ae73a0530e4aa6d43183a046cf110c7e79d9ee1727ab99e24b307452410082ec",
+        "representedBy": "public/art/source-supplement/approved/items_and_equipment/Sabre_Skeldran_Naval_reference.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/environment_poi/2026-09-07--0539b5d2-7674-4cea-8fb8-52c4117c12a6/environment_poi.outer_isles.widow-s-passage__environment-poi__v1__117c12a6__02.png": {
+        "originalSha256": "5d8c022ecdeeedf61646c8011e5c528c1e3414e5f51dedfbfc93aa0b01ad877c",
+        "representedBy": "public/art/source-supplement/approved/outer_isles/environment_poi/2026-09-07--0539b5d2-7674-4cea-8fb8-52c4117c12a6/environment_poi.outer_isles.widow-s-passage__environment-poi__v1__117c12a6__02.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/environment_poi/2026-09-07--0539b5d2-7674-4cea-8fb8-52c4117c12a6/environment_poi.outer_isles.widow-s-passage__environment-poi__v1__117c12a6__03.png": {
+        "originalSha256": "f4b5c07246c567e0fe18c9318d7c20d8b6ef124a6d42eb078ef45e1afce59044",
+        "representedBy": "public/art/location/pois/widow_s_passage.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/environment_poi/2026-09-07--814bb2db-492e-425b-9bc3-a0d383a3970e/environment_poi.outer_isles.black-cape__environment-poi__v1__83a3970e__02.png": {
+        "originalSha256": "abda31b3497182a8fd3e264cb955096de31d75783b6b6b04aad76b39ca760be2",
+        "representedBy": "public/art/source-supplement/approved/outer_isles/environment_poi/2026-09-07--814bb2db-492e-425b-9bc3-a0d383a3970e/environment_poi.outer_isles.black-cape__environment-poi__v1__83a3970e__02.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/environment_poi/2026-09-07--814bb2db-492e-425b-9bc3-a0d383a3970e/environment_poi.outer_isles.black-cape__environment-poi__v1__83a3970e__03.png": {
+        "originalSha256": "bbedc13ffd89970bf4af0da5121dc121977b8c42b1d6c07e729d5050527ec31d",
+        "representedBy": "public/art/location/pois/black_cape.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/environment_poi/2026-09-07--913c1283-50fa-405f-b1c4-e038e2c5e93e/environment_poi.outer_isles.western-deep__environment-poi__v1__e2c5e93e__01.png": {
+        "originalSha256": "3120ea5a778419cbd8936440112b30de4a6a5f08b0e935e538891af7cb34df53",
+        "representedBy": "public/art/source-supplement/approved/outer_isles/environment_poi/2026-09-07--913c1283-50fa-405f-b1c4-e038e2c5e93e/environment_poi.outer_isles.western-deep__environment-poi__v1__e2c5e93e__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/environment_poi/2026-09-07--913c1283-50fa-405f-b1c4-e038e2c5e93e/environment_poi.outer_isles.western-deep__environment-poi__v1__e2c5e93e__02.png": {
+        "originalSha256": "b4ed821345e0f99a83c2f9d788c85573485d47e7dd6a6e8b02bd199c93dd9e51",
+        "representedBy": "public/art/location/pois/western_deep.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/environment_poi/2026-09-07--e4baf58b-197d-4582-a635-946566318e0f/environment_poi.outer_isles.greywater-wrecks__environment-poi__v1__66318e0f__01.png": {
+        "originalSha256": "47f8d2bf3660dc9840f932196a99af4d2933aa36ee5b7a3c4c5be1bef40985d9",
+        "representedBy": "public/art/source-supplement/approved/outer_isles/environment_poi/2026-09-07--e4baf58b-197d-4582-a635-946566318e0f/environment_poi.outer_isles.greywater-wrecks__environment-poi__v1__66318e0f__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/environment_poi/2026-09-07--e4baf58b-197d-4582-a635-946566318e0f/environment_poi.outer_isles.greywater-wrecks__environment-poi__v1__66318e0f__04.png": {
+        "originalSha256": "2ba0b75cc6f4e92a1c0b41ca4798d2625e03fdf52868954330dfc4ce8ee89926",
+        "representedBy": "public/art/location/pois/greywater_wrecks.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--0100c1ea-2a07-4e88-9669-6b8c7469bc8d/port_environment.outer_isles.gullreach__establishing__v1__7469bc8d__03.png": {
+        "originalSha256": "0eae8f37c2de2998b6f7a89ed643bce00b2b949c13fddf4358a469ff1d09467a",
+        "representedBy": "public/art/location/ports/gullreach.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--145c8c85-00cc-438e-b070-845d3350f7d2/port_environment.outer_isles.greywater__establishing__v1__3350f7d2__01.png": {
+        "originalSha256": "de4d876fb002615805895674f62da75ed024bb8548d1041d42fce0782bc825fa",
+        "representedBy": "public/art/source-supplement/approved/outer_isles/port_environment/2026-09-07--145c8c85-00cc-438e-b070-845d3350f7d2/port_environment.outer_isles.greywater__establishing__v1__3350f7d2__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/port_environment/2026-09-07--145c8c85-00cc-438e-b070-845d3350f7d2/port_environment.outer_isles.greywater__establishing__v1__3350f7d2__04.png": {
+        "originalSha256": "131a7b0149a70609c07359718f998c5cc3607e4a71ff8422f2d6b56b53f76076",
+        "representedBy": "public/art/location/ports/greywater.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--3a8edfb5-f01c-489d-808b-d9085500e599/port_environment.outer_isles.port-meridian__establishing__v1__5500e599__01.png": {
+        "originalSha256": "1885f90986110c7de5ae1c986bec4c87625730aba8945dbfd431e6db4d2d9f43",
+        "representedBy": "public/art/source-supplement/approved/outer_isles/port_environment/2026-09-07--3a8edfb5-f01c-489d-808b-d9085500e599/port_environment.outer_isles.port-meridian__establishing__v1__5500e599__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/port_environment/2026-09-07--3a8edfb5-f01c-489d-808b-d9085500e599/port_environment.outer_isles.port-meridian__establishing__v1__5500e599__02.png": {
+        "originalSha256": "210ae541bc0caf76d0a26472901ad9d761874afdc36aa6773774c5fee8aa3def",
+        "representedBy": "public/art/location/ports/port_meridian.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--3ee3289d-7adc-44c4-9856-56b58c913e52/port_environment.outer_isles.blackhaven__establishing__v1__8c913e52__01.png": {
+        "originalSha256": "74fee619cc817aa4d86690d259a0ae948fb4e000d6695bd0ee22e1b794d92dae",
+        "representedBy": "public/art/source-supplement/approved/outer_isles/port_environment/2026-09-07--3ee3289d-7adc-44c4-9856-56b58c913e52/port_environment.outer_isles.blackhaven__establishing__v1__8c913e52__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/port_environment/2026-09-07--3ee3289d-7adc-44c4-9856-56b58c913e52/port_environment.outer_isles.blackhaven__establishing__v1__8c913e52__03.png": {
+        "originalSha256": "5676b9e0b6ee7ed4a8e71a6dbed02285e2bef67b636044307798e8b24fae10f2",
+        "representedBy": "public/art/source-supplement/approved/outer_isles/port_environment/2026-09-07--3ee3289d-7adc-44c4-9856-56b58c913e52/port_environment.outer_isles.blackhaven__establishing__v1__8c913e52__03.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/port_environment/2026-09-07--bff9277f-2e41-4f35-a75b-084be5fa232c/port_environment.outer_isles.redhook__establishing__v1__e5fa232c__04.png": {
+        "originalSha256": "ce4370d26e022ae8c2252af91d9803da1227ded3b7e66442c46dafff13c7a404",
+        "representedBy": "public/art/location/ports/redhook.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--e07deeef-09fb-4b34-b2eb-28c1a3c936da/port_environment.outer_isles.saint-corren__establishing__v1__a3c936da__01.png": {
+        "originalSha256": "5b72662bb041f66c24e63439031f653796a76d0ed1420202684eff99f6dca9c1",
+        "representedBy": "public/art/source-supplement/approved/outer_isles/port_environment/2026-09-07--e07deeef-09fb-4b34-b2eb-28c1a3c936da/port_environment.outer_isles.saint-corren__establishing__v1__a3c936da__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/port_environment/2026-09-07--e07deeef-09fb-4b34-b2eb-28c1a3c936da/port_environment.outer_isles.saint-corren__establishing__v1__a3c936da__02.png": {
+        "originalSha256": "eed5b5e0eb7266594bacbf64c4241d6aa858f4acbde5ffa98795a7cd2c529413",
+        "representedBy": "public/art/location/ports/saint_corren.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--e3cc680a-37f9-4ae2-950e-29fab20abe75/port_environment.outer_isles.ardaran__establishing__v1__b20abe75__01.png": {
+        "originalSha256": "74c6b728dbbe30459d5013c0bcc7ad06787d9c72c02409321085571ea132ab89",
+        "representedBy": "public/art/source-supplement/approved/outer_isles/port_environment/2026-09-07--e3cc680a-37f9-4ae2-950e-29fab20abe75/port_environment.outer_isles.ardaran__establishing__v1__b20abe75__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "outer_isles/port_environment/2026-09-07--e3cc680a-37f9-4ae2-950e-29fab20abe75/port_environment.outer_isles.ardaran__establishing__v1__b20abe75__02.png": {
+        "originalSha256": "7652d815ccf562858a84e0f0c8b3921a4a4880636ba960e5546414bda0eb241d",
+        "representedBy": "public/art/location/ports/ardaran.png",
+        "representation": "exact production copy"
+      },
+      "outer_isles/port_environment/2026-09-07--febfda54-9a2b-4665-8e53-d858466a4602/port_environment.outer_isles.saltwake__establishing__v1__466a4602__01.png": {
+        "originalSha256": "f6174bf73ca54a2cdbfc075b20a2b9593e0111fe5c7b6e1b374f039650ac8599",
+        "representedBy": "public/art/location/ports/saltwake.png",
+        "representation": "exact production copy"
+      },
+      "skeldra/port_environment/2026-09-07--c8d46182-560d-4a61-b29e-054c320e013a/port_environment.skeldra.old-veyr-beacon__establishing__v1__320e013a__04.png": {
+        "originalSha256": "2801b6ef87a1d18c114de84a22350abd977b789997ed604699ee6a4033b4e514",
+        "representedBy": "public/art/location/pois/old_veyr_beacon.png",
+        "representation": "exact production copy"
+      },
+      "skeldra/port_environment/stormvik/stormvik-establishing.png": {
+        "originalSha256": "37d731e787d065cd01f41ea1fcec13eddec0a945ca00e85e41e33784f5988195",
+        "representedBy": "public/art/location/ports/stormvik.png",
+        "representation": "exact production copy"
+      },
+      "vespera/port_environment/2026-09-07--6ad0084e-c3ca-4f08-b66e-2c97c4efa3ad/port_environment.vespera.vespera__establishing__v1__c4efa3ad__01.png": {
+        "originalSha256": "72a5f821cc507d73334527cab49eb1d524d68836142472f750a98d6a286681ed",
+        "representedBy": "public/art/source-supplement/approved/vespera/port_environment/2026-09-07--6ad0084e-c3ca-4f08-b66e-2c97c4efa3ad/port_environment.vespera.vespera__establishing__v1__c4efa3ad__01.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      },
+      "vespera/port_environment/2026-09-07--6ad0084e-c3ca-4f08-b66e-2c97c4efa3ad/port_environment.vespera.vespera__establishing__v1__c4efa3ad__02.png": {
+        "originalSha256": "9a44d3805a6f7ccea27e8b730cf10d2b737e012c97714200900eadc139d88010",
+        "representedBy": "public/art/source-supplement/approved/vespera/port_environment/2026-09-07--6ad0084e-c3ca-4f08-b66e-2c97c4efa3ad/port_environment.vespera.vespera__establishing__v1__c4efa3ad__02.webp",
+        "representation": "high-quality source-reference WebP at original pixel dimensions"
+      }
+    }
+  }
+}

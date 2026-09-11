@@ -1,3 +1,3 @@
 export default function HomePage() {
-  return <iframe title="Ebbing Tides Alpha 0.1" src="/alpha/index.html" />;
+  return <iframe title="Ebbing Tides Alpha 0.6C UI Recovery P3" src="/alpha/index.html" />;
 }

@@ -1,0 +1,57 @@
+{
+  "package": "0.6.0-alpha.d.a0-3a",
+  "base": "0.6.0-alpha.d.a0-2d",
+  "saveSchema": 12,
+  "scope": "A0 P2 strengthening 3A: authoritative data-driven port and service capability",
+  "changes": [
+    "extends the existing SettlementEconomicProfile authority with medicalCapability instead of creating a separate service database",
+    "adds one generic port service quote engine backed by settlement shipyard/medical capability and the live A0.1C market",
+    "makes ship repair availability, restoration limit, cost and time depend on yard capability, damage scope and current raw/manufactured stock",
+    "makes successful ship repairs consume the same live market rows used by the economy and records those source rows in canonical history",
+    "makes refit availability, price and duration depend on yard capability, specialist capability and current material stock",
+    "preserves the accepted Veyrholm Storm Rigging 12-hour flow while allowing authored specialist differences at other yards",
+    "makes injury treatment capability-dependent by severity, resource-dependent on live medical stock, and world-time consuming",
+    "allows smaller medical services to treat supported injuries while leaving severe unsupported injuries active for later stronger care",
+    "preserves A0.1C provisioning as the one live food-market supply path",
+    "preserves the existing settlement-profile/regional-availability Outfitter path rather than creating a parallel equipment inventory",
+    "keeps Harbor and Captain interactions as concise one-click actions with data-derived price/time/availability",
+    "contains no named-port branches in the service engine; later ports inherit behavior through capability data",
+    "updates historical package-version regression gates to recognize the A0.3A continuation package",
+    "adds eleven dedicated A0.3A capability/economy/expansion-safety tests"
+  ],
+  "cohesion": {
+    "port_capability": "SettlementEconomicProfile and its shipyard/medical fields are the service capability authority",
+    "a0_1c_economy": "GameState.markets remains live material/provision truth; successful repair/refit/treatment consumes those rows rather than a new service inventory",
+    "ship_repair": "repairShip remains the mutation owner; portServices only quotes what the current facility/resources can support",
+    "ship_refit": "installRefit remains the refit mutation owner; service capability gates and prices the existing refit definitions",
+    "medical": "player Injury records remain condition truth; treatment only marks supported existing injuries treated and retains their history",
+    "provisioning": "quoteShipSupplies/consumeSupplyQuote remain the one provisioning owner",
+    "outfitter": "availableItemDefinitionsAtSettlement/itemPurchasePriceAtSettlement remain the one equipment availability/pricing path",
+    "world_time": "repair, refit and treatment elapsed time use GameState.absoluteHour through advanceWorld",
+    "future_a0_3c": "future resource/policy causes can alter the economy/capabilities consumed here without replacing the service owner",
+    "future_r2": "future law/customs restrictions should constrain this same service/market boundary rather than create substitute port services",
+    "expansion": "service behavior is profile/market driven; named settlement differences are data overrides only",
+    "presentation": "accepted screen geometry and art remain unchanged; only concise dynamic service states/cost/time are surfaced"
+  },
+  "saveCompatibility": "schema v12 unchanged; A0.3A adds no persistent campaign lifecycle state",
+  "databaseCompatibility": "no Supabase migration required; capability is static content data and live resource truth already persists in the canonical market/save state",
+  "presentationChanged": "no structural redesign; existing service controls now reflect truthful availability/cost/time",
+  "deferred": [
+    "A0.3B character-build consequence and learning-source connection",
+    "A0.3C live kingdom/policy/religion/world-event bridge",
+    "R2 dynamic trade law/customs/smuggling/privateering/wartime law",
+    "world expansion",
+    "mutiny",
+    "workshop part/labor micromanagement"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "372/372 PASS",
+    "dedicatedA03A": "11/11 PASS",
+    "longRunNpcAndEconomyPlanner": "PASS: explicit combined durability files 13/13",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: local next executable not installed",
+    "cleanOverlay": "PASS: applied only the A0.3A overlay to the cleaned combined A0.2D baseline; typecheck, Alpha build, 372/372 tests, explicit long-run 13/13, and art-layout 2/2 all passed"
+  }
+}

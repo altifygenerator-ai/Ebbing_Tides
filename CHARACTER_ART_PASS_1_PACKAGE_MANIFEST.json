@@ -1,0 +1,66 @@
+{
+  "pass": "Character Creator / Captain Purpose-Painted Art Pass 1",
+  "basePackage": "0.6.0-alpha.d.r2",
+  "packageVersionChanged": false,
+  "saveSchema": 12,
+  "scope": [
+    "Character Creator",
+    "Captain -> Character Sheet"
+  ],
+  "architecture": {
+    "screenType": "art_skinned_dynamic",
+    "geometryOwner": "code",
+    "primaryVisualLayer": "culture pack",
+    "secondaryVisualLayer": "religion accent pack",
+    "fullScreenBakedMockupUsed": false
+  },
+  "implementedPacks": {
+    "culture": [
+      "skeldran"
+    ],
+    "religionAccent": [
+      "old_gods",
+      "covenant"
+    ]
+  },
+  "pendingPacks": {
+    "culture": [
+      "asterian",
+      "serathi",
+      "kaishin",
+      "vesperan",
+      "outer_isles"
+    ],
+    "religionAccent": [
+      "pantheon",
+      "turning_wheel"
+    ]
+  },
+  "runtimeBehavior": {
+    "creatorThemeChangesLive": true,
+    "captainThemeUsesPersistedCharacter": true,
+    "unimplementedCultureFallback": "neutral locked layout",
+    "unaffiliatedReligionAccent": "none"
+  },
+  "outOfScope": [
+    "Crew",
+    "Journal",
+    "Ship",
+    "Market",
+    "Inventory / Equipment",
+    "Port Outfitter",
+    "Port / contextual locations"
+  ],
+  "verification": {
+    "typecheckAlpha": "PASS",
+    "alphaBuild": "PASS",
+    "fullTests": "466/466 PASS",
+    "dedicatedCharacterArtPass1": "9/9 PASS",
+    "r2ReadinessAndDurabilityFocusedSet": "45/45 PASS",
+    "artLayouts": "2/2 PASS",
+    "saveSchemaChanged": false,
+    "supabaseMigration": "none",
+    "manualVisualAcceptance": "PENDING USER REVIEW",
+    "cleanOverlayAgainstAcceptedR2": "PASS \u2014 fresh apply to accepted R2 tree; 466/466 full tests, 45/45 focused R2/readiness/durability, art layouts 2/2"
+  }
+}

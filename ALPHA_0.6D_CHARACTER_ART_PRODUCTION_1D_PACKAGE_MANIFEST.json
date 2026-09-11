@@ -1,0 +1,35 @@
+{
+  "package": "Ebbing Tides Alpha 0.6D — Character Creator / Captain Reference-Locked Production 1D",
+  "base": "R2 + Character Creator / Captain Purpose-Painted Lock 1C",
+  "gamePackageVersion": "0.6.0-alpha.d.r2",
+  "saveSchema": 12,
+  "scope": ["character_creator", "captain_sheet"],
+  "mechanicsChanged": false,
+  "architecture": {
+    "geometryOwner": "code",
+    "artRole": "modular framing and explicit safe-zone decorative art",
+    "fullScreenReferenceRuntimeLayer": false,
+    "culturePrimary": true,
+    "religionSecondaryAccent": true
+  },
+  "culturePack": "skeldran",
+  "religionAccents": ["old_gods", "covenant"],
+  "visualQa": {
+    "runtimeScreenshots": [
+      "docs/visual-qa/character-art-production-1d/creator-runtime.png",
+      "docs/visual-qa/character-art-production-1d/review-runtime.png",
+      "docs/visual-qa/character-art-production-1d/captain-runtime.png",
+      "docs/visual-qa/character-art-production-1d/creator-covenant-runtime.png"
+    ],
+    "captureType": "actual browser runtime captures, not concept renders",
+    "qaCorrection": "top rope overlays and large Captain outer-margin scenes were removed/disabled when runtime capture showed they could conflict with live content or available safe margin"
+  },
+  "verification": {
+    "typecheckAlpha": "PASS",
+    "alphaBuild": "PASS",
+    "fullTests": "473/473 PASS",
+    "dedicatedProductionTests": "7/7 PASS",
+    "artLayouts": "2/2 PASS",
+    "cleanOverlay": "PASS on fresh Lock 1C base"
+  }
+}

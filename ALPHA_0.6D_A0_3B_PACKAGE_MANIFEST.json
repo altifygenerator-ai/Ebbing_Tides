@@ -1,0 +1,59 @@
+{
+  "package": "0.6.0-alpha.d.a0-3b",
+  "base": "0.6.0-alpha.d.a0-3a with accepted Main Menu Shell 1.3 runtime bridge",
+  "saveSchema": 12,
+  "scope": "A0 P2 strengthening 3B: recurring character-build consequence and real in-world learning sources",
+  "changes": [
+    "adds a data-driven learning-source registry covering named teachers, books/manuals, shipboard officers, institutions, and discoveries",
+    "connects ordinary player-facing world sources to the existing learnAbilityFromSource and learnSpecializationFromSource progression hooks",
+    "extends those existing hooks with optional acquisition metadata so training history records real start time, completion time, crown cost, and source id without breaking legacy callers",
+    "makes ability and specialization learning consume the shared campaign absoluteHour through advanceWorld rather than a private training clock",
+    "adds physical/contextual access rules for port sources, onboard officers, relationship-qualified teachers, and POI discoveries",
+    "adds visible contextual study modifiers: Bookworm shortens written study; relevant naval/technical history can reduce introductory access/time/cost; Old Gods devotion can improve familiarity with matching religious instruction",
+    "keeps ancestry explicitly identity/context only instead of introducing an arbitrary ancestry stat package",
+    "extends port assessment knowledge with culture/homeland, religion, ship-origin, and Superstitious context without granting omniscient facts",
+    "adds two-hour religious participation/observation using existing PlayerState knowledge and world-event history, with religion/devotion/Birth Omen/Superstitious interpretation and a world-time repeat guard",
+    "adds culturally ambiguous Birth Omen dialogue handling while preserving the Character Mind lore firewall",
+    "adds source panels/actions only inside existing Government, Religion, People, and POI scroll owners and adds no A0.3B CSS geometry owner or new management tab",
+    "keeps Character Creator and Captain structural geometry locked for the later purpose-painted art integration",
+    "updates historical package-version regression gates to recognize the A0.3B continuation package",
+    "adds fifteen dedicated A0.3B consequence/learning-source tests"
+  ],
+  "cohesion": {
+    "characterBuild": "existing PlayerCharacter identity/build fields remain authoritative; consequences consume those fields rather than duplicating them",
+    "ancestry": "identity/context only; no new flat ancestry stat package",
+    "progression": "existing abilities, specializations, trainingHistory, advancement and A0.2B cadence remain the learning/progression owners",
+    "worldTime": "study and religious participation advance GameState.absoluteHour through advanceWorld",
+    "knowledge": "A0.2A PlayerState.knowledge remains authoritative for learned port/religious information",
+    "relationships": "teacher access reads existing NPC relationship state; no parallel teacher-reputation meter",
+    "discovery": "POI learning reads existing canonical poi_action world events instead of a second discovery ledger",
+    "religionAndOmens": "identity alters participation/access/interpretation while omen truth stays culturally ambiguous",
+    "characterMind": "dialogue may interpret known identity but still cannot invent or commit canonical world truth",
+    "uiArchitecture": "existing code-owned panels, buttons, scroll owners, Creator/Captain roots and geometry remain authoritative; no new CSS layout system",
+    "futureArt": "Creator/Captain remain structurally locked so post-R2 art can be purpose-painted around final code geometry",
+    "futureA03C": "live political/religious policy causes may later alter institutional context without replacing this learning/progression owner"
+  },
+  "saveCompatibility": "schema v12 unchanged; A0.3B adds no persistent campaign structure and reuses abilities, specializations, training history, knowledge, relationships and world events",
+  "databaseCompatibility": "no Supabase migration required",
+  "presentationChanged": "small content/action additions inside existing contextual panels only; no Character Creator/Captain redesign and no A0.3B CSS geometry changes",
+  "deferred": [
+    "A0.3C minimal live kingdom/policy/religion/world-event bridge",
+    "R2 dynamic trade law/customs/smuggling/privateering/wartime law",
+    "post-R2 Character Creator and Captain purpose-painted art integration",
+    "world expansion",
+    "mutiny",
+    "training-management dashboard or abstract ability shop",
+    "direct Arcane/Industrial Attunement slider",
+    "feature-by-feature face builder"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "393/393 PASS",
+    "dedicatedA03B": "15/15 PASS",
+    "longRunAndA03ARegression": "PASS: explicit A0.1B + A0.1C + A0.3A set 24/24",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: local next executable not installed",
+    "cleanOverlay": "PASS: applied only A0.3B overlay files to fresh accepted A0.3A + Main Menu Shell 1.3 baseline; typecheck, Alpha build, 393/393 tests, dedicated 15/15, explicit durability/cohesion 24/24, and art-layout 2/2 all passed"
+  }
+}

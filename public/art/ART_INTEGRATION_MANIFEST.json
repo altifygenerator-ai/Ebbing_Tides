@@ -1,0 +1,90 @@
+{
+  "build": "Alpha 0.6C Hotfix 7",
+  "purpose": "Art Integration & UI Consistency",
+  "sourcePackages": {
+    "canonical.zip": {
+      "fileCount": 34,
+      "policy": "canonical; highest-priority supplied production/reference art",
+      "downloadPackageStorage": "Deduplicated via public/art/SOURCE_PACKAGE_COVERAGE.json. Production-selected art uses exact runtime copies; source-only alternates/reference sheets use high-quality WebP at original pixel dimensions under /art/source-supplement.",
+      "workTreeMirror": "/art/library/canonical (excluded from downloadable ZIP as redundant)"
+    },
+    "approved.zip": {
+      "fileCount": 53,
+      "policy": "approved; live where a canonical replacement does not supersede it",
+      "downloadPackageStorage": "Deduplicated via public/art/SOURCE_PACKAGE_COVERAGE.json. Production-selected art uses exact runtime copies; source-only alternates/reference sheets use high-quality WebP at original pixel dimensions under /art/source-supplement.",
+      "workTreeMirror": "/art/library/approved (excluded from downloadable ZIP as redundant)"
+    },
+    "candidate.zip": {
+      "preservedUnder": "/art/library/candidate-reference",
+      "fileCount": 3,
+      "policy": "reference-only; exploratory mockups are not wired into runtime presentation"
+    },
+    "ability-icons": {
+      "preservedUnder": "/art/ui/ability-library",
+      "fileCount": 51,
+      "policy": "production icon library; relevant abilities/statuses are wired into player-facing UI"
+    },
+    "named-ship-tokens": {
+      "preservedUnder": "/art/ships/tokens",
+      "fileCount": 39,
+      "policy": "production token library; canon-locked named ships are assigned live"
+    },
+    "separated-props": {
+      "preservedUnder": "/art/props",
+      "fileCount": 61,
+      "policy": "production prop library; context-appropriate props are used in port/institution/tavern presentation"
+    }
+  },
+  "presentationBaseArt": {
+    "characterCreator": "/art/ui/presentation/character_creator_base.png",
+    "crewRoster": "/art/ui/presentation/crew_roster_base.png",
+    "journal": "/art/ui/presentation/journal_base.png",
+    "market": "/art/ui/presentation/market_base.png",
+    "navalEncounter": "/art/ui/presentation/naval_encounter_base.png",
+    "shipManagement": "/art/ui/presentation/ship_management_base.png",
+    "equipmentMale": "/art/ui/equipment_template_male.png",
+    "equipmentFemale": "/art/ui/equipment_template_female.png"
+  },
+  "liveLocationAliases": {
+    "ports": [
+      "/art/location/ports/ardaran.png",
+      "/art/location/ports/asterra.png",
+      "/art/location/ports/aurelia.png",
+      "/art/location/ports/blackhaven.png",
+      "/art/location/ports/delphara.png",
+      "/art/location/ports/eirenos.png",
+      "/art/location/ports/greywater.png",
+      "/art/location/ports/gullreach.png",
+      "/art/location/ports/ironhaven.png",
+      "/art/location/ports/korinthos.png",
+      "/art/location/ports/myrine.png",
+      "/art/location/ports/nagara.png",
+      "/art/location/ports/port_meridian.png",
+      "/art/location/ports/redhook.png",
+      "/art/location/ports/rhadessa.png",
+      "/art/location/ports/saint_corren.png",
+      "/art/location/ports/saltwake.png",
+      "/art/location/ports/stormvik.png",
+      "/art/location/ports/thalassa.png",
+      "/art/location/ports/tyras.png",
+      "/art/location/ports/vespera.png",
+      "/art/location/ports/veyrholm.png"
+    ],
+    "pois": [
+      "/art/location/pois/black_cape.png",
+      "/art/location/pois/greywater_wrecks.png",
+      "/art/location/pois/old_veyr_beacon.png",
+      "/art/location/pois/thalassor_s_teeth.png",
+      "/art/location/pois/western_deep.png",
+      "/art/location/pois/widow_s_passage.png"
+    ]
+  },
+  "knownPresentationGaps": [
+    "Playable Thorenfjord has no dedicated establishing artwork in the supplied canonical/approved packages.",
+    "Named NPC portrait coverage remains incomplete.",
+    "Dedicated interior artwork remains incomplete for many taverns, government offices, temples, and shipyards.",
+    "Personal/boarding combat remains development presentation until combat mechanics are stable enough for a final art composition."
+  ],
+  "sourcePackageCoverageMap": "/art/SOURCE_PACKAGE_COVERAGE.json",
+  "downloadPackagingNote": "The downloadable ZIP excludes redundant /art/library/canonical and /art/library/approved mirror folders. Production-selected supplied art remains exact in runtime paths; source-only alternates/reference sheets remain visually preserved as original-dimension high-quality WebP in /art/source-supplement. SOURCE_PACKAGE_COVERAGE.json records every mapping."
+}

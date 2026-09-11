@@ -1,19 +1,30 @@
+import { originSettlementName } from "../data/seed/origins.js";
+import { PORT_BY_ID } from "../data/seed/ports.js";
 function record(id, category, text, source, confidence, hardRumor = true, subjectId) {
     return {
         id,
+        claimKey: id,
         category,
         text,
         source,
         learnedAtHour: 0,
+        observedAtHour: 0,
+        refreshedAtHour: 0,
+        ...(id.startsWith("rumor.") ? { staleAfterHours: category === "trade" ? 72 : category === "maritime" || category === "danger" ? 120 : 336 } : {}),
         confidence,
-        truthStatus: "unknown",
-        hardRumor,
+        truthStatus: id.startsWith("knowledge.") ? "confirmed" : "unknown",
+        informationState: "current",
+        hardRumor: id.startsWith("knowledge.") ? false : hardRumor,
         ...(subjectId ? { subjectId } : {})
     };
 }
 export function initializeStartingKnowledge(choices) {
     const out = [];
-    out.push(record(`knowledge.home.${choices.homePortId}`, "local", "You know your home harbor well enough to recognize its ordinary districts, waterfront routines, and nearby sea roads.", "Personal experience", 95, true, choices.homePortId));
+    out.push(record(`knowledge.home.${choices.homeSettlementId}`, "local", `You know ${originSettlementName(choices.homeSettlementId)} as home: its ordinary districts, local routines, customs, and approaches are part of your lived experience.`, "Personal experience", 95, true, choices.homeSettlementId));
+    if (choices.startingLocationId !== choices.homeSettlementId) {
+        const startName = PORT_BY_ID[choices.startingLocationId]?.name ?? choices.startingLocationId;
+        out.push(record(`knowledge.start.${choices.startingLocationId}`, "local", `Your campaign begins at ${startName}. You know the immediate harbor arrangements needed to provision, depart, and conduct ordinary business, but this is not treated as your homeland.`, "Current circumstances", 82, true, choices.startingLocationId));
+    }
     if (choices.background === "former_naval_midshipman" || choices.recentProfession === "sailor") {
         out.push(record("rumor.ingrid.near_veyrholm", "maritime", "Captain Ingrid Skar and Stormcrow have been operating near Veyrholm.", "Naval and sailor talk", 78, true, "character.ingrid_skar"));
         out.push(record("rumor.missing.greywater", "danger", "Two ships are said to be missing near Greywater. The reports disagree on the cause.", "Crew gossip", 54));

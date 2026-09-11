@@ -1,0 +1,17 @@
+{
+  "package": "Ebbing Tides Alpha 0.6D Naval Combat Presentation + Mechanics Cleanup Pass 1",
+  "basePackageVersion": "0.6.0-alpha.d.crew2",
+  "targetPackageVersion": "0.6.0-alpha.d.naval1",
+  "saveSchema": 11,
+  "mutinyDeferred": true,
+  "automatedQA": {
+    "typecheck": "PASS",
+    "tests": "255/255 PASS",
+    "alphaBuild": "PASS",
+    "artLayouts": "2/2 PASS"
+  },
+  "manualVisualAcceptance": "PENDING",
+  "architecture": "Hybrid / Art-Skinned Dynamic UI",
+  "runtimeBackdrop": "/art/ui/combat/skeldra_tactical_sea_stage.svg",
+  "legacy492x289CombatCanvas": "reference-only; removed from live ArtDirectedCanvas registry"
+}

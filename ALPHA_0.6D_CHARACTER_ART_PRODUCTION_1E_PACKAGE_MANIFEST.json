@@ -1,0 +1,58 @@
+{
+  "package": "Ebbing Tides Alpha 0.6D \u2014 Character Creator / Captain Reference-Locked Production 1E",
+  "pass": "Frame & Vignette Authenticity Pass",
+  "base": "Character Creator / Captain Reference-Locked Production 1D",
+  "gamePackageVersion": "0.6.0-alpha.d.r2",
+  "saveSchema": 12,
+  "scope": [
+    "character_creator",
+    "captain_sheet"
+  ],
+  "mechanicsChanged": false,
+  "supabaseMigrationRequired": false,
+  "artArchitecture": {
+    "geometryOwner": "code",
+    "artRole": "modular manuscript construction and safe-zone vignette presentation",
+    "religionRole": "secondary accent; unchanged from Production 1D"
+  },
+  "verification": {
+    "typecheckAlpha": "PASS",
+    "alphaBuild": "PASS",
+    "fullTests": "480/480 PASS",
+    "dedicatedProduction1E": "8/8 PASS",
+    "artLayouts": "2/2 PASS",
+    "cleanOverlay": "PASS on accepted Production 1D baseline with same gates",
+    "runtimeVisualQA": "PASS \u2014 actual compiled runtime screenshots packaged"
+  },
+  "payloadFilesBeforeManifestAndHashes": 28,
+  "payloadFiles": [
+    "APPLY_CHARACTER_ART_PRODUCTION_1E.md",
+    "README_CHARACTER_ART_PRODUCTION_1E.md",
+    "docs/ALPHA_06D_CHARACTER_ART_PRODUCTION_1E.md",
+    "docs/visual-qa/character-art-production-1e/captain-runtime.png",
+    "docs/visual-qa/character-art-production-1e/creator-runtime.png",
+    "docs/visual-qa/character-art-production-1e/review-runtime.png",
+    "public/alpha/js/alpha/main.js",
+    "public/alpha/js/alpha/main.js.map",
+    "public/alpha/styles.css",
+    "public/art/ui/character-themes/culture/skeldran/production1e/captain_capabilities_chart.webp",
+    "public/art/ui/character-themes/culture/skeldran/production1e/captain_condition_ship.webp",
+    "public/art/ui/character-themes/culture/skeldran/production1e/captain_history_coast.webp",
+    "public/art/ui/character-themes/culture/skeldran/production1e/corner_bl.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/corner_br.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/corner_tl.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/corner_tr.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/heading_cap.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/manuscript_lintel.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/manuscript_sill.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/manuscript_stile_left.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/manuscript_stile_right.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/profile_ship_vignette.webp",
+    "public/art/ui/character-themes/culture/skeldran/production1e/review_harbor_vignette.webp",
+    "public/art/ui/character-themes/culture/skeldran/production1e/section_lintel_a.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/section_lintel_b.png",
+    "public/art/ui/character-themes/culture/skeldran/production1e/section_lintel_c.png",
+    "src/alpha/main.ts",
+    "tests/alpha-06d-character-art-production-1e.test.mjs"
+  ]
+}

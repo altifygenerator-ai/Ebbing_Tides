@@ -1,0 +1,43 @@
+family,label,description,source_sheet,file
+Arcane_Abilities,Read_Wind,Interpret local wind/current shifts and Arcane disturbance.,nautical_mystic_skill_icons.png,Arcane_Abilities/01_Read_Wind.png
+Arcane_Abilities,Personal_Ward,Brief protective barrier using restrained ward geometry.,nautical_mystic_skill_icons.png,Arcane_Abilities/02_Personal_Ward.png
+Arcane_Abilities,Sense_Resonance,Detect strong Arcane presence or disturbed resonance.,nautical_mystic_skill_icons.png,Arcane_Abilities/03_Sense_Resonance.png
+Industrial_Abilities,Emergency_Hull_Shoring,"Damage-control technique using timber, braces, tools and crew work.",maritime_skills_of_the_age_of_sail.png,Industrial_Abilities/01_Emergency_Hull_Shoring.png
+Industrial_Abilities,Calibrated_Sextant_Method,Precision navigation method built around a calibrated sextant.,maritime_skills_of_the_age_of_sail.png,Industrial_Abilities/02_Calibrated_Sextant_Method.png
+Industrial_Abilities,Precision_Bore_Sighting,"Preparation and sighting of ship guns; practical, mechanical gunnery.",maritime_skills_of_the_age_of_sail.png,Industrial_Abilities/03_Precision_Bore_Sighting.png
+Character_Conditions,Health,General health.,nautical_survival_status_icons.png,Character_Conditions/01_Health.png
+Character_Conditions,Injury,Injury/wound status.,nautical_survival_status_icons.png,Character_Conditions/02_Injury.png
+Character_Conditions,Fatigue,Fatigue/exhaustion.,nautical_survival_status_icons.png,Character_Conditions/03_Fatigue.png
+Character_Conditions,Hunger,Hunger.,nautical_survival_status_icons.png,Character_Conditions/04_Hunger.png
+Character_Conditions,Thirst,Thirst.,nautical_survival_status_icons.png,Character_Conditions/05_Thirst.png
+Character_Conditions,Stress_Strain,Stress or strain.,nautical_survival_status_icons.png,Character_Conditions/06_Stress_Strain.png
+Character_Conditions,Fear,Fear.,nautical_survival_status_icons.png,Character_Conditions/07_Fear.png
+Character_Conditions,Morale,Morale.,nautical_survival_status_icons.png,Character_Conditions/08_Morale.png
+Ship_Damage,Hull_Damage,Hull damage.,nautical_damage_status_icons.png,Ship_Damage/01_Hull_Damage.png
+Ship_Damage,Sails_Damaged,Sail damage.,nautical_damage_status_icons.png,Ship_Damage/02_Sails_Damaged.png
+Ship_Damage,Rigging_Damage,Rigging damage.,nautical_damage_status_icons.png,Ship_Damage/03_Rigging_Damage.png
+Ship_Damage,Flooding,Flooding.,nautical_damage_status_icons.png,Ship_Damage/04_Flooding.png
+Ship_Damage,Fire,Fire aboard ship.,nautical_damage_status_icons.png,Ship_Damage/05_Fire.png
+Ship_Damage,Steering_Damage,Steering damage.,nautical_damage_status_icons.png,Ship_Damage/06_Steering_Damage.png
+Ship_Damage,Magazine_Danger,Magazine danger / powder risk.,nautical_damage_status_icons.png,Ship_Damage/07_Magazine_Danger.png
+Knowledge_Legality,Known,Known information.,mystical_codex_icon_grid.png,Knowledge_Legality/01_Known.png
+Knowledge_Legality,Rumored,Rumored information.,mystical_codex_icon_grid.png,Knowledge_Legality/02_Rumored.png
+Knowledge_Legality,Uncertain,Uncertain information.,mystical_codex_icon_grid.png,Knowledge_Legality/03_Uncertain.png
+Knowledge_Legality,Contraband,Contraband.,mystical_codex_icon_grid.png,Knowledge_Legality/04_Contraband.png
+Knowledge_Legality,Restricted,Restricted access/item.,mystical_codex_icon_grid.png,Knowledge_Legality/05_Restricted.png
+Knowledge_Legality,Stolen,Stolen.,mystical_codex_icon_grid.png,Knowledge_Legality/06_Stolen.png
+Knowledge_Legality,Sacred_Restricted,Sacred or specially restricted.,mystical_codex_icon_grid.png,Knowledge_Legality/07_Sacred_Restricted.png
+Arcane_Industrial_Status,Arcane_Strain,Arcane strain.,arcane_steampunk_status_grid.png,Arcane_Industrial_Status/01_Arcane_Strain.png
+Arcane_Industrial_Status,Active_Ward,Active ward.,arcane_steampunk_status_grid.png,Arcane_Industrial_Status/02_Active_Ward.png
+Arcane_Industrial_Status,Resonance,Resonance.,arcane_steampunk_status_grid.png,Arcane_Industrial_Status/03_Resonance.png
+Arcane_Industrial_Status,Industrial_Interference,Industrial interference.,arcane_steampunk_status_grid.png,Arcane_Industrial_Status/04_Industrial_Interference.png
+Arcane_Industrial_Status,Pressure_Overheat,Pressure / overheat.,arcane_steampunk_status_grid.png,Arcane_Industrial_Status/05_Pressure_Overheat.png
+Arcane_Industrial_Status,Mechanical_Fault,Mechanical fault.,arcane_steampunk_status_grid.png,Arcane_Industrial_Status/06_Mechanical_Fault.png
+Navigation,Storm,Storm.,nautical_map_icon_grid.png,Navigation/01_Storm.png
+Navigation,Reef,Reef.,nautical_map_icon_grid.png,Navigation/02_Reef.png
+Navigation,Shoal,Shoal.,nautical_map_icon_grid.png,Navigation/03_Shoal.png
+Navigation,Safe_Harbor,Safe harbor.,nautical_map_icon_grid.png,Navigation/04_Safe_Harbor.png
+Navigation,Hidden_Cove,Hidden cove.,nautical_map_icon_grid.png,Navigation/05_Hidden_Cove.png
+Navigation,Danger_Area,Danger area.,nautical_map_icon_grid.png,Navigation/06_Danger_Area.png
+Navigation,Last_Known_Position,Last-known position.,nautical_map_icon_grid.png,Navigation/07_Last_Known_Position.png
+Navigation,Unknown_Location,Unknown location.,nautical_map_icon_grid.png,Navigation/08_Unknown_Location.png

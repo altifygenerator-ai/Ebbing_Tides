@@ -1,0 +1,100 @@
+{
+  "package": "0.6.0-alpha.d.characterstruct3",
+  "expectedBase": "0.6.0-alpha.d.characterstruct2",
+  "saveSchema": 11,
+  "files": [
+    {
+      "path": "APPLY_CHARACTER_UI_STRUCTURAL_S3.md",
+      "bytes": 1215,
+      "sha256": "c61b160fb68d4774e24883c5514035f12a6d9fae1ae2a07185193041803db790"
+    },
+    {
+      "path": "README_CHARACTER_UI_STRUCTURAL_S3.md",
+      "bytes": 3931,
+      "sha256": "05d2bd88f23e653ab508ad4aea5f505250686661f33eacdc28ba8ecf96e78d3f"
+    },
+    {
+      "path": "docs/ALPHA_06D_CHARACTER_UI_STRUCTURAL_S3.md",
+      "bytes": 3667,
+      "sha256": "f9545a035493fc9de3c1d42f83412699a6eacbb95d93616dee0cf5b590b5fde2"
+    },
+    {
+      "path": "package.json",
+      "bytes": 805,
+      "sha256": "491b658a49f2524c98b8c5f1756d7bb8c1128c430f94b0cb02b10ba9e782ba51"
+    },
+    {
+      "path": "public/alpha/js/alpha/main.js",
+      "bytes": 195581,
+      "sha256": "a40514d361cfde40425af97351ec99667f758f7927f43e1641ab77d05df7cce6"
+    },
+    {
+      "path": "public/alpha/js/alpha/main.js.map",
+      "bytes": 160743,
+      "sha256": "a135d0e84eecab9096da2925dbaf7d353653f6e3860f50a517b9bab2aa4416be"
+    },
+    {
+      "path": "public/alpha/js/ui/screenArchitecture.js",
+      "bytes": 10420,
+      "sha256": "0bd7de5453a10cbfe5cb6ccf9ef2b53ff40fec659799dd7aad89683100719cfe"
+    },
+    {
+      "path": "public/alpha/js/ui/screenArchitecture.js.map",
+      "bytes": 8298,
+      "sha256": "95f3021180142795bb4d987a1a2089500f25b60b335964e79aae2ae5f6e9d3e7"
+    },
+    {
+      "path": "public/alpha/styles.css",
+      "bytes": 276158,
+      "sha256": "d0ff80ddeb12adfcbc04da51ef2f44cdddac23a55977f954048c19b2de6b6042"
+    },
+    {
+      "path": "src/alpha/main.ts",
+      "bytes": 188919,
+      "sha256": "4c9768c9fa5209766c44861d9f1c4bf17e7b1b7ab057f41f77ae018aebdd27ad"
+    },
+    {
+      "path": "src/ui/screenArchitecture.ts",
+      "bytes": 10716,
+      "sha256": "7d293b58676d4cfbaf5ed95d1c94d7bec433d07d3617a0dbb72d3d666ad7a261"
+    },
+    {
+      "path": "tests/alpha-05-update-d.test.mjs",
+      "bytes": 5124,
+      "sha256": "0ef0d1406a942382fa23f32e072e4bf0764242a9efe51fce342a4516275ec2db"
+    },
+    {
+      "path": "tests/alpha-06c-main-identity-symbol-cleanup.test.mjs",
+      "bytes": 8145,
+      "sha256": "3091f9ea307443b1cb55f5075db7bf8d3611cb66d7b94adb23464cc17318892a"
+    },
+    {
+      "path": "tests/alpha-06d-character-manuscript-pass1.test.mjs",
+      "bytes": 3275,
+      "sha256": "cd4aaee423ed3ba7ec250b09cd0ffac0ce2d4a8e07543425e537d01d3c71747e"
+    },
+    {
+      "path": "tests/alpha-06d-character-manuscript-pass1d.test.mjs",
+      "bytes": 1060,
+      "sha256": "944719330ac0565bae8970f520d38500c3d61eca73da49e289d48f2f594d01aa"
+    },
+    {
+      "path": "tests/alpha-06d-character-structural-s2.test.mjs",
+      "bytes": 4147,
+      "sha256": "3d2ae2191c02a395417e03503cb64ec3572ee82a7173f7ee1579ed5a51556316"
+    },
+    {
+      "path": "tests/alpha-06d-character-structural-s3.test.mjs",
+      "bytes": 5213,
+      "sha256": "a6f76aaa530cb2ae1bdee3713b5efcd0af3c095b5bf868c6d4653afec647e8df"
+    }
+  ],
+  "verification": {
+    "typecheck": "PASS",
+    "alphaBuild": "PASS",
+    "tests": "280/280 PASS",
+    "artLayouts": "2/2 PASS",
+    "nextProductionBuild": "UNAVAILABLE - local next executable not installed",
+    "browserScreenshotAutomation": "BLOCKED - loopback navigation blocked by environment"
+  }
+}

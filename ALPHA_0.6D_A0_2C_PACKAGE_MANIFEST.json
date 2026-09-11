@@ -1,0 +1,55 @@
+{
+  "package": "0.6.0-alpha.d.a0-2c",
+  "base": "0.6.0-alpha.d.a0-2b",
+  "saveSchema": 12,
+  "scope": "A0 P1 corrective repair 2C: explicit prepared effects, Arcane Strain lifecycle, and downstream navigation quality",
+  "changes": [
+    "replaces recent WorldEvent-based prepared ability buffs with explicit PreparedAbilityEffect state",
+    "adds trigger, expiry, remaining-use, bonus and context scoping for successful preparations",
+    "makes Read Wind and Calibrated Sextant apply to and be consumed by exactly the next valid navigation-departure check",
+    "makes Precision Bore Sighting survive chance previews and be consumed by the first valid naval fire check",
+    "makes Personal Ward ignore non-dangerous exchanges, consume on the next dangerous boarding defense, and expire on world time",
+    "prevents repeated preparation uses from stacking duplicate active rows",
+    "persists departure navigation quality into VoyageState and applies it to real squall damage rather than weather occurrence",
+    "adds bounded Arcane Strain reliability penalties while keeping Arcane/Industrial interference as a separate cause",
+    "adds chunk-independent Arcane Strain recovery through the authoritative world clock for player and persistent NPC characters",
+    "makes attunement.arcaneStrain authoritative and condition.arcaneStrain a synchronized compatibility/display mirror",
+    "tightens Arcane Strain player-facing description to implemented behavior only",
+    "normalizes legacy v12 prepared-effect/strain state without a save-schema bump",
+    "adds additive normalized Supabase prepared_effects support",
+    "adds eleven dedicated A0.2C database/prepared-effect/navigation/strain/cohesion regressions"
+  ],
+  "cohesion": {
+    "world_time": "prepared-effect expiry and Arcane Strain recovery use GameState.absoluteHour; no parallel timers are introduced",
+    "world_events": "ability-use events remain canonical history but no longer function as active-effect storage",
+    "a0_1a_vessel_lifecycle": "unchanged; prepared fire modifies only the firing check and cannot bypass terminal vessel/prize resolution",
+    "a0_1b_npc_planner": "Arcane recovery touches character state only and adds no scheduler events or planner mutations",
+    "a0_1c_economy": "unchanged; world-time recovery shares advanceWorld without directly changing stock, production, price or trade",
+    "a0_2a_information": "historical ability/world events remain available as information sources while active buffs live separately",
+    "a0_2b_progression": "ability practice retains the cadence engine; Deck Drill time naturally feeds strain recovery through advanceWorld",
+    "navigation_weather": "navigation quality changes hazard consequence only; weather occurrence remains owned by travel/weather logic",
+    "combat": "preview paths are read-only; only actual valid matching checks consume one-shot preparation",
+    "expansion": "no named port, culture or region branches; new routes/locations inherit the same world-time and navigation-quality mechanics",
+    "presentation": "accepted R1.2 geometry and art ownership unchanged"
+  },
+  "saveCompatibility": "schema v12 unchanged; preparedEffects and voyage.navigationQuality are additive optional fields, legacy successful preparation events are converted at most once when explicit prepared state is absent, and Arcane Strain ownership is normalized on load",
+  "databaseCompatibility": "migration 0011 adds prepared_effects jsonb to normalized character_capabilities; canonical cloud persistence remains the versioned game_saves.snapshot in this alpha",
+  "presentationChanged": "no structural layout/art changes; only gameplay-truth wording and existing status consequences can differ",
+  "deferred": [
+    "A0.2D law information propagation/adjudication lifecycle",
+    "A0.3A port/service capability authority",
+    "A0.3B character-build consequence and learning-source connection",
+    "A0.3C live kingdom/event bridge",
+    "R2 dynamic trade law/customs/smuggling/privateering"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "350/350 PASS",
+    "dedicatedA02C": "11/11 PASS",
+    "longRunNpcPlanner": "PASS: existing 1000-day regression",
+    "longRunEconomyPlanner": "PASS: existing 1000-day integrated regression",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: local next executable not installed"
+  }
+}

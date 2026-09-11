@@ -1,0 +1,646 @@
+{
+  "generatedFrom": "Alpha 0.6C compiled runtime registry",
+  "count": 33,
+  "legacyAliases": {
+    "ship_class.skeldran_coastal_sloop": "ship_class.skeldra.fjord_cutter",
+    "ship_class.skeldran_modern_battle_frigate": "ship_class.skeldra.skeldran_frigate",
+    "ship_class.skeldran_armed_merchant": "ship_class.skeldra.north_sea_trader",
+    "ship_class.refitted_coastal_raider": "ship_class.outer_isles.privateer_sloop",
+    "ship_class.skeldran_industrial_coaster": "ship_class.skeldra.north_sea_trader",
+    "ship_class.skeldran_fishing_cutter": "ship_class.common.coastal_fishing_boat",
+    "ship_class.skeldran_packet": "ship_class.skeldra.north_sea_trader"
+  },
+  "definitions": [
+    {
+      "id": "ship_class.common.harbor_skiff",
+      "name": "Harbor Skiff",
+      "region": "common",
+      "role": "workboat",
+      "doctrine": "Oars/small lug sail; fishing, ferrying, harbor jobs",
+      "cruiseSpeedKnots": 3.5,
+      "artNeed": "Token + small inspection art",
+      "availabilityTags": [
+        "common",
+        "workboat"
+      ],
+      "buildTags": [
+        "workboat",
+        "common"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.common.coastal_fishing_boat",
+      "name": "Coastal Fishing Boat",
+      "region": "common",
+      "role": "workboat",
+      "doctrine": "Net storage, shallow draft, modest sail plan",
+      "cruiseSpeedKnots": 4.5,
+      "artNeed": "Token + inspection art",
+      "availabilityTags": [
+        "common",
+        "workboat"
+      ],
+      "buildTags": [
+        "workboat",
+        "common"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.skeldra.fjord_cutter",
+      "name": "Fjord Cutter",
+      "region": "skeldra",
+      "role": "fast_coastal",
+      "doctrine": "Compact northern hull, strong weather handling, cutter-like rig",
+      "cruiseSpeedKnots": 5.25,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "skeldra",
+        "fast_coastal"
+      ],
+      "buildTags": [
+        "fast_coastal",
+        "skeldra"
+      ],
+      "attunement": "neutral",
+      "artStatus": "provisional",
+      "inspectionAssetId": "ship.skeldra.coastal_sloop.reference",
+      "tokenAssetId": "ship.skeldra.coastal_sloop.token"
+    },
+    {
+      "id": "ship_class.skeldra.north_sea_trader",
+      "name": "North Sea Trader",
+      "region": "skeldra",
+      "role": "merchant",
+      "doctrine": "Broad durable hull, cargo-first, cold-weather deckhouse",
+      "cruiseSpeedKnots": 5,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "skeldra",
+        "merchant"
+      ],
+      "buildTags": [
+        "merchant",
+        "skeldra"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.skeldra.royal_sloop",
+      "name": "Royal Sloop",
+      "region": "skeldra",
+      "role": "naval_patrol",
+      "doctrine": "Fast patrol ship, heavier scantlings, practical gun deck",
+      "cruiseSpeedKnots": 6.5,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "skeldra",
+        "naval_patrol"
+      ],
+      "buildTags": [
+        "naval_patrol",
+        "skeldra"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.skeldra.skeldran_frigate",
+      "name": "Skeldran Frigate",
+      "region": "skeldra",
+      "role": "warship",
+      "doctrine": "Broad heavy frigate, rough-weather stability, substantial battery",
+      "cruiseSpeedKnots": 6,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "skeldra",
+        "warship"
+      ],
+      "buildTags": [
+        "warship",
+        "skeldra"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.skeldra.skeldran_heavy_warship",
+      "name": "Skeldran Heavy Warship",
+      "region": "skeldra",
+      "role": "capital_warship",
+      "doctrine": "Durable, heavily armed, slower, prestige navy silhouette",
+      "cruiseSpeedKnots": 4.75,
+      "artNeed": "Hero art + token",
+      "availabilityTags": [
+        "skeldra",
+        "capital_warship"
+      ],
+      "buildTags": [
+        "capital_warship",
+        "skeldra"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.skeldra.steam_assisted_experimental_frigate",
+      "name": "Steam-Assisted Experimental Frigate",
+      "region": "skeldra",
+      "role": "industrial_special",
+      "doctrine": "Sails plus early pressure machinery/pumps/auxiliary propulsion",
+      "cruiseSpeedKnots": 6.25,
+      "artNeed": "Hero art + token",
+      "availabilityTags": [
+        "skeldra",
+        "industrial_special"
+      ],
+      "buildTags": [
+        "industrial_special",
+        "skeldra"
+      ],
+      "attunement": "industrial",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.asteria.island_felucca",
+      "name": "Island Felucca",
+      "region": "asteria",
+      "role": "coastal",
+      "doctrine": "Graceful warm-water craft, lateen-dominant, low profile",
+      "cruiseSpeedKnots": 6.5,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "asteria",
+        "coastal"
+      ],
+      "buildTags": [
+        "coastal",
+        "asteria"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.asteria.asterian_merchant_galley_sailer",
+      "name": "Asterian Merchant Galley-Sailer",
+      "region": "asteria",
+      "role": "merchant",
+      "doctrine": "Longer hull, mixed rig, efficient island/coastal movement",
+      "cruiseSpeedKnots": 5.75,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "asteria",
+        "merchant"
+      ],
+      "buildTags": [
+        "merchant",
+        "asteria"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.asteria.league_corvette",
+      "name": "League Corvette",
+      "region": "asteria",
+      "role": "naval_patrol",
+      "doctrine": "Fast, elegant, maneuverable, moderate armament",
+      "cruiseSpeedKnots": 6.75,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "asteria",
+        "naval_patrol"
+      ],
+      "buildTags": [
+        "naval_patrol",
+        "asteria"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.asteria.asterian_frigate",
+      "name": "Asterian Frigate",
+      "region": "asteria",
+      "role": "warship",
+      "doctrine": "Long low hull, mixed rig, Arcane-friendly layout",
+      "cruiseSpeedKnots": 6.25,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "asteria",
+        "warship"
+      ],
+      "buildTags": [
+        "warship",
+        "asteria"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.asteria.wardship",
+      "name": "Wardship",
+      "region": "asteria",
+      "role": "arcane_special",
+      "doctrine": "Ritual spaces, ward anchors, spirit-sail compatibility",
+      "cruiseSpeedKnots": 6.25,
+      "artNeed": "Hero art + token",
+      "availabilityTags": [
+        "asteria",
+        "arcane_special"
+      ],
+      "buildTags": [
+        "arcane_special",
+        "asteria"
+      ],
+      "attunement": "arcane",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.asteria.arcane_heavy_cruiser",
+      "name": "Arcane Heavy Cruiser",
+      "region": "asteria",
+      "role": "capital_arcane",
+      "doctrine": "Large prestige warship built around wards and ritual navigation rather than machinery",
+      "cruiseSpeedKnots": 5.5,
+      "artNeed": "Hero art + token",
+      "availabilityTags": [
+        "asteria",
+        "capital_arcane"
+      ],
+      "buildTags": [
+        "capital_arcane",
+        "asteria"
+      ],
+      "attunement": "arcane",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.serath.coastal_dhow_sailer",
+      "name": "Coastal Dhow-Sailer",
+      "region": "serath",
+      "role": "coastal_trader",
+      "doctrine": "Lateen-influenced efficient warm-water merchant craft",
+      "cruiseSpeedKnots": 6.25,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "serath",
+        "coastal_trader"
+      ],
+      "buildTags": [
+        "coastal_trader",
+        "serath"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.serath.pilgrim_carrier",
+      "name": "Pilgrim Carrier",
+      "region": "serath",
+      "role": "passenger_merchant",
+      "doctrine": "Sheltered deck spaces, water stores, shrine/prayer accommodation",
+      "cruiseSpeedKnots": 5.25,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "serath",
+        "passenger_merchant"
+      ],
+      "buildTags": [
+        "passenger_merchant",
+        "serath"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.serath.corsair_xebec_type",
+      "name": "Corsair Xebec-Type",
+      "region": "serath",
+      "role": "pursuit",
+      "doctrine": "Fast narrow hull, lateen/mixed rig, pursuit/raiding role",
+      "cruiseSpeedKnots": 7,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "serath",
+        "pursuit"
+      ],
+      "buildTags": [
+        "pursuit",
+        "serath"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.serath.royal_escort_frigate",
+      "name": "Royal Escort Frigate",
+      "region": "serath",
+      "role": "warship",
+      "doctrine": "Balanced convoy escort, speed and disciplined gunnery",
+      "cruiseSpeedKnots": 6.5,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "serath",
+        "warship"
+      ],
+      "buildTags": [
+        "warship",
+        "serath"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.serath.covenant_relief_ship",
+      "name": "Covenant Relief Ship",
+      "region": "serath",
+      "role": "support",
+      "doctrine": "Food, medicine, refugee/pilgrim transport, modest defenses",
+      "cruiseSpeedKnots": 5,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "serath",
+        "support"
+      ],
+      "buildTags": [
+        "support",
+        "serath"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.kaishin.river_sea_junk_type",
+      "name": "River-Sea Junk-Type",
+      "region": "kaishin",
+      "role": "coastal_merchant",
+      "doctrine": "Battened sails, shallow-to-medium draft, organized cargo",
+      "cruiseSpeedKnots": 5,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "kaishin",
+        "coastal_merchant"
+      ],
+      "buildTags": [
+        "coastal_merchant",
+        "kaishin"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.kaishin.compartmented_ocean_trader",
+      "name": "Compartmented Ocean Trader",
+      "region": "kaishin",
+      "role": "merchant",
+      "doctrine": "Large cargo hull with strong internal subdivision",
+      "cruiseSpeedKnots": 4.75,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "kaishin",
+        "merchant"
+      ],
+      "buildTags": [
+        "merchant",
+        "kaishin"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.kaishin.eastern_patrol_ship",
+      "name": "Eastern Patrol Ship",
+      "region": "kaishin",
+      "role": "naval_patrol",
+      "doctrine": "Efficient battened rig, organized deck, disciplined missile/gun positions",
+      "cruiseSpeedKnots": 6,
+      "artNeed": "Unique regional token/art",
+      "availabilityTags": [
+        "kaishin",
+        "naval_patrol"
+      ],
+      "buildTags": [
+        "naval_patrol",
+        "kaishin"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.kaishin.iron_crane_experimental_ship",
+      "name": "Iron Crane Experimental Ship",
+      "region": "kaishin",
+      "role": "industrial_test",
+      "doctrine": "Foreign machinery trial integrated cautiously into Eastern hull doctrine",
+      "cruiseSpeedKnots": 5.25,
+      "artNeed": "Hero art + token",
+      "availabilityTags": [
+        "kaishin",
+        "industrial_test"
+      ],
+      "buildTags": [
+        "industrial_test",
+        "kaishin"
+      ],
+      "attunement": "industrial",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.kaishin.imperial_heavy_warship",
+      "name": "Imperial Heavy Warship",
+      "region": "kaishin",
+      "role": "capital_warship",
+      "doctrine": "Stable, compartmented, defensive, high crew organization",
+      "cruiseSpeedKnots": 4.5,
+      "artNeed": "Hero art + token",
+      "availabilityTags": [
+        "kaishin",
+        "capital_warship"
+      ],
+      "buildTags": [
+        "capital_warship",
+        "kaishin"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.crossroads.strait_courier",
+      "name": "Strait Courier",
+      "region": "crossroads",
+      "role": "courier",
+      "doctrine": "Fast mixed-origin rig, narrow route-specialist",
+      "cruiseSpeedKnots": 7,
+      "artNeed": "Unique token/art",
+      "availabilityTags": [
+        "crossroads",
+        "courier"
+      ],
+      "buildTags": [
+        "courier",
+        "crossroads"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.crossroads.golden_strait_merchantman",
+      "name": "Golden Strait Merchantman",
+      "region": "crossroads",
+      "role": "merchant",
+      "doctrine": "Cosmopolitan cargo ship, strong defensive fit",
+      "cruiseSpeedKnots": 5.25,
+      "artNeed": "Unique token/art",
+      "availabilityTags": [
+        "crossroads",
+        "merchant"
+      ],
+      "buildTags": [
+        "merchant",
+        "crossroads"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.crossroads.fortress_escort",
+      "name": "Fortress Escort",
+      "region": "crossroads",
+      "role": "naval",
+      "doctrine": "Short-range heavy escort optimized around forts and strait intelligence",
+      "cruiseSpeedKnots": 5.5,
+      "artNeed": "Unique token/art",
+      "availabilityTags": [
+        "crossroads",
+        "naval"
+      ],
+      "buildTags": [
+        "naval",
+        "crossroads"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.outer_isles.shallow_smuggler",
+      "name": "Shallow Smuggler",
+      "region": "outer_isles",
+      "role": "smuggler",
+      "doctrine": "Very shallow draft, hidden storage, speed",
+      "cruiseSpeedKnots": 6.75,
+      "artNeed": "Unique token/art",
+      "availabilityTags": [
+        "outer_isles",
+        "smuggler"
+      ],
+      "buildTags": [
+        "smuggler",
+        "outer_isles"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.outer_isles.privateer_sloop",
+      "name": "Privateer Sloop",
+      "region": "outer_isles",
+      "role": "raider",
+      "doctrine": "Fast flexible captured/refitted family",
+      "cruiseSpeedKnots": 6,
+      "artNeed": "Unique token/art",
+      "availabilityTags": [
+        "outer_isles",
+        "raider"
+      ],
+      "buildTags": [
+        "raider",
+        "outer_isles"
+      ],
+      "attunement": "neutral",
+      "artStatus": "provisional",
+      "inspectionAssetId": "ship.outer_isles.raider.reference",
+      "tokenAssetId": "ship.outer_isles.raider.token"
+    },
+    {
+      "id": "ship_class.outer_isles.boarding_brig",
+      "name": "Boarding Brig",
+      "region": "outer_isles",
+      "role": "pirate",
+      "doctrine": "Crew-heavy, grappling/boarding biased, mixed weapons",
+      "cruiseSpeedKnots": 5.5,
+      "artNeed": "Unique token/art",
+      "availabilityTags": [
+        "outer_isles",
+        "pirate"
+      ],
+      "buildTags": [
+        "pirate",
+        "outer_isles"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.outer_isles.captured_frigate_refit",
+      "name": "Captured Frigate Refit",
+      "region": "outer_isles",
+      "role": "pirate_heavy",
+      "doctrine": "Foreign frigate modified with mismatched repairs and boarding emphasis",
+      "cruiseSpeedKnots": 5.25,
+      "artNeed": "Unique token/art",
+      "availabilityTags": [
+        "outer_isles",
+        "pirate_heavy"
+      ],
+      "buildTags": [
+        "pirate_heavy",
+        "outer_isles"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.outer_isles.high_captain_flagship",
+      "name": "High Captain Flagship",
+      "region": "outer_isles",
+      "role": "prestige_pirate",
+      "doctrine": "Unique named-ship category; no standard pirate-castle silhouette",
+      "cruiseSpeedKnots": 5.25,
+      "artNeed": "Hero art + token",
+      "availabilityTags": [
+        "outer_isles",
+        "prestige_pirate"
+      ],
+      "buildTags": [
+        "prestige_pirate",
+        "outer_isles"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    },
+    {
+      "id": "ship_class.explorer.western_passage_survey_ship",
+      "name": "Western Passage Survey Ship",
+      "region": "explorer",
+      "role": "exploration",
+      "doctrine": "Extra stores, boats, chart room, reinforced rigging",
+      "cruiseSpeedKnots": 5.25,
+      "artNeed": "Unique token/art",
+      "availabilityTags": [
+        "explorer",
+        "exploration"
+      ],
+      "buildTags": [
+        "exploration",
+        "explorer"
+      ],
+      "attunement": "neutral",
+      "artStatus": "missing"
+    }
+  ]
+}

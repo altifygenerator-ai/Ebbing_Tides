@@ -2,52 +2,74 @@ import { clockFromAbsoluteHour } from "./clock.js";
 import { refreshMarketPrices } from "./economy.js";
 import { expireContracts, generateContracts } from "./contracts.js";
 import { PORT_BY_ID } from "../data/seed/ports.js";
-import { deterministicUnit } from "./rng.js";
-import { routePoint } from "../data/seed/routes.js";
-function updateNpcShipRoutes(state, hours) {
-    for (const ship of Object.values(state.ships)) {
-        if (ship.disposition === "player" || !ship.route)
+import { advanceNpcPlan, mutinyPressure, updateNpcSimulationLod } from "./npcBrain.js";
+import { isShipOperational } from "./vesselLifecycle.js";
+import { compactSimulationEvents } from "./simulationQueue.js";
+import { advanceSettlementEconomy } from "./economySimulation.js";
+import { advanceArcaneStrainRecovery } from "./attunement.js";
+import { processDueLegalReports } from "./reputationLaw.js";
+import { processWorldCauseLifecycle } from "./worldCauses.js";
+function updateNpcLives(state, hours) {
+    for (const npc of Object.values(state.npcs)) {
+        const npcShip = npc.shipId ? state.ships[npc.shipId] : undefined;
+        if (npcShip && !isShipOperational(npcShip))
             continue;
-        const routeHours = ship.id === "ship.stormcrow" ? 24 : 20;
-        ship.route.progress += (hours / routeHours) * ship.route.direction;
-        if (ship.route.progress >= 1) {
-            ship.route.progress = 1;
-            ship.route.direction = -1;
-            ship.dockedAtPortId = ship.route.toPortId;
+        updateNpcSimulationLod(state, npc);
+        advanceNpcPlan(state, npc, hours);
+        const pressure = mutinyPressure(npc);
+        if (pressure >= 70 && npc.shipId) {
+            const bucket = Math.floor(state.absoluteHour / 24);
+            const id = `event.mutiny_pressure.${npc.id}.${bucket}`;
+            if (!state.worldEvents.some(event => event.id === id))
+                state.worldEvents.push({ id, type: "crew_morale_crisis", atHour: state.absoluteHour, participants: [npc.id, npc.shipId], summary: `${npc.name}'s crew has entered a serious discipline crisis.`, canonicalData: { npcId: npc.id, shipId: npc.shipId, mutinyPressure: pressure }, importance: 2 });
         }
-        else if (ship.route.progress <= 0) {
-            ship.route.progress = 0;
-            ship.route.direction = 1;
-            ship.dockedAtPortId = ship.route.fromPortId;
+    }
+}
+function processScheduledSimulationEvents(state) {
+    for (const event of state.simulationEvents) {
+        if (event.status !== "scheduled" || event.scheduledAtHour > state.absoluteHour)
+            continue;
+        if (event.eventType === "npc_plan_checkpoint") {
+            const npc = state.npcs[event.entityId];
+            const planId = String(event.payload.planId ?? "");
+            if (!npc || !npc.brain.currentPlan || npc.brain.currentPlan.id !== planId || npc.brain.currentPlan.status !== "active") {
+                event.status = "processed";
+                continue;
+            }
+            // Plan execution itself is advanced by the simulation; this event is the explicit wakeup/checkpoint record.
+            npc.brain.nextDecisionAtHour = Math.min(npc.brain.nextDecisionAtHour ?? state.absoluteHour, state.absoluteHour);
+            event.status = "processed";
         }
         else {
-            delete ship.dockedAtPortId;
-        }
-        ship.position = routePoint(ship.route.fromPortId, ship.route.toPortId, ship.route.progress);
-    }
-}
-function restockMarkets(state, beforeHour) {
-    const beforeDay = Math.floor(beforeHour / 24);
-    const afterDay = Math.floor(state.absoluteHour / 24);
-    if (afterDay <= beforeDay)
-        return;
-    for (let day = beforeDay + 1; day <= afterDay; day += 1) {
-        for (const market of Object.values(state.markets)) {
-            for (const row of Object.values(market.goods)) {
-                const delta = row.targetStock - row.stock;
-                const baseMove = Math.sign(delta) * Math.min(Math.abs(delta), Math.max(1, Math.round(Math.abs(delta) * 0.08)));
-                const jitter = deterministicUnit(state.worldSeed, `restock:${market.portId}:${row.commodityId}:${day}`) > 0.82 ? 1 : 0;
-                row.stock = Math.max(0, row.stock + baseMove + jitter);
-            }
+            event.status = "processed";
         }
     }
+    compactSimulationEvents(state);
 }
 export function advanceWorld(state, hours) {
+    const elapsedHours = Math.max(0, Math.floor(hours));
     const before = state.absoluteHour;
-    state.absoluteHour += Math.max(0, Math.floor(hours));
+    compactSimulationEvents(state);
+    state.absoluteHour += elapsedHours;
     state.clock = clockFromAbsoluteHour(state.absoluteHour);
-    updateNpcShipRoutes(state, hours);
-    restockMarkets(state, before);
+    // A0.2C: Arcane Strain recovers only through the authoritative world clock.
+    // Apply to every persistent character so later NPC Arcane use inherits the same lifecycle.
+    advanceArcaneStrainRecovery(state.player.character, before, state.absoluteHour);
+    for (const npc of Object.values(state.npcs))
+        advanceArcaneStrainRecovery(npc, before, state.absoluteHour);
+    // A0.3C: live world causes use the same authoritative clock. Resolve time-bounded causes
+    // before consumers evaluate each elapsed day so old policy cannot leak past its end hour.
+    processWorldCauseLifecycle(state, before, state.absoluteHour);
+    // Local production/consumption advances first. Merchant/player transactions then mutate the
+    // same inventory; there is no target-seeking stock regeneration.
+    advanceSettlementEconomy(state, before);
+    refreshMarketPrices(state);
+    updateNpcLives(state, elapsedHours);
+    // A0.2D: legal reports are physical/institutional information. Receipt is driven by the
+    // same authoritative world clock, not by the crime event itself.
+    processDueLegalReports(state);
+    processScheduledSimulationEvents(state);
+    // NPC port calls may have moved cargo through markets during this world step.
     refreshMarketPrices(state);
     expireContracts(state);
     if (state.player.currentPortId)

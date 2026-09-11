@@ -1,0 +1,7 @@
+{
+  "id": "character.religion.covenant.accent.v2",
+  "scope": ["character_creator", "captain_sheet"],
+  "role": "secondary_religion_accent",
+  "geometryOwner": "culture_socket",
+  "assets": {"accentMark": "accent_mark.png"}
+}

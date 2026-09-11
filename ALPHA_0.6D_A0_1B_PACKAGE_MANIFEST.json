@@ -1,0 +1,54 @@
+{
+  "package": "0.6.0-alpha.d.a0-1b",
+  "base": "0.6.0-alpha.d.a0-1a",
+  "saveSchema": 12,
+  "scope": "A0 P0 corrective repair 1B: NPC planner survival/deadlock and operational scheduler durability",
+  "changes": [
+    "survival-resource interruptions now become one recoverable return-to-port plan instead of an endless same-cause replan loop",
+    "NPC logical locationPortId is cleared at departure and restored only on actual port arrival",
+    "docked NPCs with inadequate voyage reserves service before departure",
+    "port-duty reserve recovery is centralized for later replacement by A0.1C economy-backed provisioning",
+    "simulationEvents are treated as transient operational wakeups and compact processed/cancelled/stale rows",
+    "v12 load/save normalizes the simulation queue and restores live current-plan checkpoints",
+    "terminal-vessel checkpoint retirement now uses the same queue owner",
+    "world advancement passes one clamped elapsed-time value to clock and NPC simulation",
+    "1000-day proving-ground stress regression added"
+  ],
+  "cohesion": {
+    "a0_1a_vessel_lifecycle": "preserved and routed through shared simulation queue cleanup",
+    "navigation": "existing pathfinding, physical-distance and ship-speed owners unchanged",
+    "economy": "market/price/stock logic intentionally untouched; A0.1C remains authoritative next repair",
+    "history": "worldEvents remain canonical history; only transient scheduler records are compacted",
+    "player_supply_loop": "unchanged",
+    "presentation": "no accepted UI/art geometry changed"
+  },
+  "stressVerification": {
+    "days": 1000,
+    "operationalShipNpcs": 6,
+    "productiveAfterRun": 6,
+    "simulationEvents": 6,
+    "scheduled": 6,
+    "processedRetained": 0,
+    "cancelledRetained": 0,
+    "worldEvents": 997,
+    "npcArrivals": 992,
+    "plannerInterrupts": 0,
+    "freshJsonBytes": 69154,
+    "finalJsonBytes": 520226,
+    "growthMultiple": 7.52
+  },
+  "saveCompatibility": "schema v12 unchanged; survivalRecovery is additive/optional and v12 operational queue state is normalized on load",
+  "presentationChanged": false,
+  "deferred": [
+    "A0.1C unified economy/production/consumption/NPC merchant integration",
+    "long-horizon event-ledger archival/LOD policy beyond the current proving-ground scale",
+    "R2 dynamic trade law/customs/smuggling/privateering"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "312/312 PASS",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: local next executable not installed"
+  }
+}

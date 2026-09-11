@@ -6,7 +6,11 @@
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "rootDir": "src",
     "outDir": "public/alpha/js",
     "skipLibCheck": true,
@@ -14,10 +18,14 @@
     "sourceMap": true
   },
   "include": [
+    "src/artLayouts/**/*.ts",
     "src/game/**/*.ts",
     "src/data/**/*.ts",
-    "src/services/localSave.ts",
-    "src/alpha/**/*.ts"
+    "src/services/*.ts",
+    "src/alpha/**/*.ts",
+    "src/ui/**/*.ts"
   ],
-  "exclude": ["src/app/**/*"]
+  "exclude": [
+    "src/app/**/*"
+  ]
 }

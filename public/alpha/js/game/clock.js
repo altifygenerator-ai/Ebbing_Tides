@@ -1,12 +1,13 @@
+import { dayOfYear, worldDateFromAbsoluteHour, formatWorldDate } from "./time/calendar.js";
 export function clockFromAbsoluteHour(absoluteHour) {
-    return {
-        year: 628,
-        day: Math.floor(absoluteHour / 24) + 1,
-        hour: absoluteHour % 24
-    };
+    return worldDateFromAbsoluteHour(absoluteHour);
 }
+/** Preserve Alpha surface readability while the canonical month names remain data-driven/unfinalized. */
 export function formatClock(clock) {
     const hour = String(clock.hour).padStart(2, "0");
-    return `Day ${clock.day}, 628 CR · ${hour}:00`;
+    return `Day ${dayOfYear(clock)}, ${clock.year} CR · ${hour}:00`;
+}
+export function formatCanonicalClock(clock) {
+    return formatWorldDate(clock);
 }
 //# sourceMappingURL=clock.js.map

@@ -1,0 +1,28 @@
+{
+  "package": "0.6.0-alpha.d.a0-3b1",
+  "label": "A0.3B1 \u2014 Creator & Interaction UX Lock",
+  "basePackage": "0.6.0-alpha.d.a0-3b",
+  "saveSchema": 12,
+  "supabaseMigration": "none",
+  "scope": [
+    "compact Character Creator attribute controls and whole-row skill selection",
+    "live current-choice mechanical effect summaries and full Review/Begin starting toolbox",
+    "centralized starting skill/crown/ship-origin effect helpers consumed by both creation and review",
+    "multi-quantity market Buy/Sell through canonical transact owner",
+    "same-view local scroll preservation across state-changing rerenders",
+    "Ship Overview service-cost labels and redundant canonical + shortcuts for supplies/repair"
+  ],
+  "verification": {
+    "typecheckAlpha": "PASS",
+    "alphaBuild": "PASS",
+    "fullTests": "403/403 PASS",
+    "dedicatedA03B1": "10/10 PASS",
+    "longRunNpcEconomy": "13/13 PASS including 1000-day planner and integrated economy/planner",
+    "artLayouts": "2/2 PASS",
+    "mechanicsPreservation": "PASS \u2014 70 A0.3B\u2192A0.3B1 representative/exhaustive starting-skill/crown/ship-state option cases",
+    "cleanOverlay": "PASS \u2014 applied only this overlay to exact A0.3B baseline and reran typecheck/build/full/long-run/art gates",
+    "nextBuild": "UNAVAILABLE \u2014 local node_modules/.bin/next is not installed in sandbox"
+  },
+  "artPolicy": "No final painted art added. Character UI remains pre-art; code-owned geometry/functionality tightened for later purpose-painted post-R2 integration.",
+  "nextPlannedPhase": "A0.3C \u2014 Minimal Live Kingdom / Policy / Religion / World-Event Bridge"
+}

@@ -1,0 +1,20 @@
+{
+  "asset_id": "audio.music.main_menu.sea_wind_v1",
+  "role": "MAIN_MENU",
+  "duration_ms": 426188,
+  "layers": [
+    {
+      "source": "ob-lix-the-gift-pagan-norse-background-music-117479.mp3",
+      "role": "foreground_music"
+    },
+    {
+      "source": "dammafra-sailing-435998.mp3",
+      "role": "subtle_sea_bed"
+    },
+    {
+      "source": "storegraphic-soft-wind-477404.mp3",
+      "role": "very_subtle_wind_bed"
+    }
+  ],
+  "runtime_note": "Keep tactile UI/menu sounds separate so they can respond to interaction."
+}

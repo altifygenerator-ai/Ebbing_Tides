@@ -1,0 +1,44 @@
+{
+  "package": "0.6.0-alpha.d.a0-3c",
+  "base": "0.6.0-alpha.d.a0-3b3",
+  "saveSchema": 12,
+  "phase": "A0.3C - Minimal Live Kingdom / Policy / Religion / World-Event Bridge",
+  "scope": [
+    "one authoritative GameState.worldCauses current-state layer",
+    "war/embargo/famine/emergency-decree/religious-policy/ruler-change/economic-disruption cause families",
+    "data-driven cause scope and absoluteHour lifecycle",
+    "A0.1C economy causal-input bridge without direct price modifiers",
+    "A0.1B NPC route/traffic bridge without parallel traffic state",
+    "existing contract procurement-demand bridge",
+    "A0.2D legal-report institutional-transit bridge without direct warrants/heat/standing",
+    "A0.2A physical public-information propagation and Journal knowledge firewall",
+    "compact Government/Religion public notices",
+    "bounded operational cause history and additive v12 save normalization",
+    "future R2 policy-tag query surface"
+  ],
+  "explicitlyNotIncluded": [
+    "R2 customs/smuggling/contraband/privateering/wartime-law mechanics",
+    "synthetic Day-1 war/famine/embargo/religious/political events",
+    "grand-strategy or kingdom-management UI",
+    "world expansion",
+    "mutiny",
+    "Character Creator/Captain purpose-painted final art pass"
+  ],
+  "verification": {
+    "baselineBeforeChanges": "417/417 PASS on A0.3B3",
+    "typecheckAlpha": "PASS",
+    "alphaBuild": "PASS",
+    "dedicatedA03C": "17/17 PASS",
+    "fullTests": "434/434 PASS",
+    "longRunNpcAndEconomy": "13/13 PASS including both 1000-day durability tests",
+    "a03cCauseDurability": "PASS: dedicated 365-day time-bounded cause integration test",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE in packaging environment: local Next executable/dependencies not installed",
+    "cleanOverlay": "PASS: fresh A0.3B3 + only A0.3C overlay reproduced typecheck/build, 17/17 dedicated, 434/434 full, 13/13 long-run, and 2/2 art-layout gates"
+  },
+  "database": {
+    "supabaseMigrationRequired": false,
+    "reason": "Current live cause state persists inside the existing canonical versioned game_saves.snapshot; v12 loads normalize additively."
+  },
+  "overlayFileCount": 53
+}

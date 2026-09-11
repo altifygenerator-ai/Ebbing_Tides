@@ -1,0 +1,33 @@
+{
+  "milestone": "Alpha 0.6D Crew Mechanics Pass 2",
+  "base": "Alpha 0.6D Crew Mechanics Pass 1",
+  "schemaVersion": 11,
+  "validation": {
+    "tests": "248/248 PASS",
+    "typecheck": "PASS",
+    "alphaBuild": "PASS",
+    "artLayouts": "3/3 PASS"
+  },
+  "changedFiles": [
+    "package.json",
+    "README.md",
+    "docs/ALPHA_0.6D_CREW_MECHANICS_PASS_2.md",
+    "docs/CREW_MORALE_LOYALTY_AND_MUTINY_SYSTEM.md",
+    "tests/alpha-06d-crew-mechanics-pass2.test.mjs",
+    "tests/alpha-05-update-d.test.mjs",
+    "public/alpha/styles.css",
+    "public/alpha/js/game/crewHardship.js.map",
+    "public/alpha/js/game/crewHardship.js",
+    "public/alpha/js/game/crewState.js",
+    "public/alpha/js/game/crewState.js.map",
+    "public/alpha/js/game/crewMechanics.js.map",
+    "public/alpha/js/game/crewMechanics.js",
+    "public/alpha/js/alpha/main.js",
+    "public/alpha/js/alpha/main.js.map",
+    "docs/visual-qa/art-layout-calibration/resolution-verification.json",
+    "src/game/crewMechanics.ts",
+    "src/game/crewHardship.ts",
+    "src/game/crewState.ts",
+    "src/alpha/main.ts"
+  ]
+}

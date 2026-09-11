@@ -1,0 +1,11 @@
+d239ba8d929cf5fd5ee36d257f3ec359bfd337dc655f87209e9bd84f447b0c94  ./APPLY_MAIN_MENU_SHELL_PASS_1_3_RUNTIME_BRIDGE_HOTFIX.md
+b48ace3fadd5e074df34f67b853856e7dcf155e7b48b6b9aa302f547706a2752  ./MAIN_MENU_SHELL_PASS_1_3_MANIFEST.json
+0942d0b46ffe9bda4f68261f4f12b9f1c5c9770ed3c981f48d95bbb457064d9d  ./docs/MAIN_MENU_SHELL_PASS_1_3_RUNTIME_BRIDGE_HOTFIX.md
+bf5cb385c2d87fc4f50e261527f56c8296b66a63ac3ce0ed8f5671a61a8c942a  ./public/alpha/js/alpha/main.js
+a2ad7534509744491ef08b0d92cd0a59f20263450bda1f72789854346d59fbf8  ./public/alpha/js/alpha/main.js.map
+4cde897e7c6530ac08800e66e22780baeb1a178f137f05633bb388d6d748aa44  ./public/alpha/js/alpha/startMenu.js
+fc8f65df3a0cbcecb92af42a1ceea6688a24eb89dcfc459e24681fd3cd92733a  ./public/alpha/js/alpha/startMenu.js.map
+e92cd41aa641596768d8960ea9f41e5e062a3ec0c9166ba7ec95dc08d3eee545  ./public/alpha/start-menu.css
+3583169df4011e5112b7fa5dfb9c60a54e6ac0539c9c99edccd2650b9990728e  ./src/alpha/main.ts
+ff1239090c15172cf56f3468c07c4825f1c83633825276e0c869f3956d22a459  ./src/alpha/startMenu.ts
+841df45da87cb85ad523485371ca708d2361ae5d6c74adb947710bf6df71761b  ./tests/alpha-06d-main-menu-shell-pass1.test.mjs

@@ -1,0 +1,149 @@
+{
+  "generatedAt": "2026-09-10T08:01:25.014Z",
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "width": 1366,
+      "height": 768
+    }
+  ],
+  "layouts": {
+    "ui.character.equipment.male": {
+      "assetId": "ui.character.equipment.male.runtime",
+      "assetPath": "/art/ui/runtime/equipment_male_runtime_v2.png",
+      "artUsage": "runtime_base",
+      "assetExists": true,
+      "nativeWidth": 1672,
+      "nativeHeight": 799,
+      "logicalWidth": 1428,
+      "logicalHeight": 682.39,
+      "regionCount": 36,
+      "normalizedRegionsValid": true,
+      "viewportChecks": [
+        {
+          "viewportWidth": 1920,
+          "viewportHeight": 1080,
+          "availableWidth": 1713.6,
+          "availableHeight": 1012.8,
+          "canvasWidth": 1713.6,
+          "canvasHeight": 818.87,
+          "uiScale": 1.2,
+          "rasterScaleX": 1.0249,
+          "rasterScaleY": 1.0249,
+          "maximumNormalizedDrift": 5.551115123125783e-17
+        },
+        {
+          "viewportWidth": 1600,
+          "viewportHeight": 900,
+          "availableWidth": 1428,
+          "availableHeight": 844,
+          "canvasWidth": 1428,
+          "canvasHeight": 682.39,
+          "uiScale": 1,
+          "rasterScaleX": 0.8541,
+          "rasterScaleY": 0.8541,
+          "maximumNormalizedDrift": 0
+        },
+        {
+          "viewportWidth": 1440,
+          "viewportHeight": 900,
+          "availableWidth": 1285.2,
+          "availableHeight": 844,
+          "canvasWidth": 1285.2,
+          "canvasHeight": 614.15,
+          "uiScale": 0.9,
+          "rasterScaleX": 0.7687,
+          "rasterScaleY": 0.7686,
+          "maximumNormalizedDrift": 0
+        },
+        {
+          "viewportWidth": 1366,
+          "viewportHeight": 768,
+          "availableWidth": 1219.15,
+          "availableHeight": 720.21,
+          "canvasWidth": 1219.15,
+          "canvasHeight": 582.59,
+          "uiScale": 0.8538,
+          "rasterScaleX": 0.7292,
+          "rasterScaleY": 0.7291,
+          "maximumNormalizedDrift": 0
+        }
+      ]
+    },
+    "ui.character.equipment.female": {
+      "assetId": "ui.character.equipment.female.runtime",
+      "assetPath": "/art/ui/runtime/equipment_female_runtime_v2.png",
+      "artUsage": "runtime_base",
+      "assetExists": true,
+      "nativeWidth": 1672,
+      "nativeHeight": 799,
+      "logicalWidth": 1428,
+      "logicalHeight": 682.39,
+      "regionCount": 36,
+      "normalizedRegionsValid": true,
+      "viewportChecks": [
+        {
+          "viewportWidth": 1920,
+          "viewportHeight": 1080,
+          "availableWidth": 1713.6,
+          "availableHeight": 1012.8,
+          "canvasWidth": 1713.6,
+          "canvasHeight": 818.87,
+          "uiScale": 1.2,
+          "rasterScaleX": 1.0249,
+          "rasterScaleY": 1.0249,
+          "maximumNormalizedDrift": 2.7755575615628914e-17
+        },
+        {
+          "viewportWidth": 1600,
+          "viewportHeight": 900,
+          "availableWidth": 1428,
+          "availableHeight": 844,
+          "canvasWidth": 1428,
+          "canvasHeight": 682.39,
+          "uiScale": 1,
+          "rasterScaleX": 0.8541,
+          "rasterScaleY": 0.8541,
+          "maximumNormalizedDrift": 0
+        },
+        {
+          "viewportWidth": 1440,
+          "viewportHeight": 900,
+          "availableWidth": 1285.2,
+          "availableHeight": 844,
+          "canvasWidth": 1285.2,
+          "canvasHeight": 614.15,
+          "uiScale": 0.9,
+          "rasterScaleX": 0.7687,
+          "rasterScaleY": 0.7686,
+          "maximumNormalizedDrift": 0
+        },
+        {
+          "viewportWidth": 1366,
+          "viewportHeight": 768,
+          "availableWidth": 1219.15,
+          "availableHeight": 720.21,
+          "canvasWidth": 1219.15,
+          "canvasHeight": 582.59,
+          "uiScale": 0.8538,
+          "rasterScaleX": 0.7292,
+          "rasterScaleY": 0.7291,
+          "maximumNormalizedDrift": 0
+        }
+      ]
+    }
+  },
+  "pass": true,
+  "failures": 0
+}

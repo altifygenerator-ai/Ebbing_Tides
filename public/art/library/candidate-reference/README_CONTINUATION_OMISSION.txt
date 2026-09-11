@@ -1,0 +1,1 @@
+Heavy exploratory candidate-reference images are preserved in the predecessor 0.6D Phase A/B package and intentionally not duplicated in this continuation archive. Runtime/approved art remains included.

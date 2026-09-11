@@ -1,0 +1,15 @@
+{
+  "id": "character.culture.skeldran.framepack.v1",
+  "scope": ["character_creator", "captain_sheet"],
+  "role": "primary_culture_frame_pack",
+  "geometryOwner": "code",
+  "integration": "transparent border/frame art mounted around locked runtime regions",
+  "assets": {
+    "outerFrame": "outer_frame.png",
+    "darkPanelFrame": "dark_panel_frame.png",
+    "paperPanelFrame": "paper_panel_frame.png",
+    "portraitFrame": "portrait_frame.png",
+    "headerOrnament": "header_ornament.png",
+    "faithSocket": "faith_socket.png"
+  }
+}

@@ -1,0 +1,1 @@
+Redundant canonical source mirror intentionally omitted from downloadable checkpoint. See ../SOURCE_PACKAGE_COVERAGE.json and ../../source-supplement/ for deduplicated coverage; production-selected exact art remains in runtime semantic paths.

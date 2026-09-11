@@ -1,0 +1,15 @@
+63ef8088b6d36d897ae8a680426f8a9fa11b1518b26182f1484fe350b13cd176  ./ALPHA_0.6D_CHARACTER_RPG_PASS_1_PACKAGE_MANIFEST.json
+17dd31c1d93ec7a1e9f155fb8c74cb7911fc6edfa2df511a5a883a220e4c2885  ./APPLY_CHARACTER_RPG_PASS_1.md
+542b4c9a5dcc46812ec2c87449fdb01e5bdac0d1fc942d13294a244a3428345e  ./README.md
+e3ae174c99d910cded950ed868714c6f0e2aa984df6faf83b6a9a501bdfa9a89  ./docs/ALPHA_06D_CHARACTER_RPG_PASS_1.md
+01af74eaf7e7db50bbaa1c13adc0bcc4fac396c87173e1abafe4bd6f371ba2f2  ./docs/visual-qa/art-layout-calibration/resolution-verification.json
+146a46621bc16b47e4791ccda56753af00d6b9408109148c4418fb54905ba540  ./package.json
+ef81f951fd75d92f3c3d4fbb43347786e4712155d3c3af6acefe8a1f3b48bfa5  ./public/alpha/js/alpha/main.js
+7b5cd2a396d4b7e0a43a606ebaf6a6bc3d0dbe79d24f33da6aa076e38359bbbf  ./public/alpha/js/alpha/main.js.map
+e90f4b6bf4a916e6ec7a09804c90acf534e5cc438e3ff37fc7309e7b6d3f7c66  ./public/alpha/js/ui/screenArchitecture.js
+f351d4d82ca4043757fb2e5ba4154333756a6b2b88ef7acb18ae25089a49fbeb  ./public/alpha/js/ui/screenArchitecture.js.map
+ea47ca17b397dfc7dceb404da8bbecdd6e49f9ad8cc9ef955e511807abb44c29  ./public/alpha/styles.css
+df0e89eaf25ce53e25931031185da10544dfc49e778f2dbf061947769ae152f0  ./src/alpha/main.ts
+3f120c462b97068bd03351fefa96376b83aa60360a0a4aed7ddd285213104790  ./src/ui/screenArchitecture.ts
+cbab0210e0f212bae5541c500da3917f0db31781feb79c8f681a4073e35b325f  ./tests/alpha-05-update-d.test.mjs
+1bf8647caa35c10f35a5823f3d3504bf55335c73cda0ea94b48af8d17b121b7f  ./tests/alpha-06d-character-manuscript-pass1.test.mjs

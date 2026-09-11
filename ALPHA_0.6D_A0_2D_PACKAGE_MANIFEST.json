@@ -1,0 +1,56 @@
+{
+  "package": "0.6.0-alpha.d.a0-2d",
+  "base": "0.6.0-alpha.d.a0-2c",
+  "saveSchema": 12,
+  "scope": "A0 P1 corrective repair 2D: law information lifecycle from crime truth through authority receipt and adjudication",
+  "changes": [
+    "keeps CrimeRecord as the canonical crime fact and separates evidence/report/authority knowledge from crime truth",
+    "adds persisted CrimeEvidenceRecord and LegalReportRecord operational state linked to the underlying crime ID",
+    "replaces witness-to-instant-warrant behavior with physical survivor report delivery for at-sea crimes",
+    "uses existing sea-path geography, physical route distance and GameState.absoluteHour for report delivery timing",
+    "lets competent local/enforcing authority receive through the same lifecycle with zero transit instead of a duplicate direct-warrant path",
+    "prevents crimes without identifying witness/evidence from automatically generating warrant, heat or authority standing penalties",
+    "applies existing R1 legal heat, faction/local standing and warrants only after valid authority receipt",
+    "adds exactly-once guards against repeated report processing and duplicate legal consequences",
+    "adds independent physical-evidence and evidence-submission hooks for future investigation/customs/event systems",
+    "adds satisfied/pardoned legal-matter resolution while retaining canonical crime history",
+    "makes unresolvedReportedCrimes ignore settled/pardoned/dismissed matters",
+    "normalizes additive A0.2D fields on legacy v12 saves and infers already-valid R1 reported matters",
+    "bounds terminal operational legal-report history while preserving all in-transit reports",
+    "adds eleven dedicated A0.2D lifecycle/regression tests"
+  ],
+  "cohesion": {
+    "crime_truth": "CrimeRecord is the one canonical fact that the crime happened; reports never duplicate the crime",
+    "a0_1a_vessel_lifecycle": "unchanged; combat/prize outcomes may create crimes/witnesses but terminal vessel/prize ownership remains A0.1A",
+    "a0_2a_information": "reuses physical geography/world-time principles while generic public news remains distinct from legal authority",
+    "world_time": "all report delivery/receipt uses GameState.absoluteHour; no private legal timer is introduced",
+    "r1_law": "existing jurisdiction heat, warrants and standing remain consequence owners and mutate only after valid authority receipt",
+    "lawful_posture": "lawful vessels continue to consume active known legal state/warrants instead of omniscient raw crime truth",
+    "save_load": "in-transit reports persist across save/load and authority receipt remains exactly once",
+    "future_a0_3c": "future war/policy/religious causes may alter institutions without replacing the law-information owner",
+    "future_r2": "customs/smuggling/privateering must consume this crime/evidence/report/warrant lifecycle rather than creating a parallel crime meter",
+    "expansion": "routing is data/geography/jurisdiction driven with no named-port branches",
+    "presentation": "accepted R1.2, Navigation, contextual-port, Crew, Naval Combat Pass 1 and atlas geometry unchanged"
+  },
+  "saveCompatibility": "schema v12 unchanged; legalReports, evidence and legal-matter status are additive and normalized on load; old reported R1 crimes infer receipt/active state from existing warrants",
+  "databaseCompatibility": "no new Supabase migration; canonical Alpha campaign law state remains inside versioned game_saves.snapshot and A0.2D does not create a competing normalized law owner",
+  "presentationChanged": "no structural UI/art changes",
+  "deferred": [
+    "A0.3A port/service capability authority",
+    "A0.3B character-build consequence and learning-source connection",
+    "A0.3C live kingdom/policy/religion/world-event bridge",
+    "R2 dynamic trade law/customs/smuggling/privateering/wartime law",
+    "world expansion",
+    "mutiny"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "361/361 PASS",
+    "dedicatedA02D": "11/11 PASS",
+    "longRunNpcAndEconomyPlanner": "PASS: explicit combined durability files 13/13",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: local next executable not installed",
+    "cleanOverlay": "PASS: applied only A0.2D overlay to reconstructed accepted A0.2C baseline; typecheck, alpha build, 361/361 tests, 2/2 art layouts, and explicit long-run 13/13 all passed"
+  }
+}

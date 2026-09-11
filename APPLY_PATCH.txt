@@ -1,0 +1,34 @@
+EBBING TIDES — ALPHA 0.6D
+CREW MECHANICS PASS 2 — OVERLAY PATCH
+
+BASE REQUIRED
+Apply over Alpha 0.6D Crew Mechanics Pass 1.
+
+APPLY
+1. Extract this ZIP.
+2. Copy the contents of ET_Alpha_0.6D_Crew_Mechanics_Pass_2_PATCH into the project root.
+3. Replace/overwrite matching files.
+4. Launch normally.
+
+WHAT THIS PASS ADDS
+- Navigation HUD now shows qualitative Morale and Loyalty beside Crowns/Crew/Supplies.
+- Meaningful captain decisions can trigger small crew-reaction toasts showing morale/loyalty changes.
+- Routine background shortage ticks do NOT spam notifications.
+- Derived qualitative unrest: Quiet / Grumbling / Discontented / Defiant.
+- Unrest feedback lives inside existing Navigation/Tavern/Crew/Ship surfaces.
+- First Mate Command + loyalty + relationship now contributes explicitly to company stability.
+- Unpaid prize shares become a progressively worse grievance if the captain keeps sailing without settling them.
+- Ship status includes qualitative crew morale/loyalty and crew quality.
+
+NO NEW MANAGEMENT MENU
+No payroll screen, morale dashboard, grievance tab, or mutiny-risk percentage was added.
+
+MUTINY
+The full mutiny confrontation remains deferred until this foundation is manually accepted.
+
+VALIDATION
+248/248 tests PASS
+TypeScript PASS
+Alpha build PASS
+Art layouts 3/3 PASS
+Save schema remains v11

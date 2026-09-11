@@ -1,0 +1,31 @@
+{
+  "package": "0.6.0-alpha.d.a0-1a",
+  "base": "0.6.0-alpha.d.rpg-r1.2",
+  "saveSchema": 12,
+  "scope": "A0 P0 corrective repair 1A: authoritative vessel/combat terminal lifecycle",
+  "changes": [
+    "persistent active/disabled/captured/sunk vessel lifecycle foundation",
+    "defeated/captured vessels cannot re-enter ordinary traffic or pay repeat prizes",
+    "naval and boarding victories use one authoritative prize resolution pipeline",
+    "boarding prizes now create the existing ordinary-company prize-share obligation",
+    "terminal NPC vessel routes/plans are retired from further ordinary simulation",
+    "Emergency Hull Shoring and defeat recovery respect actual hullMax",
+    "player defeat copy now states only consequences the current Alpha actually applies"
+  ],
+  "saveCompatibility": "schema v12 unchanged; lifecycle is additive/optional and missing lifecycle means active",
+  "presentationChanged": false,
+  "deferred": [
+    "A0.1B NPC planner survival/deadlock and event-state compaction",
+    "A0.1C economy source-of-truth repair",
+    "R2 dynamic trade law/customs/smuggling/privateering",
+    "full prize courts/captured-ship ownership/fleet handling",
+    "explicit ship sinking mechanics"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "307/307 PASS",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: local next executable not installed"
+  }
+}

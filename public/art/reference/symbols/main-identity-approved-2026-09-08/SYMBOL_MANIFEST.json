@@ -1,0 +1,200 @@
+[
+  {
+    "category": "Ancestry",
+    "index": 1,
+    "label": "Skeldran",
+    "native_file": "01_Ancestry/Ancestry_01_Skeldran__EXACT_CROP.png",
+    "reference_512_file": "01_Ancestry/Ancestry_01_Skeldran__512_REFERENCE.png",
+    "source_crop": "x=15, y=235, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Ancestry",
+    "index": 2,
+    "label": "Asterian",
+    "native_file": "01_Ancestry/Ancestry_02_Asterian__EXACT_CROP.png",
+    "reference_512_file": "01_Ancestry/Ancestry_02_Asterian__512_REFERENCE.png",
+    "source_crop": "x=157, y=235, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Ancestry",
+    "index": 3,
+    "label": "Serathi",
+    "native_file": "01_Ancestry/Ancestry_03_Serathi__EXACT_CROP.png",
+    "reference_512_file": "01_Ancestry/Ancestry_03_Serathi__512_REFERENCE.png",
+    "source_crop": "x=302, y=235, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Ancestry",
+    "index": 4,
+    "label": "Kaishin",
+    "native_file": "01_Ancestry/Ancestry_04_Kaishin__EXACT_CROP.png",
+    "reference_512_file": "01_Ancestry/Ancestry_04_Kaishin__512_REFERENCE.png",
+    "source_crop": "x=445, y=235, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Ancestry",
+    "index": 5,
+    "label": "Vesperan",
+    "native_file": "01_Ancestry/Ancestry_05_Vesperan__EXACT_CROP.png",
+    "reference_512_file": "01_Ancestry/Ancestry_05_Vesperan__512_REFERENCE.png",
+    "source_crop": "x=583, y=235, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Ancestry",
+    "index": 6,
+    "label": "Outer Isles",
+    "native_file": "01_Ancestry/Ancestry_06_Outer_Isles__EXACT_CROP.png",
+    "reference_512_file": "01_Ancestry/Ancestry_06_Outer_Isles__512_REFERENCE.png",
+    "source_crop": "x=725, y=235, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Religion",
+    "index": 1,
+    "label": "Old Gods",
+    "native_file": "02_Religion/Religion_01_Old_Gods__EXACT_CROP.png",
+    "reference_512_file": "02_Religion/Religion_01_Old_Gods__512_REFERENCE.png",
+    "source_crop": "x=901, y=235, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Religion",
+    "index": 2,
+    "label": "Pantheon",
+    "native_file": "02_Religion/Religion_02_Pantheon__EXACT_CROP.png",
+    "reference_512_file": "02_Religion/Religion_02_Pantheon__512_REFERENCE.png",
+    "source_crop": "x=1043, y=235, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Religion",
+    "index": 3,
+    "label": "Covenant",
+    "native_file": "02_Religion/Religion_03_Covenant__EXACT_CROP.png",
+    "reference_512_file": "02_Religion/Religion_03_Covenant__512_REFERENCE.png",
+    "source_crop": "x=1185, y=235, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Religion",
+    "index": 4,
+    "label": "Turning Wheel",
+    "native_file": "02_Religion/Religion_04_Turning_Wheel__EXACT_CROP.png",
+    "reference_512_file": "02_Religion/Religion_04_Turning_Wheel__512_REFERENCE.png",
+    "source_crop": "x=1326, y=235, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Homeland",
+    "index": 1,
+    "label": "Skeldra",
+    "native_file": "03_Homeland/Homeland_01_Skeldra__EXACT_CROP.png",
+    "reference_512_file": "03_Homeland/Homeland_01_Skeldra__512_REFERENCE.png",
+    "source_crop": "x=4, y=595, w=210, h=210",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Homeland",
+    "index": 2,
+    "label": "Asteria",
+    "native_file": "03_Homeland/Homeland_02_Asteria__EXACT_CROP.png",
+    "reference_512_file": "03_Homeland/Homeland_02_Asteria__512_REFERENCE.png",
+    "source_crop": "x=134, y=595, w=210, h=210",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Homeland",
+    "index": 3,
+    "label": "Serath",
+    "native_file": "03_Homeland/Homeland_03_Serath__EXACT_CROP.png",
+    "reference_512_file": "03_Homeland/Homeland_03_Serath__512_REFERENCE.png",
+    "source_crop": "x=264, y=595, w=210, h=210",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Homeland",
+    "index": 4,
+    "label": "Kaishin",
+    "native_file": "03_Homeland/Homeland_04_Kaishin__EXACT_CROP.png",
+    "reference_512_file": "03_Homeland/Homeland_04_Kaishin__512_REFERENCE.png",
+    "source_crop": "x=394, y=595, w=210, h=210",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Homeland",
+    "index": 5,
+    "label": "Vespera",
+    "native_file": "03_Homeland/Homeland_05_Vespera__EXACT_CROP.png",
+    "reference_512_file": "03_Homeland/Homeland_05_Vespera__512_REFERENCE.png",
+    "source_crop": "x=524, y=595, w=210, h=210",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Homeland",
+    "index": 6,
+    "label": "Outer Isles",
+    "native_file": "03_Homeland/Homeland_06_Outer_Isles__EXACT_CROP.png",
+    "reference_512_file": "03_Homeland/Homeland_06_Outer_Isles__512_REFERENCE.png",
+    "source_crop": "x=654, y=595, w=210, h=210",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Affiliation",
+    "index": 1,
+    "label": "House Vaering",
+    "native_file": "04_Affiliation/Affiliation_01_House_Vaering__EXACT_CROP.png",
+    "reference_512_file": "04_Affiliation/Affiliation_01_House_Vaering__512_REFERENCE.png",
+    "source_crop": "x=815, y=605, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Affiliation",
+    "index": 2,
+    "label": "Skeldran Royal Navy",
+    "native_file": "04_Affiliation/Affiliation_02_Skeldran_Royal_Navy__EXACT_CROP.png",
+    "reference_512_file": "04_Affiliation/Affiliation_02_Skeldran_Royal_Navy__512_REFERENCE.png",
+    "source_crop": "x=923, y=605, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Affiliation",
+    "index": 3,
+    "label": "Merchant Guild",
+    "native_file": "04_Affiliation/Affiliation_03_Merchant_Guild__EXACT_CROP.png",
+    "reference_512_file": "04_Affiliation/Affiliation_03_Merchant_Guild__512_REFERENCE.png",
+    "source_crop": "x=1031, y=605, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Affiliation",
+    "index": 4,
+    "label": "Marine Order",
+    "native_file": "04_Affiliation/Affiliation_04_Marine_Order__EXACT_CROP.png",
+    "reference_512_file": "04_Affiliation/Affiliation_04_Marine_Order__512_REFERENCE.png",
+    "source_crop": "x=1140, y=605, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Affiliation",
+    "index": 5,
+    "label": "Harbor Authority",
+    "native_file": "04_Affiliation/Affiliation_05_Harbor_Authority__EXACT_CROP.png",
+    "reference_512_file": "04_Affiliation/Affiliation_05_Harbor_Authority__512_REFERENCE.png",
+    "source_crop": "x=1248, y=605, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  },
+  {
+    "category": "Affiliation",
+    "index": 6,
+    "label": "Free Captains",
+    "native_file": "04_Affiliation/Affiliation_06_Free_Captains__EXACT_CROP.png",
+    "reference_512_file": "04_Affiliation/Affiliation_06_Free_Captains__512_REFERENCE.png",
+    "source_crop": "x=1356, y=605, w=190, h=190",
+    "status": "APPROVED REFERENCE \u2014 derived directly from supplied approved identity sheet"
+  }
+]

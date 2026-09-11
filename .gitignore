@@ -4,3 +4,11 @@ node_modules
 !.env.example
 .DS_Store
 coverage
+
+# Local archive backups
+*.zip
+*.7z
+
+# Local archive backups
+*.zip
+*.7z

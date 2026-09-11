@@ -1,0 +1,40 @@
+{
+  "package": "Ebbing Tides Alpha 0.6D Character UI Structural Reset / Pre-Art S1",
+  "packageVersion": "0.6.0-alpha.d.characterstruct1",
+  "saveSchema": 11,
+  "base": "0.6.0-alpha.d.character1d",
+  "status": "pre-art structural development; not visually accepted",
+  "intent": [
+    "Supersede the failed manuscript presentation experiments without discarding useful character-facing functionality.",
+    "Make code-owned geometry explicit before additional RPG systems are added and before any future painted presentation pass.",
+    "Keep the current character creator, captain sheet, named crew records, crew roster, and journal mechanically functional while removing active manuscript runtime skins."
+  ],
+  "preservedFunctions": [
+    "creator build-impact summary and curated/custom portrait workflow",
+    "captain Known Powers standing summary from existing reputation data",
+    "captain qualitative People Who Know You relationship summary",
+    "named crew condition, skills, specializations, practices, relationship and equipment access",
+    "crew company summary, pagination and actions",
+    "journal knowledge, contacts, obligations, history and folio paging"
+  ],
+  "structuralGeometry": {
+    "creator": "190px step rail + flexible live form + 300px portrait/actions at wide desktop, with compact breakpoints",
+    "captain": "300px identity/portrait column + flexible record column; one intentional inner scroll owner",
+    "crew": "max 1380px code-owned muster ledger; summary + columns + rows + footer",
+    "journal": "170px local section rail + code-owned two-page reading spread, max 1480px"
+  },
+  "notInScope": [
+    "new crime/warrant/bounty mechanics",
+    "smuggling/customs/privateering",
+    "painted manuscript art",
+    "lawful-vessel behavior",
+    "save schema changes"
+  ],
+  "verification": {
+    "typecheck": "PASS",
+    "alphaBuild": "PASS",
+    "tests": "266/266 PASS",
+    "artLayoutVerification": "2/2 PASS",
+    "manualVisualApproval": "PENDING"
+  }
+}

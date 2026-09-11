@@ -1,0 +1,115 @@
+{
+  "generatedAt": "2026-09-08",
+  "phase": "UI Recovery Phase 2",
+  "assets": [
+    {
+      "assetId": "ui.character.equipment.male.runtime",
+      "path": "/art/ui/runtime/equipment_male_runtime_v2.png",
+      "artUsage": "runtime_base",
+      "nativeWidth": 1672,
+      "nativeHeight": 799,
+      "maximumExpectedRenderedWidth": 1728,
+      "maximumExpectedRenderedHeight": 825.73,
+      "status": "production",
+      "oversizedRasterScaling": false,
+      "notes": "Gold-standard equipment male runtime base"
+    },
+    {
+      "assetId": "ui.character.equipment.female.runtime",
+      "path": "/art/ui/runtime/equipment_female_runtime_v2.png",
+      "artUsage": "runtime_base",
+      "nativeWidth": 1672,
+      "nativeHeight": 799,
+      "maximumExpectedRenderedWidth": 1728,
+      "maximumExpectedRenderedHeight": 825.73,
+      "status": "production",
+      "oversizedRasterScaling": false,
+      "notes": "Gold-standard equipment female runtime base"
+    },
+    {
+      "assetId": "ui.character.equipment.male.reference_content",
+      "path": "/art/ui/reference/equipment_male_content_reference.png",
+      "artUsage": "reference",
+      "nativeWidth": 1672,
+      "nativeHeight": 799,
+      "maximumExpectedRenderedWidth": 1728,
+      "maximumExpectedRenderedHeight": 825.73,
+      "status": "reference_only",
+      "oversizedRasterScaling": false,
+      "notes": "Reference Ghost comparison only"
+    },
+    {
+      "assetId": "ui.character.equipment.female.reference_content",
+      "path": "/art/ui/reference/equipment_female_content_reference.png",
+      "artUsage": "reference",
+      "nativeWidth": 1672,
+      "nativeHeight": 799,
+      "maximumExpectedRenderedWidth": 1728,
+      "maximumExpectedRenderedHeight": 825.73,
+      "status": "reference_only",
+      "oversizedRasterScaling": false,
+      "notes": "Reference Ghost comparison only"
+    },
+    {
+      "assetId": "port.veyrholm.establishing",
+      "path": "/art/location/ports/veyrholm.png",
+      "artUsage": "environment",
+      "nativeWidth": 1536,
+      "nativeHeight": 1024,
+      "maximumExpectedRenderedWidth": 1428,
+      "maximumExpectedRenderedHeight": 844,
+      "status": "production",
+      "oversizedRasterScaling": false,
+      "notes": "Market environment/backdrop; not table geometry"
+    },
+    {
+      "assetId": "ui.reference.market.veyrholm",
+      "path": "/art/ui/reference/market_reference_crop.png",
+      "artUsage": "reference",
+      "nativeWidth": 560,
+      "nativeHeight": 253,
+      "maximumExpectedRenderedWidth": 1428,
+      "maximumExpectedRenderedHeight": 844,
+      "status": "reference_only",
+      "oversizedRasterScaling": false,
+      "notes": "Low-resolution reference ghost only; never runtime geometry"
+    },
+    {
+      "assetId": "ui.kit.parchment_tile",
+      "path": "/art/ui/kit/parchment_tile.png",
+      "artUsage": "runtime_component",
+      "nativeWidth": 256,
+      "nativeHeight": 256,
+      "maximumExpectedRenderedWidth": 256,
+      "maximumExpectedRenderedHeight": 256,
+      "status": "production_tile",
+      "oversizedRasterScaling": false,
+      "notes": "Tileable/repeatable component; source resolution does not set UI scale"
+    },
+    {
+      "assetId": "ui.kit.dark_naval_panel",
+      "path": "/art/ui/kit/dark_naval_panel.png",
+      "artUsage": "runtime_component",
+      "nativeWidth": 512,
+      "nativeHeight": 256,
+      "maximumExpectedRenderedWidth": 512,
+      "maximumExpectedRenderedHeight": 256,
+      "status": "production_tile",
+      "oversizedRasterScaling": false,
+      "notes": "Tileable/repeatable component"
+    },
+    {
+      "assetId": "ui.kit.brass_panel_strip",
+      "path": "/art/ui/kit/brass_panel_strip.png",
+      "artUsage": "runtime_component",
+      "nativeWidth": 1024,
+      "nativeHeight": 218,
+      "maximumExpectedRenderedWidth": 1024,
+      "maximumExpectedRenderedHeight": 218,
+      "status": "production_slice",
+      "oversizedRasterScaling": false,
+      "notes": "Reusable frame/strip component"
+    }
+  ],
+  "productionOverscaleFailures": []
+}

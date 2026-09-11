@@ -1,0 +1,49 @@
+{
+  "package": "0.6.0-alpha.d.a0-2b",
+  "base": "0.6.0-alpha.d.a0-2a",
+  "saveSchema": 12,
+  "scope": "A0 P1 corrective repair 2B: world-time/context progression cadence, anti-farming, and deck-drill lifecycle",
+  "changes": [
+    "replaces finite recent-key anti-grind queues with rolling world-time/context cadence records",
+    "uses a seven-day semantic cadence for recurring Life Experience sources",
+    "uses a one-day semantic cadence for skill practice while retaining challenge-relative gain",
+    "prevents unrelated rotating keys from restoring full reward at the same world hour",
+    "scopes real personal-combat practice to the actual combat instance",
+    "shares repeated Deck Drill practice across a First-Mate-specific training cadence",
+    "makes Deck Drill consume two hours through the authoritative world clock",
+    "records completed drills as canonical world events",
+    "limits drill-earned First Mate respect to one point per 72 hours and a ceiling of 60",
+    "uses the actually assigned First Mate name and Blades skill instead of hardcoded Mira values",
+    "normalizes deprecated recent-key queues on save load without a schema bump",
+    "adds eight dedicated A0.2B cadence/cohesion regressions"
+  ],
+  "cohesion": {
+    "world_time": "Deck Drill advances through advanceWorld; no second training clock or manual downstream ticking is introduced",
+    "a0_1a_vessel_lifecycle": "unchanged",
+    "a0_1b_npc_planner": "training time reaches NPC planning through the ordinary world-clock path and does not mutate planner state directly",
+    "a0_1c_economy": "training time reaches settlement economy/price refresh through advanceWorld; progression does not create or erase stock",
+    "a0_2a_information": "knowledge freshness ages through the same absoluteHour; progression does not write competing information truth",
+    "crew_relationships": "routine drill can build only bounded personal First Mate respect; aggregate morale/loyalty remains owned by crew mechanics",
+    "combat": "real combat uses combat-instance context while repeat training deliberately shares trainer/action context",
+    "expansion": "cadence is semantic and world-time based, with no named port/region/culture branches",
+    "presentation": "accepted R1.2 geometry unchanged"
+  },
+  "saveCompatibility": "schema v12 unchanged; cadence fields are additive inside existing JSON advancement/practice state and old finite recent-key queues are non-authoritative compatibility input",
+  "presentationChanged": "no layout/art changes; Deck Drill message now names the current First Mate and states the two-hour time cost",
+  "deferred": [
+    "A0.2C prepared effects and Arcane Strain",
+    "A0.2D law information lifecycle",
+    "A0.3 character-build/world-event bridge work",
+    "R2 dynamic trade law/customs/smuggling/privateering"
+  ],
+  "verification": {
+    "typeScript": "PASS",
+    "alphaCompile": "PASS",
+    "tests": "339/339 PASS",
+    "dedicatedA02B": "8/8 PASS",
+    "longRunNpcPlanner": "PASS: existing 1000-day regression",
+    "longRunEconomyPlanner": "PASS: existing 1000-day integrated regression",
+    "artLayouts": "2/2 PASS",
+    "nextBuild": "UNAVAILABLE: local next executable not installed"
+  }
+}

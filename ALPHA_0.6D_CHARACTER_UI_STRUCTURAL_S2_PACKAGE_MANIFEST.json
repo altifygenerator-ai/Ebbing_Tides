@@ -1,0 +1,103 @@
+{
+  "package": "0.6.0-alpha.d.characterstruct2",
+  "expectedBase": "0.6.0-alpha.d.characterstruct1",
+  "saveSchema": 11,
+  "files": [
+    {
+      "path": "APPLY_CHARACTER_UI_STRUCTURAL_S2.md",
+      "bytes": 778,
+      "sha256": "cc444c3bd09aa79b027636bd61e9d1c57d63c177ac3083c6757d478cdc526af5"
+    },
+    {
+      "path": "README_CHARACTER_UI_STRUCTURAL_S2.md",
+      "bytes": 3187,
+      "sha256": "447abaec25173f326c821ee1cc1196aee6f99ee1f32abb87a200fbb368777e0d"
+    },
+    {
+      "path": "docs/ALPHA_06D_CHARACTER_UI_STRUCTURAL_S2.md",
+      "bytes": 1298,
+      "sha256": "f86eca47549a55443ba51113286dfc420338ab55e15e2263f1d8019d52a95ee8"
+    },
+    {
+      "path": "package.json",
+      "bytes": 805,
+      "sha256": "223d8e9804b8e83080aa9effdb33c866ea3575e80c1188bff31f18c64d95e87b"
+    },
+    {
+      "path": "public/alpha/js/alpha/main.js",
+      "bytes": 194685,
+      "sha256": "b59a563ac62992ce7254da471077005b0a4bea7e45819f9a8f184dae540828ec"
+    },
+    {
+      "path": "public/alpha/js/alpha/main.js.map",
+      "bytes": 160715,
+      "sha256": "2b4a193e83a7c58fbd32c9319983c4eb994b6d6b8f6cde6d95e66b626969140e"
+    },
+    {
+      "path": "public/alpha/js/ui/screenArchitecture.js",
+      "bytes": 9995,
+      "sha256": "e4ab8414d1036f240f413dcb1cfe5b9f75eeffed929872272af962c7a9c15e93"
+    },
+    {
+      "path": "public/alpha/js/ui/screenArchitecture.js.map",
+      "bytes": 8028,
+      "sha256": "999ab11bfb50251ccf35495cba6631c1f4fee53db90fc4ebd06ba44a86858e7f"
+    },
+    {
+      "path": "public/alpha/styles.css",
+      "bytes": 270170,
+      "sha256": "ac38f06407455d6ec3f2d06068d2de4f6b13d4011d411dbf6a6869317707dfca"
+    },
+    {
+      "path": "src/alpha/main.ts",
+      "bytes": 188123,
+      "sha256": "d6a944503b71ffa0bc48d16916fea08ab0173f399a04fdad0eaebbe11fddc581"
+    },
+    {
+      "path": "src/ui/screenArchitecture.ts",
+      "bytes": 10315,
+      "sha256": "20d5fd8d67752008ce6b432d3b46a72172aa3e729c01d64d27d107d15384ffe2"
+    },
+    {
+      "path": "tests/alpha-05-update-d.test.mjs",
+      "bytes": 5122,
+      "sha256": "dc35eb74ffad6db45316faf6f7c0183d7b2aba1257e60840732d128e1efd637c"
+    },
+    {
+      "path": "tests/alpha-06c-ui-recovery-phase3.test.mjs",
+      "bytes": 4875,
+      "sha256": "9b0d4078f46fdd41067c5e1b17583b41b339e30f73430ac2d0b4ba4581478e9c"
+    },
+    {
+      "path": "tests/alpha-06d-character-manuscript-pass1.test.mjs",
+      "bytes": 3273,
+      "sha256": "88ddbe97d1795459406a3954dc229a3bf6d6bfb66bf9cc40d339c2bb90a4478e"
+    },
+    {
+      "path": "tests/alpha-06d-character-manuscript-pass1d.test.mjs",
+      "bytes": 1058,
+      "sha256": "7eb8d0f8874e458f10386728e05ad0cfc36dda8fdd2c4807c5bfe6e4c714ad30"
+    },
+    {
+      "path": "tests/alpha-06d-character-structural-s2.test.mjs",
+      "bytes": 4135,
+      "sha256": "463603ed834e73d0de99200527577f2e8c93688135ac4a5be5ed2d816a392c21"
+    },
+    {
+      "path": "tests/alpha-06d-core-recovery-baseline.test.mjs",
+      "bytes": 8332,
+      "sha256": "8fde30d0dbb9b54fe2dac416029fe6fc820bc7fe73d202d0f8109c2f42518d08"
+    },
+    {
+      "path": "tests/alpha-06d-crew-mechanics-pass2.test.mjs",
+      "bytes": 5417,
+      "sha256": "18b55ccca83c620c841154665ec23e3f7f5435338eb9ec645e0df689cf5eb323"
+    }
+  ],
+  "verification": {
+    "typecheck": "PASS",
+    "alphaBuild": "PASS",
+    "tests": "273/273 PASS",
+    "artLayouts": "2/2 PASS"
+  }
+}

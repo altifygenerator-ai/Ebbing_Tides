@@ -1,0 +1,99 @@
+{
+  "phase": "UI Recovery P3",
+  "assets": [
+    {
+      "assetId": "ui.kit.parchment",
+      "path": "/art/ui/kit/parchment_tile.png",
+      "nativeWidth": 256,
+      "nativeHeight": 256,
+      "usage": "runtime_component",
+      "maximumExpectedRenderedWidth": null,
+      "maximumExpectedRenderedHeight": null,
+      "status": "production"
+    },
+    {
+      "assetId": "ui.kit.dark_naval",
+      "path": "/art/ui/kit/dark_naval_panel.png",
+      "nativeWidth": 512,
+      "nativeHeight": 256,
+      "usage": "runtime_component",
+      "maximumExpectedRenderedWidth": null,
+      "maximumExpectedRenderedHeight": null,
+      "status": "production"
+    },
+    {
+      "assetId": "ui.kit.brass_strip",
+      "path": "/art/ui/kit/brass_panel_strip.png",
+      "nativeWidth": 1024,
+      "nativeHeight": 218,
+      "usage": "runtime_component",
+      "maximumExpectedRenderedWidth": null,
+      "maximumExpectedRenderedHeight": null,
+      "status": "production"
+    },
+    {
+      "assetId": "ui.reference.crew_roster",
+      "path": "/art/ui/presentation/crew_roster_base.png",
+      "nativeWidth": 494,
+      "nativeHeight": 270,
+      "usage": "reference",
+      "maximumExpectedRenderedWidth": null,
+      "maximumExpectedRenderedHeight": null,
+      "status": "reference-only"
+    },
+    {
+      "assetId": "ui.reference.journal",
+      "path": "/art/ui/presentation/journal_base.png",
+      "nativeWidth": 492,
+      "nativeHeight": 288,
+      "usage": "reference",
+      "maximumExpectedRenderedWidth": null,
+      "maximumExpectedRenderedHeight": null,
+      "status": "reference-only"
+    },
+    {
+      "assetId": "ui.reference.character_creator",
+      "path": "/art/ui/presentation/character_creator_base.png",
+      "nativeWidth": 1672,
+      "nativeHeight": 941,
+      "usage": "reference",
+      "maximumExpectedRenderedWidth": null,
+      "maximumExpectedRenderedHeight": null,
+      "status": "reference-only"
+    },
+    {
+      "assetId": "ui.reference.ship_management",
+      "path": "/art/ui/presentation/ship_management_base.png",
+      "nativeWidth": 1672,
+      "nativeHeight": 941,
+      "usage": "reference",
+      "maximumExpectedRenderedWidth": null,
+      "maximumExpectedRenderedHeight": null,
+      "status": "reference-only"
+    },
+    {
+      "assetId": "ui.combat.naval_encounter.runtime",
+      "path": "/art/ui/presentation/naval_encounter_base.png",
+      "nativeWidth": 492,
+      "nativeHeight": 289,
+      "usage": "provisional",
+      "maximumExpectedRenderedWidth": 1428,
+      "maximumExpectedRenderedHeight": 844,
+      "status": "replace",
+      "overscaleAtMax": true
+    }
+  ],
+  "artBlockers": [
+    {
+      "assetId": "ui.combat.naval_encounter.runtime",
+      "path": "/art/ui/presentation/naval_encounter_base.png",
+      "nativeWidth": 492,
+      "nativeHeight": 289,
+      "usage": "provisional",
+      "maximumExpectedRenderedWidth": 1428,
+      "maximumExpectedRenderedHeight": 844,
+      "status": "replace",
+      "overscaleAtMax": true
+    }
+  ]
+}

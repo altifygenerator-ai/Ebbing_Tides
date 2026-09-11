@@ -1,0 +1,492 @@
+{
+  "generatedFrom": "UI Recovery P3 actual source + served-runtime QA",
+  "phase": "Phase 3 migrations after user approval of Phase 2 gold standards",
+  "screens": [
+    {
+      "screenId": "main_menu",
+      "currentArchitecture": "art-skinned/functional entry inside character creator shell",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": "/art/ui/presentation/character_creator_base.png",
+      "referenceRuntimeClassification": "runtime_base inherited",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "not Phase 2 target; current entry shares creator implementation",
+      "cssOwnedGeometry": [
+        "entry actions"
+      ],
+      "artOwnedGeometry": [
+        "outer creator composition"
+      ],
+      "migrationAction": "Phase 3/future: separate main-menu skin if needed.",
+      "nativeAssetDimensions": {
+        "width": 1672,
+        "height": 941
+      }
+    },
+    {
+      "screenId": "character_creator",
+      "currentArchitecture": "Art-Skinned Dynamic UI (Phase 3 migration)",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": "UI kit + portrait content; high-resolution creator composition is Reference Ghost only",
+      "referenceRuntimeClassification": "high-resolution approved reference only; no flattened runtime control geometry",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "none found at target desktop matrix",
+      "cssOwnedGeometry": [
+        "step rail",
+        "form layout",
+        "fields",
+        "portrait frame",
+        "footer controls"
+      ],
+      "artOwnedGeometry": [
+        "portrait content art",
+        "material skin"
+      ],
+      "migrationAction": "Phase 3 migrated; manual visual approval pending.",
+      "nativeAssetDimensions": {
+        "width": 1672,
+        "height": 941
+      }
+    },
+    {
+      "screenId": "character_sheet",
+      "currentArchitecture": "utility/code-first panel system",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": null,
+      "referenceRuntimeClassification": "no dedicated final runtime skin",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": true,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "uses local utility scroll host",
+      "cssOwnedGeometry": [
+        "attributes",
+        "skills",
+        "abilities",
+        "condition panels"
+      ],
+      "artOwnedGeometry": [],
+      "migrationAction": "Later: skin existing semantic layout; preserve data model.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "inventory_equipment",
+      "currentArchitecture": "hybrid: ArtDirectedCanvas for equipment-slot art + code-owned inventory grid",
+      "targetArchitecture": "hybrid",
+      "currentArtAsset": "/art/ui/runtime/equipment_male_runtime_v2.png",
+      "referenceRuntimeClassification": "runtime_base production; separate male/female reference ghosts",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "none found in source architecture; real viewport QA required",
+      "cssOwnedGeometry": [
+        "inventory cells",
+        "filters",
+        "dynamic values",
+        "detail",
+        "hitboxes"
+      ],
+      "artOwnedGeometry": [
+        "body",
+        "equipment slot frames",
+        "decorative frame"
+      ],
+      "migrationAction": "Phase 2 gold standard \u2014 user visually approved; preserve as production reference pattern.",
+      "nativeAssetDimensions": {
+        "width": 1672,
+        "height": 799
+      }
+    },
+    {
+      "screenId": "crew_roster",
+      "currentArchitecture": "Art-Skinned Dynamic UI (Phase 3 migration)",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": "UI kit materials; ui.reference.crew_roster is ghost/reference only",
+      "referenceRuntimeClassification": "reference-only low-resolution composition + runtime UI kit",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "none found at 1920x1080, 1600x900, 1440x900, 1366x768",
+      "cssOwnedGeometry": [
+        "ledger frame",
+        "columns",
+        "rows",
+        "paging",
+        "controls"
+      ],
+      "artOwnedGeometry": [
+        "parchment/naval material skin"
+      ],
+      "migrationAction": "Phase 3 migrated; manual visual approval pending.",
+      "nativeAssetDimensions": {
+        "width": 494,
+        "height": 270
+      }
+    },
+    {
+      "screenId": "ship_management",
+      "currentArchitecture": "Hybrid (Phase 3 migration)",
+      "targetArchitecture": "hybrid",
+      "currentArtAsset": "ship illustration content art + UI kit; prior high-resolution whole-screen composition is Reference Ghost only",
+      "referenceRuntimeClassification": "content art + reference-only composition",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "none found at target desktop matrix",
+      "cssOwnedGeometry": [
+        "ship frame",
+        "status",
+        "cargo grid",
+        "refit grid",
+        "actions"
+      ],
+      "artOwnedGeometry": [
+        "ship illustration content"
+      ],
+      "migrationAction": "Phase 3 migrated; manual visual approval pending.",
+      "nativeAssetDimensions": {
+        "width": 1672,
+        "height": 941
+      }
+    },
+    {
+      "screenId": "port_work_shipyard",
+      "currentArchitecture": "utility panels within ship screen",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": "port establishing art / ship presentation",
+      "referenceRuntimeClassification": "mixed environment/content art",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": true,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "utility scroll host is deliberate current behavior, not final fixed presentation",
+      "cssOwnedGeometry": [
+        "contracts",
+        "repair/refit actions"
+      ],
+      "artOwnedGeometry": [],
+      "migrationAction": "Later art-skinned dynamic secondary screen.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "cargo",
+      "currentArchitecture": "embedded ship-management cargo region",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": "/art/ui/presentation/ship_management_base.png",
+      "referenceRuntimeClassification": "inherited within ship runtime base",
+      "duplicateGeometryFound": true,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "code grid is constrained by painted grid",
+      "cssOwnedGeometry": [
+        "cargo content"
+      ],
+      "artOwnedGeometry": [
+        "painted cargo cells"
+      ],
+      "migrationAction": "Phase 3 with Ship Management: code owns cargo cells.",
+      "nativeAssetDimensions": {
+        "width": 1672,
+        "height": 941
+      }
+    },
+    {
+      "screenId": "market",
+      "currentArchitecture": "semantic HTML/CSS art-skinned dynamic UI",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": "port environment + /art/ui/kit/parchment_tile.png + reusable kit",
+      "referenceRuntimeClassification": "runtime components/environment; low-res market base is not rendered",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "none by architecture; real viewport QA required",
+      "cssOwnedGeometry": [
+        "ledger frame",
+        "table",
+        "headers",
+        "rows",
+        "columns",
+        "trade controls",
+        "pagination",
+        "summary card"
+      ],
+      "artOwnedGeometry": [
+        "environment backdrop",
+        "texture/material components"
+      ],
+      "migrationAction": "Phase 2 gold standard \u2014 user visually approved; preserve as production reference pattern.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "navigation",
+      "currentArchitecture": "art-anchored map SVG/canvas-like viewport with canonical coordinate overlays",
+      "targetArchitecture": "art_anchored",
+      "currentArtAsset": "registered global/regional chart layers",
+      "referenceRuntimeClassification": "runtime map layers + approved reference",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "none identified in current source; already accepted direction",
+      "cssOwnedGeometry": [
+        "selection/context/action panels"
+      ],
+      "artOwnedGeometry": [
+        "illustrated geography"
+      ],
+      "migrationAction": "Preserve. Continue calibration/manifest architecture only when map art changes.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "port",
+      "currentArchitecture": "environment/backdrop with functional overlay panel",
+      "targetArchitecture": "environment",
+      "currentArtAsset": "LOCATION_PRESENTATION_ART by port id",
+      "referenceRuntimeClassification": "environment/content art",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "Thorenfjord lacks dedicated art; other current ports use mapped art",
+      "cssOwnedGeometry": [
+        "actions",
+        "content panel"
+      ],
+      "artOwnedGeometry": [
+        "environment scene"
+      ],
+      "migrationAction": "Preserve; fill explicit art gaps only.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "npc_dialogue",
+      "currentArchitecture": "environment screen + generic code dialogue panel",
+      "targetArchitecture": "environment",
+      "currentArtAsset": "location environment art; NPC portraits incomplete",
+      "referenceRuntimeClassification": "environment + content art",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": true,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "dialogue log/diagnostic details can grow; current structured dev view leaks into production",
+      "cssOwnedGeometry": [
+        "dialogue log",
+        "input",
+        "buttons"
+      ],
+      "artOwnedGeometry": [
+        "environment"
+      ],
+      "migrationAction": "Later: art-skinned dialogue frame; move dev structured context to debug tools.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "journal_intelligence",
+      "currentArchitecture": "Art-Skinned Dynamic UI (Phase 3 migration)",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": "UI kit parchment/naval materials; ui.reference.journal is ghost/reference only",
+      "referenceRuntimeClassification": "reference-only low-resolution book composition + runtime UI kit",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "none found at target desktop matrix",
+      "cssOwnedGeometry": [
+        "book/page geometry",
+        "tabs",
+        "entries",
+        "paging"
+      ],
+      "artOwnedGeometry": [
+        "parchment/naval material skin"
+      ],
+      "migrationAction": "Phase 3 migrated; manual visual approval pending.",
+      "nativeAssetDimensions": {
+        "width": 492,
+        "height": 288
+      }
+    },
+    {
+      "screenId": "naval_combat",
+      "currentArchitecture": "Inherited provisional ArtDirectedCanvas",
+      "targetArchitecture": "hybrid",
+      "currentArtAsset": "/art/ui/presentation/naval_encounter_base.png",
+      "referenceRuntimeClassification": "provisional low-resolution runtime base; not production-approved",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": true,
+      "viewportFitProblems": "visual completion blocked because the only tactical-sea base is approximately 492x289 and cannot be stretched into production",
+      "cssOwnedGeometry": [
+        "dynamic ships",
+        "range readout",
+        "damage stats",
+        "actions",
+        "combat log"
+      ],
+      "artOwnedGeometry": [
+        "provisional tactical sea composition"
+      ],
+      "migrationAction": "ART BLOCKER: supply/approve high-resolution empty tactical sea runtime art before Phase 3 naval-combat visual completion.",
+      "nativeAssetDimensions": {
+        "width": 492,
+        "height": 289
+      }
+    },
+    {
+      "screenId": "personal_combat",
+      "currentArchitecture": "code-first development panel",
+      "targetArchitecture": "hybrid",
+      "currentArtAsset": null,
+      "referenceRuntimeClassification": "no final production art",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": true,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "development UI, not final presentation",
+      "cssOwnedGeometry": [
+        "combatants",
+        "meters",
+        "log",
+        "actions"
+      ],
+      "artOwnedGeometry": [],
+      "migrationAction": "Keep development UI until mechanics stabilize; then author final art.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "boarding",
+      "currentArchitecture": "personal combat transition/development presentation",
+      "targetArchitecture": "hybrid",
+      "currentArtAsset": null,
+      "referenceRuntimeClassification": "no final production art",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": true,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "development presentation only",
+      "cssOwnedGeometry": [
+        "combat/actions"
+      ],
+      "artOwnedGeometry": [],
+      "migrationAction": "Future after mechanics stabilize.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "history",
+      "currentArchitecture": "journal/simulation records in utility views",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": null,
+      "referenceRuntimeClassification": "no dedicated production skin",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": true,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "not a dedicated final player-facing screen yet",
+      "cssOwnedGeometry": [
+        "record lists"
+      ],
+      "artOwnedGeometry": [],
+      "migrationAction": "Future code-owned pageable records with ledger skin.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "genealogy_dynasties",
+      "currentArchitecture": "simulation data exists; no dedicated final player-facing screen",
+      "targetArchitecture": "hybrid",
+      "currentArtAsset": null,
+      "referenceRuntimeClassification": "none",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "not implemented as final UI",
+      "cssOwnedGeometry": [],
+      "artOwnedGeometry": [],
+      "migrationAction": "Future architecture selection at implementation time.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "codex",
+      "currentArchitecture": "not dedicated in current alpha shell",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": null,
+      "referenceRuntimeClassification": "none",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "not implemented",
+      "cssOwnedGeometry": [],
+      "artOwnedGeometry": [],
+      "migrationAction": "Future book/ledger skin with code-owned article layout.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "event_popup",
+      "currentArchitecture": "toast/arrival/action result panels",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": "location art for arrivals where available",
+      "referenceRuntimeClassification": "mixed environment / generic UI",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "not unified as one final event-modal system",
+      "cssOwnedGeometry": [
+        "toast/cards/actions"
+      ],
+      "artOwnedGeometry": [
+        "arrival environment"
+      ],
+      "migrationAction": "Future reusable modal/event skin.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "settings",
+      "currentArchitecture": "topbar audio controls only",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": null,
+      "referenceRuntimeClassification": "none",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "no dedicated settings screen",
+      "cssOwnedGeometry": [
+        "audio controls"
+      ],
+      "artOwnedGeometry": [],
+      "migrationAction": "Future reusable art-skinned controls.",
+      "nativeAssetDimensions": null
+    },
+    {
+      "screenId": "save_load",
+      "currentArchitecture": "topbar Save/New + creator Continue",
+      "targetArchitecture": "art_skinned_dynamic",
+      "currentArtAsset": null,
+      "referenceRuntimeClassification": "none",
+      "duplicateGeometryFound": false,
+      "duplicateUiChromeFound": false,
+      "unintendedScrolling": false,
+      "lowResolutionScaling": false,
+      "viewportFitProblems": "no dedicated save/load screen",
+      "cssOwnedGeometry": [
+        "actions"
+      ],
+      "artOwnedGeometry": [],
+      "migrationAction": "Future art-skinned save slot screen.",
+      "nativeAssetDimensions": null
+    }
+  ]
+}

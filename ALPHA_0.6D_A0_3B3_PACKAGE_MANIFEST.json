@@ -1,0 +1,16 @@
+{
+  "package": "0.6.0-alpha.d.a0-3b3",
+  "base": "0.6.0-alpha.d.a0-3b2",
+  "saveSchema": 12,
+  "scope": "Creator Review internal scroll and cleanup; journal facing-page row symmetry; remove identity-symbol chips from People and conversation cards.",
+  "verification": {
+    "typecheck": "PASS",
+    "alphaBuild": "PASS",
+    "tests": "417/417 PASS",
+    "dedicatedA03B3": "6/6 PASS",
+    "longRunNpcEconomy": "13/13 PASS",
+    "artLayouts": "2/2 PASS"
+  },
+  "migration": "none",
+  "next": "A0.3C - Minimal Live Kingdom / Policy / Religion / World-Event Bridge"
+}

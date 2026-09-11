@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "scope": ["character_creator", "captain_sheet"],
+  "rule": "culture is primary frame/material identity; religion is accent; live code owns geometry and data",
+  "integration": "transparent frame assets wrap locked UI cells; no full-panel culture painting is placed beneath controls",
+  "culturePacks": {"skeldran": "culture/skeldran/manifest.json"},
+  "religionPacks": {
+    "old_gods": "religion/old_gods/manifest.json",
+    "covenant": "religion/covenant/manifest.json"
+  },
+  "pendingCulturePacks": ["asterian", "serathi", "kaishin", "vesperan", "outer_isles"],
+  "pendingReligionPacks": ["pantheon", "turning_wheel"],
+  "unaffiliatedReligion": "no religion accent"
+}
