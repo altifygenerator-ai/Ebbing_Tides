@@ -1,0 +1,247 @@
+{
+  "generatorVersion": "ATLAS_LOD_GENERATOR_0.1",
+  "generatedAt": "2026-09-12T23:18:02.846Z",
+  "source": {
+    "path": "/art/maps/world_atlas_labeled_v06d_master.webp",
+    "width": 6000,
+    "height": 4000,
+    "note": "The 6000x4000 canonical master is itself projection-normalized from the approved lower-resolution source. This LOD is controlled raster resampling, not newly invented geography or true new painted detail."
+  },
+  "registration": {
+    "x": 0,
+    "y": 0,
+    "width": 120,
+    "height": 80,
+    "cellScaleNm": 20
+  },
+  "level": {
+    "id": "atlas-12000-nav-tiles",
+    "pixelWidth": 12000,
+    "pixelHeight": 8000,
+    "columns": 6,
+    "rows": 4,
+    "tileWorldWidth": 20,
+    "tileWorldHeight": 20,
+    "tilePixelWidth": 2000,
+    "tilePixelHeight": 2000
+  },
+  "totalBytes": 7005852,
+  "tiles": [
+    {
+      "col": 0,
+      "row": 0,
+      "path": "/art/maps/lod/atlas-12000/c0-r0.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 253348,
+      "sha256": "3970994e308ee116ae13e2efa471dd9bc0e4154eeb2a4da48cd0486dcab7dd49"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "path": "/art/maps/lod/atlas-12000/c1-r0.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 370376,
+      "sha256": "39e636dcc560d9584cb0dbbffeddd61bf8ed1cc02d556d0f3c01a8ec679002f2"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "path": "/art/maps/lod/atlas-12000/c2-r0.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 352980,
+      "sha256": "72d15b0f786ceb4cd26c9aa6b080226bd9e25d0ab02b3490c389761ef081114d"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "path": "/art/maps/lod/atlas-12000/c3-r0.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 231794,
+      "sha256": "9625a1140edc9e378e4bd16587067e5c71dce7dbf76fdc5153e42f593c283b1b"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "path": "/art/maps/lod/atlas-12000/c4-r0.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 322830,
+      "sha256": "9ff0d11e4ce3b05703f987d9461441147b660d121e7385b481493d6247183f66"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "path": "/art/maps/lod/atlas-12000/c5-r0.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 256672,
+      "sha256": "ccfbd45b7673a1a57bbc3ff7fcb2fc8ab51902266ee8ffb9de348658b082e353"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "path": "/art/maps/lod/atlas-12000/c0-r1.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 241114,
+      "sha256": "c7e980bb0e28454fda0385fdd562c5e33544e6c556deb9cc70c06ff8e26557f3"
+    },
+    {
+      "col": 1,
+      "row": 1,
+      "path": "/art/maps/lod/atlas-12000/c1-r1.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 332838,
+      "sha256": "375c321f36884d49ae4ca3d54c42f815d51affeb3a0cefd26ae339ddbc9d60c9"
+    },
+    {
+      "col": 2,
+      "row": 1,
+      "path": "/art/maps/lod/atlas-12000/c2-r1.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 222628,
+      "sha256": "fd2c42e7acf342c7d6daee551da0bbfc88083efcd1ce0f1bc326aea04fad7f26"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "path": "/art/maps/lod/atlas-12000/c3-r1.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 277524,
+      "sha256": "9c489be4d13e63de74d475692831e1ceb7fe31ddb22c5d2fec07d6bea081a26c"
+    },
+    {
+      "col": 4,
+      "row": 1,
+      "path": "/art/maps/lod/atlas-12000/c4-r1.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 324608,
+      "sha256": "1cfe29c33054d0c2fc7b8eb1555515e4e0c58b4ece495036e32ed378b1e59c0e"
+    },
+    {
+      "col": 5,
+      "row": 1,
+      "path": "/art/maps/lod/atlas-12000/c5-r1.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 315068,
+      "sha256": "945f6e7515144be022eb69f9b63d7e0f1f7d06c4baba14ebb1aae82815087322"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "path": "/art/maps/lod/atlas-12000/c0-r2.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 299870,
+      "sha256": "5527587c1c3b2aa9a30cb0f108ad07c7ad4b6afbd5d5004653ce3def18e87782"
+    },
+    {
+      "col": 1,
+      "row": 2,
+      "path": "/art/maps/lod/atlas-12000/c1-r2.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 286490,
+      "sha256": "def3a3354d6a71fc819dd33fe29d6af66865ee727106c872fdd56edf04c4967f"
+    },
+    {
+      "col": 2,
+      "row": 2,
+      "path": "/art/maps/lod/atlas-12000/c2-r2.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 315522,
+      "sha256": "c29662f395b6ba0c38448c753cfb966d3866fc8c6eadc9ae00824ce8e9f72b2a"
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "path": "/art/maps/lod/atlas-12000/c3-r2.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 301144,
+      "sha256": "a06c941589a41e72574c40575d97bc3c3ed2bd3773b1a07789addabc64952915"
+    },
+    {
+      "col": 4,
+      "row": 2,
+      "path": "/art/maps/lod/atlas-12000/c4-r2.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 322350,
+      "sha256": "3bac4e4a8b8163325c96a2811354c84d74477d1d0aad23ca65e59d6989e349d0"
+    },
+    {
+      "col": 5,
+      "row": 2,
+      "path": "/art/maps/lod/atlas-12000/c5-r2.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 237200,
+      "sha256": "307107fa859279c878138499d983b2b633563dcb82631edd9615290aa71aae27"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "path": "/art/maps/lod/atlas-12000/c0-r3.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 248206,
+      "sha256": "71dadd823cc7ce22f5512ee52fb158e1efc7b5794c87b81526afba3079f5e672"
+    },
+    {
+      "col": 1,
+      "row": 3,
+      "path": "/art/maps/lod/atlas-12000/c1-r3.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 350478,
+      "sha256": "078dca8a0e00a723d7f41dc6a1185c7243354d21c2c27e5bc6c23c388a85c399"
+    },
+    {
+      "col": 2,
+      "row": 3,
+      "path": "/art/maps/lod/atlas-12000/c2-r3.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 290138,
+      "sha256": "282f14f3f022e46070db6631401c569b6aea0cfeafc974124d25ea9f6b12a600"
+    },
+    {
+      "col": 3,
+      "row": 3,
+      "path": "/art/maps/lod/atlas-12000/c3-r3.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 333164,
+      "sha256": "36fec2194d5c54fd3a139ecf67f80725f880c9938de34f6d4ed27c17db50f710"
+    },
+    {
+      "col": 4,
+      "row": 3,
+      "path": "/art/maps/lod/atlas-12000/c4-r3.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 263336,
+      "sha256": "a35f2c5a9b734d796983fd1f359b55fbdd522b5a959f401b30aed0f655729948"
+    },
+    {
+      "col": 5,
+      "row": 3,
+      "path": "/art/maps/lod/atlas-12000/c5-r3.webp",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 256174,
+      "sha256": "155ed1fd541a89ac748341a851fbf983d0f1e83922060cc63de05f5c3bd5a246"
+    }
+  ]
+}

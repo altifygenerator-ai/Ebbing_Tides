@@ -23,7 +23,7 @@
     {
       "id": "atlas-12000-nav-tiles",
       "kind": "tiles",
-      "status": "planned",
+      "status": "active",
       "pixelWidth": 12000,
       "pixelHeight": 8000,
       "pixelsPerCell": 100,
@@ -35,7 +35,8 @@
       "rows": 4,
       "pathTemplate": "/art/maps/lod/atlas-12000/c{col}-r{row}.webp",
       "sourceKind": "derived_sampling",
-      "note": "Controlled 2x raster sampling of the locked canonical atlas. This improves close-camera sampling behavior but does not claim new painted geographic detail."
+      "note": "Controlled 2x raster sampling of the locked canonical atlas. This improves close-camera sampling behavior but does not claim new painted geographic detail.",
+      "activationNote": "Registered 2x sampling tiles generated from the locked 6000x4000 canonical atlas; geography and coordinates unchanged."
     },
     {
       "id": "atlas-24000-close-tiles",

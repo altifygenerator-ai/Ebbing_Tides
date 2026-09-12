@@ -28,7 +28,7 @@ import { attackEncounter, avoidEncounter, beginNavigation, cancelVoyage, current
 import { MAX_TACTICAL_RANGE_YARDS, yardsToNm } from "../game/physicalDistance.js";
 import { deterministicUnit } from "../game/rng.js";
 import { currentPortName, getPlayerShip } from "../game/stateUtils.js";
-import { getWorldCell, GLOBAL_ATLAS, REGIONAL_MAP_LAYERS, SKELDRA_DEVELOPED_BOUNDS } from "../data/seed/worldMap.js";
+import { getWorldCell, GLOBAL_ATLAS, REGIONAL_MAP_LAYERS, WORLD_DEVELOPED_BOUNDS } from "../data/seed/worldMap.js";
 import { navigationTargetForPoi, navigationTargetForPort, navigationTargetForSea, plotCourse } from "../game/navigation.js";
 import { NAV_CAMERA, cameraForPoint, cameraForPoints, cameraLod, cameraViewBox, clampCameraCenter, clampViewWidth, legacyZoomBand, panCameraTarget, regionalLayerOpacity, viewHeightForWidth, zoomAroundAnchor } from "../game/navigationCamera.js";
 import { hasLocalSave, loadLocal, saveLocal } from "../services/localSave.js";
@@ -1725,8 +1725,8 @@ function renderChart(s) {
     const mapArtSvg = REGIONAL_MAP_LAYERS.filter(layer => layer.development === "active").map(layer => { const art = ASSET_BY_ID[layer.assetId]; if (!art?.path)
         return ""; const b = layer.globalBounds; const regional = layer.priority > 0; return `<image class="map-layer-art ${regional ? "regional-map-art" : "atlas-art"}" ${regional ? `data-regional-map-layer="${esc(layer.id)}" style="opacity:${regionalLayerOpacity(box.width)}"` : ""} href="${art.path}" x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}" preserveAspectRatio="none"></image>`; }).join("");
     const cells = [];
-    for (let y = SKELDRA_DEVELOPED_BOUNDS.y; y < SKELDRA_DEVELOPED_BOUNDS.y + SKELDRA_DEVELOPED_BOUNDS.height; y += 1) {
-        for (let x = SKELDRA_DEVELOPED_BOUNDS.x; x < SKELDRA_DEVELOPED_BOUNDS.x + SKELDRA_DEVELOPED_BOUNDS.width; x += 1) {
+    for (let y = WORLD_DEVELOPED_BOUNDS.y; y < WORLD_DEVELOPED_BOUNDS.y + WORLD_DEVELOPED_BOUNDS.height; y += 1) {
+        for (let x = WORLD_DEVELOPED_BOUNDS.x; x < WORLD_DEVELOPED_BOUNDS.x + WORLD_DEVELOPED_BOUNDS.width; x += 1) {
             const cell = getWorldCell({ x, y });
             const selected = selectedCell?.x === x && selectedCell?.y === y;
             const label = cell.terrain === "land" ? "Land" : titleize(cell.terrain);
@@ -1737,8 +1737,8 @@ function renderChart(s) {
     const pois = POINTS_OF_INTEREST.filter(poi => s.player.knownPoiIds.includes(poi.id)).map(poi => { const selected = target?.type === "poi" && target.id === poi.id; const seaSite = poi.point.x === poi.approachPoint.x && poi.point.y === poi.approachPoint.y; return `<g class="poi-glyph ${selected ? "selected" : ""} ${seaSite ? "sea-site" : "land-site"}" ${!voyage ? `data-action="select-poi" data-id="${poi.id}"` : ""} transform="translate(${poi.point.x + .5} ${poi.point.y + .5})"><path d="M0,-.34 L.34,0 L0,.34 L-.34,0 Z"></path><circle r=".09"></circle><text class="map-label" x=".52" y=".14">${esc(poi.name)}</text><title>${esc(poi.name)} · ${esc(poi.role)}</title></g>`; }).join("");
     const contacts = Object.values(s.player.shipIntel).map(intel => { const age = s.absoluteHour - intel.lastKnownAtHour; const opacity = Math.max(.24, 1 - age / 80); return `<circle class="map-contact ${intel.identified ? "identified" : "unknown-contact"}" cx="${intel.lastKnownPosition.x + .5}" cy="${intel.lastKnownPosition.y + .5}" r=".19" opacity="${opacity}"><title>${esc(intel.identified ? intel.name ?? "Known contact" : "Unidentified contact")}</title></circle>`; }).join("");
     const reefCells = [];
-    for (let y = SKELDRA_DEVELOPED_BOUNDS.y; y < SKELDRA_DEVELOPED_BOUNDS.y + SKELDRA_DEVELOPED_BOUNDS.height; y += 1) {
-        for (let x = SKELDRA_DEVELOPED_BOUNDS.x; x < SKELDRA_DEVELOPED_BOUNDS.x + SKELDRA_DEVELOPED_BOUNDS.width; x += 1) {
+    for (let y = WORLD_DEVELOPED_BOUNDS.y; y < WORLD_DEVELOPED_BOUNDS.y + WORLD_DEVELOPED_BOUNDS.height; y += 1) {
+        for (let x = WORLD_DEVELOPED_BOUNDS.x; x < WORLD_DEVELOPED_BOUNDS.x + WORLD_DEVELOPED_BOUNDS.width; x += 1) {
             if (getWorldCell({ x, y }).terrain === "reef")
                 reefCells.push(`<circle cx="${x + .25}" cy="${y + .32}" r=".07" class="reef-dot"></circle><circle cx="${x + .62}" cy="${y + .7}" r=".06" class="reef-dot"></circle>`);
         }
