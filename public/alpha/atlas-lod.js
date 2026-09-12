@@ -36,15 +36,27 @@ function parseViewBox(svg) {
   return { x, y, width, height };
 }
 
+function renderedCssWidth(svg) {
+  return Math.max(1, svg.getBoundingClientRect().width || svg.clientWidth || 1);
+}
+
 function levelForViewport(manifest, svg, viewBox) {
   const active = manifest.levels
     .filter((level) => level.status === "active")
     .sort((a, b) => a.pixelWidth - b.pixelWidth);
-  const cssWidth = Math.max(1, svg.getBoundingClientRect().width || svg.clientWidth || 1);
+  const cssWidth = renderedCssWidth(svg);
   const dpr = Math.max(1, window.devicePixelRatio || 1);
   const requiredAtlasPixels = cssWidth * dpr * (manifest.globalBounds.width / viewBox.width) * 1.08;
   const level = active.find((candidate) => candidate.pixelWidth >= requiredAtlasPixels) ?? active.at(-1);
   return { level, requiredAtlasPixels };
+}
+
+function updateVectorPresentation(svg, viewBox) {
+  const worldUnitsPerCssPixel = viewBox.width / renderedCssWidth(svg);
+  const labelWorldSize = 12 * worldUnitsPerCssPixel;
+  const labelStrokeWorldSize = 1.45 * worldUnitsPerCssPixel;
+  svg.style.setProperty("--atlas-map-label-size", `${labelWorldSize.toFixed(4)}px`);
+  svg.style.setProperty("--atlas-map-label-stroke", `${labelStrokeWorldSize.toFixed(4)}px`);
 }
 
 function intersectsRegistration(manifest, viewBox) {
@@ -92,6 +104,7 @@ class AtlasLodController {
     const viewBox = parseViewBox(this.svg);
     if (!viewBox || !intersectsRegistration(this.manifest, viewBox)) return;
 
+    updateVectorPresentation(this.svg, viewBox);
     const { level, requiredAtlasPixels } = levelForViewport(this.manifest, this.svg, viewBox);
     if (!level) return;
 
