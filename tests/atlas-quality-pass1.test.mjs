@@ -112,6 +112,10 @@ test("alpha shell loads resolution-aware atlas runtime and smooth tile fallback 
   assert.match(runtime, /devicePixelRatio/);
   assert.match(runtime, /classList\.add\("is-loaded"\)/);
   assert.match(runtime, /Set href only after listeners and fallback are in place/);
+  assert.match(runtime, /--atlas-map-label-size/);
+  assert.match(runtime, /worldUnitsPerCssPixel/);
   assert.match(css, /\.atlas-lod-tile\.is-loaded/);
+  assert.match(css, /--atlas-map-label-size/);
+  assert.match(css, /vector-effect:\s*non-scaling-stroke/);
   assert.match(css, /prefers-reduced-motion/);
 });
