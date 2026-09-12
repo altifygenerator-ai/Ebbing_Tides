@@ -1,0 +1,70 @@
+name: Atlas Quality Pass 1
+
+on:
+  push:
+    branches:
+      - atlas-quality-pass1
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atlas-quality-pass1-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  atlas-quality:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out atlas branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install project dependencies
+        run: npm ci
+
+      - name: Ensure Sharp is available for deterministic atlas processing
+        shell: bash
+        run: |
+          node -e "import('sharp').then(() => console.log('sharp available'))" || npm install --no-save --package-lock=false sharp@0.35.4
+
+      - name: Repair whole-world chart hit grid
+        run: npm run atlas:prepare
+
+      - name: Generate registered 12k atlas sampling tiles
+        run: npm run atlas:generate
+
+      - name: Run atlas regression suite
+        run: npm run atlas:test
+
+      - name: Run navigation and POI regressions
+        run: node --test tests/alpha-03-navigation.test.mjs tests/alpha-04-map-poi.test.mjs
+
+      - name: Commit generated atlas output back to branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            src/alpha/main.ts \
+            public/alpha/js/alpha/main.js \
+            public/alpha/atlas-lod-manifest.json \
+            public/art/maps/lod/atlas-12000 \
+            public/art/maps/lod/atlas-lod-generation-report.json
+          if git diff --cached --quiet; then
+            echo "No generated atlas changes to commit."
+          else
+            git commit -m "Generate registered atlas quality tiles"
+            git push origin HEAD:atlas-quality-pass1
+          fi
