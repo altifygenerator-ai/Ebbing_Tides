@@ -118,8 +118,30 @@ for (let row = 0; row < level.rows; row += 1) {
 }
 process.stdout.write("\n");
 
+const totalBytes = reportTiles.reduce((sum, tile) => sum + tile.bytes, 0);
+
+if (verifyOnly) {
+  // Verification is deliberately read-only. It must be safe to run on every push without
+  // changing report timestamps, manifest formatting, or generating a bot commit.
+  const existingReport = JSON.parse(await readFile(REPORT_PATH, "utf8"));
+  if (existingReport.level?.id !== level.id) throw new Error(`Generation report is for ${existingReport.level?.id ?? "unknown"}, not ${level.id}`);
+  if (!Array.isArray(existingReport.tiles) || existingReport.tiles.length !== reportTiles.length) {
+    throw new Error(`Generation report tile count does not match ${level.id}`);
+  }
+  const expectedByPath = new Map(existingReport.tiles.map((tile) => [tile.path, tile]));
+  for (const tile of reportTiles) {
+    const expected = expectedByPath.get(tile.path);
+    if (!expected) throw new Error(`Generation report is missing ${tile.path}`);
+    if (expected.width !== tile.width || expected.height !== tile.height || expected.sha256 !== tile.sha256) {
+      throw new Error(`${tile.path} no longer matches its locked generation report`);
+    }
+  }
+  console.log(`Verified ${level.id}: ${reportTiles.length} registered tiles, ${(totalBytes / 1024 / 1024).toFixed(1)} MiB total; no files changed.`);
+  process.exit(0);
+}
+
 const report = {
-  generatorVersion: "ATLAS_LOD_GENERATOR_0.1",
+  generatorVersion: "ATLAS_LOD_GENERATOR_0.2",
   generatedAt: new Date().toISOString(),
   source: {
     path: "/art/maps/world_atlas_labeled_v06d_master.webp",
@@ -139,7 +161,7 @@ const report = {
     tilePixelWidth: level.tilePixelWidth,
     tilePixelHeight: level.tilePixelHeight
   },
-  totalBytes: reportTiles.reduce((sum, tile) => sum + tile.bytes, 0),
+  totalBytes,
   tiles: reportTiles
 };
 
@@ -154,4 +176,4 @@ if (activate && level.status !== "active") {
   console.log(`activated ${level.id} in ${path.relative(ROOT, MANIFEST_PATH)}`);
 }
 
-console.log(`${verifyOnly ? "Verified" : "Generated"} ${level.id}: ${reportTiles.length} registered tiles, ${(report.totalBytes / 1024 / 1024).toFixed(1)} MiB total.`);
+console.log(`Generated ${level.id}: ${reportTiles.length} registered tiles, ${(report.totalBytes / 1024 / 1024).toFixed(1)} MiB total.`);
