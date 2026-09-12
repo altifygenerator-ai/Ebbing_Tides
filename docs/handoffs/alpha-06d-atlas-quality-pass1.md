@@ -68,6 +68,8 @@ npm run atlas:test
 
 `atlas:prepare` applies the narrowly scoped whole-world hit-grid correction to source and emitted alpha runtime. It is idempotent and aborts if its expected source text has drifted.
 
+The branch also includes a GitHub Actions workflow that runs the preparation, deterministic tile generation, atlas regression tests, and focused navigation/POI tests, then commits generated raster output back to `atlas-quality-pass1` when repository Actions are enabled.
+
 ## Non-goals
 
 This pass does not:
