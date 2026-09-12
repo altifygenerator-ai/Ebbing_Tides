@@ -172,7 +172,7 @@ class AtlasLodController {
         image.setAttribute("width", String(width));
         image.setAttribute("height", String(height));
         image.setAttribute("preserveAspectRatio", "none");
-        image.setAttribute("href", tilePath(level.pathTemplate, col, row));
+        image.addEventListener("load", () => image.classList.add("is-loaded"), { once: true });
         image.addEventListener("error", () => {
           image.remove();
           this.tileNodes.delete(key);
@@ -180,6 +180,8 @@ class AtlasLodController {
 
         group.append(image);
         this.tileNodes.set(key, image);
+        // Set href only after listeners and fallback are in place, preventing a blank flash on cache-fast loads.
+        image.setAttribute("href", tilePath(level.pathTemplate, col, row));
       }
     }
 
