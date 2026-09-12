@@ -1,0 +1,24 @@
+.chart-v04 .atlas-lod-tiles {
+  pointer-events: none;
+}
+
+.chart-v04 .atlas-lod-tile {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms ease-out;
+}
+
+.chart-v04 .atlas-lod-tile.is-loaded {
+  opacity: 1;
+}
+
+/* The canonical 6000x4000 atlas remains underneath every tile while it loads or fails. */
+.chart-v04[data-atlas-lod-level="atlas-12000-nav-tiles"] .atlas-art {
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-v04 .atlas-lod-tile {
+    transition: none;
+  }
+}
