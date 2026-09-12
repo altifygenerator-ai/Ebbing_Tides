@@ -1,1 +1,58 @@
-{"version":"ATLAS_RUNTIME_LOD_0.1","registrationVersion":"WORLD_ATLAS_0.6D_LABELED_CANON1_WORLD_EXPANSION","globalBounds":{"x":0,"y":0,"width":120,"height":80},"cellScaleNm":20,"fallbackLevelId":"atlas-6000","levels":[{"id":"atlas-6000","kind":"single","status":"active","path":"/art/maps/world_atlas_labeled_v06d_master.webp","pixelWidth":6000,"pixelHeight":4000,"pixelsPerCell":50},{"id":"atlas-12000-nav-tiles","kind":"tiles","status":"planned","pixelWidth":12000,"pixelHeight":8000,"pixelsPerCell":100,"tileWorldWidth":10,"tileWorldHeight":10,"tilePixelWidth":1000,"tilePixelHeight":1000,"columns":12,"rows":8,"pathTemplate":"/art/maps/lod/atlas-12000/c{col}-r{row}.webp"},{"id":"atlas-24000-close-tiles","kind":"tiles","status":"planned","pixelWidth":24000,"pixelHeight":16000,"pixelsPerCell":200,"tileWorldWidth":10,"tileWorldHeight":10,"tilePixelWidth":2000,"tilePixelHeight":2000,"columns":12,"rows":8,"pathTemplate":"/art/maps/lod/atlas-24000/c{col}-r{row}.webp"}]}
+{
+  "version": "ATLAS_RUNTIME_LOD_0.2",
+  "registrationVersion": "WORLD_ATLAS_0.6D_LABELED_CANON1_WORLD_EXPANSION",
+  "globalBounds": {
+    "x": 0,
+    "y": 0,
+    "width": 120,
+    "height": 80
+  },
+  "cellScaleNm": 20,
+  "fallbackLevelId": "atlas-6000",
+  "levels": [
+    {
+      "id": "atlas-6000",
+      "kind": "single",
+      "status": "active",
+      "path": "/art/maps/world_atlas_labeled_v06d_master.webp",
+      "pixelWidth": 6000,
+      "pixelHeight": 4000,
+      "pixelsPerCell": 50,
+      "sourceKind": "canonical_projection_master"
+    },
+    {
+      "id": "atlas-12000-nav-tiles",
+      "kind": "tiles",
+      "status": "planned",
+      "pixelWidth": 12000,
+      "pixelHeight": 8000,
+      "pixelsPerCell": 100,
+      "tileWorldWidth": 20,
+      "tileWorldHeight": 20,
+      "tilePixelWidth": 2000,
+      "tilePixelHeight": 2000,
+      "columns": 6,
+      "rows": 4,
+      "pathTemplate": "/art/maps/lod/atlas-12000/c{col}-r{row}.webp",
+      "sourceKind": "derived_sampling",
+      "note": "Controlled 2x raster sampling of the locked canonical atlas. This improves close-camera sampling behavior but does not claim new painted geographic detail."
+    },
+    {
+      "id": "atlas-24000-close-tiles",
+      "kind": "tiles",
+      "status": "planned",
+      "pixelWidth": 24000,
+      "pixelHeight": 16000,
+      "pixelsPerCell": 200,
+      "tileWorldWidth": 10,
+      "tileWorldHeight": 10,
+      "tilePixelWidth": 2000,
+      "tilePixelHeight": 2000,
+      "columns": 12,
+      "rows": 8,
+      "pathTemplate": "/art/maps/lod/atlas-24000/c{col}-r{row}.webp",
+      "sourceKind": "future_enhanced_master",
+      "note": "Reserved for a genuine detail-enhanced atlas master or registered regional detail overlays. Do not generate this level by repeatedly enlarging the existing canonical raster."
+    }
+  ]
+}
