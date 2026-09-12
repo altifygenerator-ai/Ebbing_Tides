@@ -42,7 +42,20 @@ jobs:
       - name: Repair whole-world chart hit grid
         run: npm run atlas:prepare
 
+      - name: Verify existing registered atlas tiles
+        id: atlas_tiles
+        shell: bash
+        run: |
+          if npm run atlas:verify; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "Existing registered atlas tiles are current; generation skipped."
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Registered atlas tiles are missing or stale; regeneration required."
+          fi
+
       - name: Generate registered 12k atlas sampling tiles
+        if: steps.atlas_tiles.outputs.ready != 'true'
         run: npm run atlas:generate
 
       - name: Run atlas regression suite
