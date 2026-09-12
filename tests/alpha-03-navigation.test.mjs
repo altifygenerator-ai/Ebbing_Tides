@@ -25,14 +25,14 @@ function finishVoyage(state) {
   assert.ok(guard > 0, 'voyage should finish inside bounded navigation test');
 }
 
-test('Alpha 0.3 global-atlas rule remains intact inside Alpha 0.4', () => {
+test('Alpha 0.6D world expansion keeps global registration and activates every canonical regional window', () => {
   assert.equal(GLOBAL_ATLAS.width, 120);
   assert.equal(GLOBAL_ATLAS.height, 80);
-  assert.ok(ATLAS_REGIONS.some((region) => region.id === 'northwestern_sea' && region.development === 'active'));
-  assert.ok(ATLAS_REGIONS.some((region) => region.id === 'asteria' && region.development === 'reserved'));
-  assert.ok(ATLAS_REGIONS.some((region) => region.id === 'serath' && region.development === 'reserved'));
-  assert.ok(ATLAS_REGIONS.some((region) => region.id === 'kaishin' && region.development === 'reserved'));
-  assert.ok(ATLAS_REGIONS.some((region) => region.id === 'outer_isles' && region.development === 'reserved'));
+  const activeRegionIds = new Set(ATLAS_REGIONS.filter((region) => region.development === 'active').map((region) => region.id));
+  for (const id of ['great_western_ocean', 'northwestern_sea', 'ardaran_gate', 'asteria', 'vesperan_strait', 'serath', 'kaishin', 'outer_isles']) {
+    assert.equal(activeRegionIds.has(id), true, `${id} should be active after the Alpha 0.6D world-expansion pass`);
+  }
+  assert.equal(ATLAS_REGIONS.some((region) => region.development === 'reserved'), false, 'current canonical atlas windows should no longer retain pre-expansion reserved flags');
 });
 
 test('port markers are land while every port approach is a navigable water cell', () => {
