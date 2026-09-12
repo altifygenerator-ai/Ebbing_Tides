@@ -1,164 +1,290 @@
-export type AudioScene = "silent" | "veyrholm" | "ironhaven" | "stormvik" | "thorenfjord" | "sea" | "naval_combat" | "personal_combat";
-export type AudioCue = "ui" | "coin" | "sail" | "cannon" | "pistol" | "blade" | "hit" | "repair" | "bell" | "page";
+export type AudioCue = "click" | "coin" | "sail" | "cannon" | "bell" | "damage" | "level_up" | "page" | "ui" | "blade" | "pistol" | "repair" | "hit";
+export type AudioScene =
+  | "silent"
+  | "veyrholm"
+  | "veyrholm_market"
+  | "veyrholm_tavern"
+  | "veyrholm_street"
+  | "ironhaven"
+  | "stormvik"
+  | "thorenfjord"
+  | "sea"
+  | "sea_calm"
+  | "sea_coastal"
+  | "sea_rough"
+  | "sea_storm"
+  | "naval_combat"
+  | "personal_combat";
 
-type Stopper = () => void;
+type ExternalSceneKey =
+  | "veyrholm_market"
+  | "veyrholm_tavern"
+  | "veyrholm_street"
+  | "ironhaven"
+  | "sea_calm"
+  | "sea_coastal"
+  | "sea_rough"
+  | "sea_storm";
 
-class ProceduralAudioManager {
+const EXTERNAL_SCENES = new Set<ExternalSceneKey>([
+  "veyrholm_market",
+  "veyrholm_tavern",
+  "veyrholm_street",
+  "ironhaven",
+  "sea_calm",
+  "sea_coastal",
+  "sea_rough",
+  "sea_storm"
+]);
+
+const SCENE_BEDS: Record<ExternalSceneKey, { path: string; gain: number }> = {
+  veyrholm_market: { path: "/audio/locations/veyrholm_market_layered_prototype.ogg", gain: 0.52 },
+  veyrholm_tavern: { path: "/audio/locations/veyrholm_tavern_layered_prototype.ogg", gain: 0.58 },
+  veyrholm_street: { path: "/audio/locations/veyrholm_town_street_layered_prototype.ogg", gain: 0.48 },
+  ironhaven: { path: "/audio/locations/ironhaven_shipyard_harbor_layered_prototype.ogg", gain: 0.52 },
+  sea_calm: { path: "/audio/navigation/nav_calm_open_sea_v1.ogg", gain: 0.44 },
+  sea_coastal: { path: "/audio/navigation/nav_coastal_near_port_v1.ogg", gain: 0.46 },
+  sea_rough: { path: "/audio/navigation/nav_rough_sea_v1.ogg", gain: 0.48 },
+  sea_storm: { path: "/audio/navigation/nav_storm_heavy_weather_v1.ogg", gain: 0.5 }
+};
+
+const OCEAN_OVERLAYS = {
+  calm: [
+    { path: "/audio/navigation/navigation_music_ocean_balanced_v1.ogg", gain: 0.24 },
+    { path: "/audio/navigation/navigation_music_ocean_ambience_forward_v1.ogg", gain: 0.22 }
+  ],
+  rough: [
+    { path: "/audio/navigation/navigation_music_ocean_ambience_forward_v1.ogg", gain: 0.2 },
+    { path: "/audio/navigation/navigation_music_ocean_balanced_v1.ogg", gain: 0.18 }
+  ]
+} as const;
+
+function clamp01(value: number): number {
+  return Math.max(0, Math.min(1, value));
+}
+
+function fadeAudioElement(audio: HTMLAudioElement | undefined, to: number, durationMs: number, onDone?: ()=>void): void {
+  if (!audio) { onDone?.(); return; }
+  const from = Number.isFinite(audio.volume) ? audio.volume : 0;
+  const start = performance.now();
+  const tick = (now: number) => {
+    const t = clamp01((now - start) / durationMs);
+    audio.volume = from + (to - from) * t;
+    if (t < 1) requestAnimationFrame(tick);
+    else onDone?.();
+  };
+  requestAnimationFrame(tick);
+}
+
+export class AlphaAudio {
   private ctx?: AudioContext;
-  private master?: GainNode;
-  private ambience: Stopper[] = [];
-  private currentScene: AudioScene = "silent";
+  private gain?: GainNode;
+  private noise?: AudioBuffer;
+  private scene: AudioScene = "silent";
   private enabled = true;
-  private volume = 0.32;
+  private master = 0.75;
+  private unlocked = false;
+  private bed?: HTMLAudioElement;
+  private overlay?: HTMLAudioElement;
+  private overlayTimer?: number;
+  private sceneToken = 0;
 
-  configure(enabled: boolean, volume: number): void {
+  private ensure(): AudioContext {
+    if (!this.ctx) {
+      const AC = window.AudioContext || (window as any).webkitAudioContext;
+      this.ctx = new AC();
+      this.gain = this.ctx.createGain();
+      this.gain.gain.value = this.master;
+      this.gain.connect(this.ctx.destination);
+    }
+    return this.ctx;
+  }
+
+  configure(enabled: boolean, master: number): void {
     this.enabled = enabled;
-    this.volume = Math.max(0, Math.min(1, volume));
-    if (this.master) this.master.gain.setTargetAtTime(this.enabled ? this.volume : 0, this.ctx?.currentTime ?? 0, 0.03);
-    if (!enabled) this.stopAmbience();
+    this.master = master;
+    if (this.gain) this.gain.gain.value = enabled ? master : 0;
+    if (!enabled) {
+      this.stopSceneAudio();
+      return;
+    }
+    this.refreshSceneVolumes();
+    if (this.unlocked) this.startScene();
   }
 
   async unlock(): Promise<void> {
-    if (!this.enabled) return;
-    if (!this.ctx) {
-      this.ctx = new AudioContext();
-      this.master = this.ctx.createGain();
-      this.master.gain.value = this.volume;
-      this.master.connect(this.ctx.destination);
-    }
-    if (this.ctx.state === "suspended") await this.ctx.resume();
-    if (this.currentScene !== "silent" && this.ambience.length === 0) this.startScene(this.currentScene);
+    this.ensure();
+    if (this.ctx?.state === "suspended") await this.ctx.resume();
+    this.unlocked = true;
+    if (this.enabled) this.startScene();
   }
 
   setScene(scene: AudioScene): void {
-    if (scene === this.currentScene && this.ambience.length) return;
-    this.currentScene = scene;
-    this.stopAmbience();
-    if (this.enabled && this.ctx && this.ctx.state === "running") this.startScene(scene);
-  }
-
-  private noiseBuffer(seconds = 2): AudioBuffer {
-    const ctx = this.ctx!;
-    const buffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * seconds), ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    // Audible texture need not be simulation RNG; this noise is presentation only.
-    for (let i = 0; i < data.length; i += 1) data[i] = Math.random() * 2 - 1;
-    return buffer;
-  }
-
-  private loopNoise(gainValue: number, lowpassHz: number, highpassHz = 0): Stopper {
-    const ctx = this.ctx!;
-    const source = ctx.createBufferSource();
-    source.buffer = this.noiseBuffer(3);
-    source.loop = true;
-    let node: AudioNode = source;
-    if (highpassHz > 0) {
-      const hp = ctx.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = highpassHz; node.connect(hp); node = hp;
-    }
-    const lp = ctx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = lowpassHz; node.connect(lp); node = lp;
-    const gain = ctx.createGain(); gain.gain.value = gainValue; node.connect(gain); gain.connect(this.master!);
-    source.start();
-    return () => { try { source.stop(); } catch {} };
-  }
-
-  private drone(freq: number, gainValue: number, type: OscillatorType = "sine"): Stopper {
-    const ctx = this.ctx!;
-    const osc = ctx.createOscillator(); osc.type = type; osc.frequency.value = freq;
-    const gain = ctx.createGain(); gain.gain.value = gainValue; osc.connect(gain); gain.connect(this.master!); osc.start();
-    return () => { try { osc.stop(); } catch {} };
-  }
-
-  private periodic(minMs: number, maxMs: number, fn: () => void): Stopper {
-    let timer: number | undefined;
-    let stopped = false;
-    const schedule = () => {
-      if (stopped) return;
-      const span = Math.max(0, maxMs - minMs);
-      timer = window.setTimeout(() => { if (!stopped) fn(); schedule(); }, minMs + Math.random() * span);
-    };
-    schedule();
-    return () => { stopped = true; if (timer !== undefined) window.clearTimeout(timer); };
-  }
-
-  private chirp(base = 1100, gainValue = 0.012): void {
-    if (!this.ctx || !this.master) return;
-    const now = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator(); osc.type = "sine";
-    osc.frequency.setValueAtTime(base, now); osc.frequency.exponentialRampToValueAtTime(base * 1.45, now + 0.09); osc.frequency.exponentialRampToValueAtTime(base * 0.82, now + 0.28);
-    const gain = this.ctx.createGain(); gain.gain.setValueAtTime(0.0001, now); gain.gain.exponentialRampToValueAtTime(gainValue, now + 0.025); gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
-    osc.connect(gain); gain.connect(this.master); osc.start(now); osc.stop(now + 0.31);
-  }
-
-  private knock(freq = 150, gainValue = 0.022): void {
-    if (!this.ctx || !this.master) return;
-    const now = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator(); osc.type = "triangle"; osc.frequency.setValueAtTime(freq, now); osc.frequency.exponentialRampToValueAtTime(Math.max(35, freq * 0.55), now + 0.12);
-    const gain = this.ctx.createGain(); gain.gain.setValueAtTime(gainValue, now); gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
-    osc.connect(gain); gain.connect(this.master); osc.start(now); osc.stop(now + 0.15);
-  }
-
-  private creak(): void {
-    if (!this.ctx || !this.master) return;
-    const now = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator(); osc.type = "sawtooth"; osc.frequency.setValueAtTime(105, now); osc.frequency.linearRampToValueAtTime(78, now + 0.42); osc.frequency.linearRampToValueAtTime(96, now + 0.7);
-    const filter = this.ctx.createBiquadFilter(); filter.type = "lowpass"; filter.frequency.value = 520;
-    const gain = this.ctx.createGain(); gain.gain.setValueAtTime(0.0001, now); gain.gain.linearRampToValueAtTime(0.012, now + 0.15); gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.72);
-    osc.connect(filter); filter.connect(gain); gain.connect(this.master); osc.start(now); osc.stop(now + 0.74);
-  }
-
-  private startScene(scene: AudioScene): void {
-    if (!this.ctx || !this.master || scene === "silent") return;
-    if (scene === "sea") {
-      this.ambience.push(this.loopNoise(0.075, 850), this.loopNoise(0.025, 3800, 850), this.drone(58, 0.018), this.periodic(4300, 9000, () => this.creak()), this.periodic(9000, 18000, () => this.chirp(1040, 0.008)));
-    } else if (scene === "veyrholm") {
-      this.ambience.push(this.loopNoise(0.055, 900), this.loopNoise(0.018, 2600, 700), this.drone(82, 0.012), this.periodic(2600, 6200, () => this.knock(145, 0.016)), this.periodic(7000, 14000, () => this.chirp(1280, 0.011)), this.periodic(18000, 30000, () => this.play("bell")));
-    } else if (scene === "ironhaven") {
-      this.ambience.push(this.loopNoise(0.05, 760), this.loopNoise(0.025, 3200, 900), this.drone(50, 0.025, "triangle"), this.drone(101, 0.009), this.periodic(1800, 4300, () => this.knock(205, 0.024)), this.periodic(4200, 8200, () => this.knock(92, 0.02)));
-    } else if (scene === "stormvik") {
-      this.ambience.push(this.loopNoise(0.075, 1200), this.loopNoise(0.035, 3600, 1050), this.drone(73, 0.009), this.periodic(5200, 10000, () => this.creak()), this.periodic(8000, 16000, () => this.chirp(980, 0.009)));
-    } else if (scene === "thorenfjord") {
-      this.ambience.push(this.loopNoise(0.048, 820), this.loopNoise(0.014, 2400, 650), this.drone(55, 0.012), this.drone(110, 0.006), this.periodic(16000, 28000, () => this.play("bell")), this.periodic(5000, 10000, () => this.knock(118, 0.012)));
-    } else if (scene === "naval_combat") {
-      this.ambience.push(this.loopNoise(0.065, 1100), this.drone(47, 0.028, "triangle"), this.periodic(5000, 11000, () => this.creak()));
-    } else if (scene === "personal_combat") {
-      this.ambience.push(this.loopNoise(0.025, 1800, 300), this.drone(66, 0.012, "triangle"), this.periodic(3600, 7600, () => this.knock(120, 0.012)));
-    }
-  }
-
-  private stopAmbience(): void {
-    for (const stop of this.ambience.splice(0)) stop();
+    if (this.scene === scene) return;
+    this.scene = scene;
+    if (this.unlocked && this.enabled) this.startScene();
+    else if (!this.enabled) this.stopSceneAudio();
   }
 
   play(cue: AudioCue): void {
-    if (!this.enabled || !this.ctx || !this.master || this.ctx.state !== "running") return;
-    const ctx = this.ctx;
+    if (!this.enabled || !this.unlocked) return;
+    const ctx = this.ensure();
+    const out = this.gain!;
     const now = ctx.currentTime;
-    const tone = (freq: number, duration: number, gainValue: number, type: OscillatorType = "sine", endFreq?: number) => {
-      const osc = ctx.createOscillator(); osc.type = type; osc.frequency.setValueAtTime(freq, now);
-      if (endFreq) osc.frequency.exponentialRampToValueAtTime(Math.max(20, endFreq), now + duration);
-      const gain = ctx.createGain(); gain.gain.setValueAtTime(gainValue, now); gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-      osc.connect(gain); gain.connect(this.master!); osc.start(now); osc.stop(now + duration);
+    const tone = (f0: number, f1: number, d = 0.1, type: OscillatorType = "sine") => {
+      const o = ctx.createOscillator(); const g = ctx.createGain();
+      o.type = type; o.frequency.setValueAtTime(f0, now); o.frequency.exponentialRampToValueAtTime(Math.max(20, f1), now + d);
+      g.gain.setValueAtTime(0.0001, now); g.gain.exponentialRampToValueAtTime(0.12 * this.master, now + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, now + d);
+      o.connect(g).connect(out); o.start(now); o.stop(now + d + 0.02);
     };
-    const burst = (duration: number, gainValue: number, lowpass = 2400) => {
-      const source = ctx.createBufferSource(); source.buffer = this.noiseBuffer(Math.max(0.08, duration));
-      const filter = ctx.createBiquadFilter(); filter.type = "lowpass"; filter.frequency.value = lowpass;
-      const gain = ctx.createGain(); gain.gain.setValueAtTime(gainValue, now); gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-      source.connect(filter); filter.connect(gain); gain.connect(this.master!); source.start(now); source.stop(now + duration);
+    const noiseBurst = (d = 0.12, hp = 800, amp = 0.08) => {
+      const src = ctx.createBufferSource(); src.buffer = this.noiseBuf(ctx);
+      const f = ctx.createBiquadFilter(); f.type = "highpass"; f.frequency.value = hp;
+      const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, now); g.gain.exponentialRampToValueAtTime(amp * this.master, now + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, now + d);
+      src.connect(f).connect(g).connect(out); src.start(now); src.stop(now + d + 0.02);
     };
-
     switch (cue) {
-      case "ui": tone(430, 0.05, 0.035, "square", 360); break;
-      case "coin": tone(1320, 0.08, 0.045, "sine", 880); tone(1760, 0.11, 0.025, "sine", 1200); break;
-      case "sail": burst(0.7, 0.07, 1700); tone(95, 0.55, 0.025, "triangle", 62); break;
-      case "cannon": burst(0.9, 0.23, 900); tone(52, 0.95, 0.18, "sine", 28); break;
-      case "pistol": burst(0.23, 0.18, 2400); tone(120, 0.18, 0.08, "triangle", 55); break;
-      case "blade": tone(1850, 0.13, 0.07, "sawtooth", 740); break;
-      case "hit": burst(0.16, 0.11, 900); tone(86, 0.12, 0.05, "triangle", 55); break;
-      case "repair": tone(310, 0.09, 0.05, "square", 260); setTimeout(() => this.play("ui"), 110); break;
-      case "bell": tone(720, 0.65, 0.055, "sine", 610); tone(1080, 0.5, 0.025, "sine", 920); break;
-      case "page": burst(0.2, 0.025, 4200); break;
+      case "click": tone(620, 420, 0.06, "triangle"); break;
+      case "coin": tone(1200, 1600, 0.12, "sine"); break;
+      case "sail": noiseBurst(0.18, 500, 0.05); tone(220, 180, 0.18, "sawtooth"); break;
+      case "cannon": noiseBurst(0.25, 80, 0.16); tone(90, 45, 0.25, "square"); break;
+      case "bell": tone(880, 660, 0.4, "sine"); break;
+      case "damage": noiseBurst(0.12, 200, 0.09); tone(260, 120, 0.12, "square"); break;
+      case "level_up": tone(520, 740, 0.12, "triangle"); setTimeout(() => tone(740, 1040, 0.14, "triangle"), 90); break;
+      case "page": tone(420, 320, 0.08, "triangle"); noiseBurst(0.05, 900, 0.03); break;
+      case "ui": tone(740, 560, 0.05, "triangle"); break;
+      case "blade": noiseBurst(0.04, 1800, 0.04); tone(860, 440, 0.08, "sawtooth"); break;
+      case "pistol": noiseBurst(0.08, 450, 0.11); tone(180, 80, 0.09, "square"); break;
+      case "repair": tone(340, 460, 0.09, "triangle"); setTimeout(() => tone(460, 520, 0.08, "triangle"), 60); break;
+      case "hit": noiseBurst(0.07, 320, 0.05); tone(220, 140, 0.06, "square"); break;
     }
+  }
+
+  private noiseBuf(ctx: AudioContext): AudioBuffer {
+    if (this.noise) return this.noise;
+    const len = ctx.sampleRate * 1;
+    const b = ctx.createBuffer(1, len, ctx.sampleRate);
+    const d = b.getChannelData(0);
+    for (let i = 0; i < len; i += 1) d[i] = Math.random() * 2 - 1;
+    this.noise = b;
+    return b;
+  }
+
+  private startScene(): void {
+    this.sceneToken += 1;
+    const scene = this.normalizeScene(this.scene);
+    this.stopSceneAudio();
+    if (scene === "silent") return;
+    if (EXTERNAL_SCENES.has(scene as ExternalSceneKey)) {
+      this.playExternalBed(scene as ExternalSceneKey, this.sceneToken);
+      if (scene.startsWith("sea_")) this.scheduleOceanOverlay(this.sceneToken, scene as ExternalSceneKey);
+      return;
+    }
+    this.startProceduralFallback(scene);
+  }
+
+  private normalizeScene(scene: AudioScene): AudioScene {
+    if (scene === "veyrholm") return "veyrholm_street";
+    if (scene === "sea") return "sea_calm";
+    return scene;
+  }
+
+  private startProceduralFallback(scene: AudioScene): void {
+    if (!this.ctx || !this.gain) return;
+    const ctx = this.ensure();
+    const out = this.gain;
+    const now = ctx.currentTime;
+    const pad = (freq: number, amp: number) => {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = "triangle";
+      o.frequency.value = freq;
+      g.gain.value = amp * this.master;
+      o.connect(g).connect(out);
+      o.start(now);
+      o.stop(now + 2.5);
+    };
+    const wash = (hp: number, lp: number, amp: number) => {
+      const src = ctx.createBufferSource(); src.buffer = this.noiseBuf(ctx); src.loop = true;
+      const hi = ctx.createBiquadFilter(); hi.type = "highpass"; hi.frequency.value = hp;
+      const lo = ctx.createBiquadFilter(); lo.type = "lowpass"; lo.frequency.value = lp;
+      const g = ctx.createGain(); g.gain.value = amp * this.master;
+      src.connect(hi).connect(lo).connect(g).connect(out);
+      src.start(now);
+      src.stop(now + 3.2);
+    };
+    switch (scene) {
+      case "stormvik": wash(150, 1300, 0.04); pad(180, 0.015); break;
+      case "thorenfjord": wash(220, 900, 0.03); pad(220, 0.012); break;
+      case "naval_combat": wash(100, 1600, 0.05); pad(110, 0.02); break;
+      case "personal_combat": wash(200, 1200, 0.025); pad(160, 0.015); break;
+      default: wash(200, 1200, 0.03); pad(200, 0.01); break;
+    }
+  }
+
+  private playExternalBed(scene: ExternalSceneKey, token: number): void {
+    const spec = SCENE_BEDS[scene];
+    const audio = new Audio(spec.path);
+    audio.preload = "auto";
+    audio.loop = true;
+    audio.volume = 0;
+    this.bed = audio;
+    audio.play().then(() => {
+      if (token !== this.sceneToken || !this.enabled) { audio.pause(); return; }
+      fadeAudioElement(audio, this.targetVolume(spec.gain), 900);
+    }).catch(() => {
+      if (token === this.sceneToken) this.startProceduralFallback(scene);
+    });
+  }
+
+  private scheduleOceanOverlay(token: number, scene: ExternalSceneKey): void {
+    if (!scene.startsWith("sea_")) return;
+    const pool = scene === "sea_rough" || scene === "sea_storm" ? OCEAN_OVERLAYS.rough : OCEAN_OVERLAYS.calm;
+    const delay = 18000 + Math.floor(Math.random() * 16000);
+    this.overlayTimer = window.setTimeout(() => {
+      if (token !== this.sceneToken || !this.enabled || !this.unlocked) return;
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      const overlay = new Audio(pick.path);
+      overlay.preload = "auto";
+      overlay.loop = false;
+      overlay.volume = 0;
+      this.overlay = overlay;
+      overlay.play().then(() => {
+        if (token !== this.sceneToken || !this.enabled) { overlay.pause(); return; }
+        fadeAudioElement(overlay, this.targetVolume(pick.gain), 1400, () => {
+          // keep playing until natural end
+        });
+      }).catch(() => undefined);
+      overlay.addEventListener("ended", () => {
+        if (this.overlay === overlay) this.overlay = undefined;
+        if (token === this.sceneToken) this.scheduleOceanOverlay(token, scene);
+      }, { once: true });
+    }, delay);
+  }
+
+  private targetVolume(gainFactor: number): number {
+    return clamp01(this.master * gainFactor);
+  }
+
+  private refreshSceneVolumes(): void {
+    const normalized = this.normalizeScene(this.scene);
+    if (this.bed && EXTERNAL_SCENES.has(normalized as ExternalSceneKey)) {
+      this.bed.volume = this.targetVolume(SCENE_BEDS[normalized as ExternalSceneKey].gain);
+    }
+  }
+
+  private stopSceneAudio(): void {
+    if (this.overlayTimer !== undefined) {
+      window.clearTimeout(this.overlayTimer);
+      this.overlayTimer = undefined;
+    }
+    const oldBed = this.bed;
+    const oldOverlay = this.overlay;
+    this.bed = undefined;
+    this.overlay = undefined;
+    if (oldBed) fadeAudioElement(oldBed, 0, 500, () => { oldBed.pause(); oldBed.currentTime = 0; });
+    if (oldOverlay) fadeAudioElement(oldOverlay, 0, 400, () => { oldOverlay.pause(); oldOverlay.currentTime = 0; });
   }
 }
 
-export const audio = new ProceduralAudioManager();
+export const audio = new AlphaAudio();

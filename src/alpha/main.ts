@@ -8,6 +8,7 @@ import { acceptContract, fulfillContract, generateContracts } from "../game/cont
 import { DEFAULT_CHARACTER_CHOICES, createGame, startingCrownsForChoices, startingShipOriginImpact } from "../game/createGame.js";
 import { calculatePrice, cargoUsed, transact } from "../game/economy.js";
 import { quoteShipSupplies } from "../game/economySimulation.js";
+import { buildInitialPortMarkets } from "../game/marketGeneration.js";
 import { buildCharacterMindContext, deterministicCharacterMindReply } from "../game/characterMind.js";
 import { clockFromAbsoluteHour, formatClock } from "../game/clock.js";
 import { shipClassDefinition } from "../data/seed/contentRegistry.js";
@@ -25,6 +26,7 @@ import { attunementBand, calculateInterference, strainBand } from "../game/attun
 import { usePlayerAbility } from "../game/abilitiesRuntime.js";
 import { attackEncounter, avoidEncounter, beginNavigation, cancelVoyage, currentVoyageEtaHours, estimateVoyageSupplyUnits, hailEncounter, observeEncounter, sailUntilInterrupted, searchWaters, submitToAuthorityEncounter, type SearchWatersResult } from "../game/travel.js";
 import { MAX_TACTICAL_RANGE_YARDS, yardsToNm } from "../game/physicalDistance.js";
+import { deterministicUnit } from "../game/rng.js";
 import type { Attributes, CharacterCreationChoices, CustomPortraitRequest, EquipmentSlot, GameState, GridPoint, NavigationTarget, NpcCharacter, PoiActionId, PortActionId, ShipEntity, SkillId, VoyageReport } from "../game/types.js";
 import { currentPortName, getPlayerShip } from "../game/stateUtils.js";
 import { getWorldCell, GLOBAL_ATLAS, REGIONAL_MAP_LAYERS, SKELDRA_DEVELOPED_BOUNDS } from "../data/seed/worldMap.js";
@@ -614,14 +616,30 @@ function shipPortraitCard(s: GameState): string {
   return `<div class="ship-hero">${art?.path ? `<img class="ship-portrait" src="${art.path}" alt="${esc(ship.name)}">` : `<div class="ship-portrait placeholder">Ship Portrait</div>`}<div><div class="eyebrow">Flagship</div><h2 class="section-title">${esc(ship.name)}</h2><p class="small muted">${esc(className)} · your flagship</p></div></div>`;
 }
 
+function seaAudioScene(s: GameState): AudioScene {
+  const voyage = s.voyage;
+  if (!voyage) return "sea_coastal";
+  const progress = Number.isFinite(voyage.progress)
+    ? voyage.progress
+    : (voyage.routeDistanceNm > 0 ? voyage.distanceTravelledNm / voyage.routeDistanceNm : 0.5);
+  const nearCoast = progress <= 0.18 || progress >= 0.82 || Boolean(voyage.fromPortId || voyage.toPortId);
+  const weatherRoll = deterministicUnit(s.worldSeed, `audio-sea:${voyage.routeId}:${Math.floor(s.absoluteHour / 4)}`);
+  if (weatherRoll > 0.9) return "sea_storm";
+  if (weatherRoll > 0.72) return "sea_rough";
+  if (nearCoast) return "sea_coastal";
+  return weatherRoll > 0.52 ? "sea_rough" : "sea_calm";
+}
+
 function audioScene(s: GameState): AudioScene {
   if (s.personalCombat && !s.personalCombat.resolved) return "personal_combat";
   if (s.encounter?.phase === "combat") return "naval_combat";
-  if (s.voyage || !s.player.currentPortId) return "sea";
+  if (s.voyage || !s.player.currentPortId) return seaAudioScene(s);
   if (s.player.currentPortId === "port.ironhaven") return "ironhaven";
   if (s.player.currentPortId === "port.stormvik") return "stormvik";
   if (s.player.currentPortId === "port.thorenfjord") return "thorenfjord";
-  return "veyrholm";
+  if (tab === "market") return "veyrholm_market";
+  if (tab === "tavern") return "veyrholm_tavern";
+  return "veyrholm_street";
 }
 function syncAudio(): void {
   if (!state) { audio.setScene("silent"); return; }
@@ -960,13 +978,18 @@ function poiArtPath(poiId: string): string | undefined {
 function portArtStyle(portId: string): string { const path = portArtPath(portId); return path ? `style="background-image:url('${path}')"` : ""; }
 function poiArtStyle(poiId: string): string { const path = poiArtPath(poiId); return path ? `style="background-image:url('${path}')"` : ""; }
 function contextLocationScenePath(portId: string, kind: ContextLocationSceneKind): string | undefined {
-  const region = PORT_BY_ID[portId]?.region;
-  return region ? CONTEXT_LOCATION_SCENE_ART[region]?.[kind] : undefined;
+  const region=PORT_BY_ID[portId]?.region;
+  const regional=region?CONTEXT_LOCATION_SCENE_ART[region]?.[kind]:undefined;
+  // Skeldra owns a complete category-specific scene set. Other regions use the correct
+  // port/region painting rather than falling back to Skeldran art until their own market,
+  // tavern, government, temple, people, and harbor paintings are supplied.
+  return regional ?? LOCATION_PRESENTATION_ART[portId] ?? portArtPath(portId);
 }
 function contextLocationHero(portId: string, kind: ContextLocationSceneKind, dynamicTitle: string, options: { kicker?: string; subline?: string; controls?: string } = {}): string {
   const path = contextLocationScenePath(portId, kind);
   const art = path ? `<div class="context-scene-frame"><img src="${esc(path)}" alt="${esc(titleize(kind))} scene"></div>` : "";
-  return `<div class="context-location-hero">${art}<div class="context-dynamic-heading"><div class="context-heading-copy">${options.kicker ? `<div class="eyebrow">${esc(options.kicker)}</div>` : ""}<h1>${esc(dynamicTitle)}</h1>${options.subline ? `<p>${esc(options.subline)}</p>` : ""}</div>${options.controls ? `<div class="context-heading-actions">${options.controls}</div>` : ""}</div></div>`;
+  const region=PORT_BY_ID[portId]?.region??"crossroads";
+  return `<div class="context-location-hero region-${esc(region)}" data-location-region="${esc(region)}" data-location-id="${esc(portId)}">${art}<div class="context-dynamic-heading"><div class="context-heading-copy">${options.kicker ? `<div class="eyebrow">${esc(options.kicker)}</div>` : ""}<h1>${esc(dynamicTitle)}</h1>${options.subline ? `<p>${esc(options.subline)}</p>` : ""}</div>${options.controls ? `<div class="context-heading-actions">${options.controls}</div>` : ""}</div></div>`;
 }
 function sceneProps(paths: Array<[string,string]>): string {
   return `<div class="scene-prop-strip">${paths.map(([path,label])=>`<img src="${path}" alt="${esc(label)}" title="${esc(label)}">`).join("")}</div>`;
@@ -1557,7 +1580,7 @@ function renderChart(s: GameState): string {
   const cells:string[]=[];
   for(let y=SKELDRA_DEVELOPED_BOUNDS.y;y<SKELDRA_DEVELOPED_BOUNDS.y+SKELDRA_DEVELOPED_BOUNDS.height;y+=1){for(let x=SKELDRA_DEVELOPED_BOUNDS.x;x<SKELDRA_DEVELOPED_BOUNDS.x+SKELDRA_DEVELOPED_BOUNDS.width;x+=1){const cell=getWorldCell({x,y});const selected=selectedCell?.x===x&&selectedCell?.y===y;const label=cell.terrain==="land"?"Land":titleize(cell.terrain);cells.push(`<rect x="${x}" y="${y}" width="1" height="1" class="map-cell-svg ${cell.navigable?"navigable":"blocked"} terrain-${cell.terrain} ${selected?"selected":""}" ${cell.navigable&&!voyage?`data-action="select-map-cell" data-x="${x}" data-y="${y}"`:""}><title>${esc(label)}</title></rect>`);}}
 
-  const ports=PORTS.map(port=>{const known=s.player.knownPortIds.includes(port.id);const selected=target?.type==="port"&&target.id===port.id;const major=port.id==="port.veyrholm"||port.id==="port.ironhaven";const radius=major ? .5 : .39;return `<g class="port-glyph ${major?"major-port":"normal-port"} ${known?"known":"unknown"} ${selected?"selected":""}" ${known&&!voyage?`data-action="select-port" data-id="${port.id}"`:""} transform="translate(${port.point.x+.5} ${port.point.y+.5})"><circle class="port-hit-target" r=".72"></circle><circle class="port-medallion" r="${radius}"></circle><path d="M0,-.28 L0,.28 M-.22,.02 L.22,.02 M-.16,.20 Q0,.36 .16,.20" class="anchor-mark"></path><text class="map-label" x="${major ? .66 : .56}" y=".14">${esc(port.name)}</text><title>${esc(port.name)} · ${esc(port.role)}</title></g>`;}).join("");
+  const ports=PORTS.map(port=>{const known=s.player.knownPortIds.includes(port.id);const selected=target?.type==="port"&&target.id===port.id;const major=CANON_WORLD_LOCATION_BY_ID[port.id]?.category==="major_capital_great_port";const radius=major ? .5 : .39;return `<g class="port-glyph ${major?"major-port":"normal-port"} ${known?"known":"unknown"} ${selected?"selected":""}" ${known&&!voyage?`data-action="select-port" data-id="${port.id}"`:""} transform="translate(${port.point.x+.5} ${port.point.y+.5})"><circle class="port-hit-target" r=".72"></circle><circle class="port-medallion" r="${radius}"></circle><path d="M0,-.28 L0,.28 M-.22,.02 L.22,.02 M-.16,.20 Q0,.36 .16,.20" class="anchor-mark"></path><text class="map-label" x="${major ? .66 : .56}" y=".14">${esc(port.name)}</text><title>${esc(port.name)} · ${esc(port.role)}</title></g>`;}).join("");
 
   const pois=POINTS_OF_INTEREST.filter(poi=>s.player.knownPoiIds.includes(poi.id)).map(poi=>{const selected=target?.type==="poi"&&target.id===poi.id;const seaSite=poi.point.x===poi.approachPoint.x&&poi.point.y===poi.approachPoint.y;return `<g class="poi-glyph ${selected?"selected":""} ${seaSite?"sea-site":"land-site"}" ${!voyage?`data-action="select-poi" data-id="${poi.id}"`:""} transform="translate(${poi.point.x+.5} ${poi.point.y+.5})"><path d="M0,-.34 L.34,0 L0,.34 L-.34,0 Z"></path><circle r=".09"></circle><text class="map-label" x=".52" y=".14">${esc(poi.name)}</text><title>${esc(poi.name)} · ${esc(poi.role)}</title></g>`;}).join("");
 
@@ -1796,10 +1819,21 @@ function resetRuntimeForNewVoyage(): void {
   renderCreation();
 }
 
+function activateExpandedWorld(s:GameState):void {
+  const knownPorts=PORTS.filter(port=>port.knownByDefault).map(port=>port.id);
+  const knownPois=POINTS_OF_INTEREST.filter(poi=>poi.knownByDefault).map(poi=>poi.id);
+  s.player.knownPortIds=[...new Set([...s.player.knownPortIds,...knownPorts])];
+  s.player.knownPoiIds=[...new Set([...s.player.knownPoiIds,...knownPois])];
+  for(const port of PORTS){ if(s.player.portStanding[port.id]===undefined)s.player.portStanding[port.id]=0; }
+  const generated=buildInitialPortMarkets();
+  for(const [portId,market] of Object.entries(generated)){ if(!s.markets[portId])s.markets[portId]=market; }
+}
+
 function continueLocalCampaign(): { ok:boolean; message:string } {
   try {
     state=loadLocal();
     if(!state)throw new Error("No save found");
+    activateExpandedWorld(state);
     selectedMapTarget=undefined;
     mapCameraState=undefined;
     lastSearchWatersResult=undefined;
@@ -2000,7 +2034,7 @@ app.addEventListener("wheel",(event)=>{
   c.targetX=next.x;c.targetY=next.y;c.targetViewWidth=next.viewWidth;state.settings.navigationZoom=legacyZoomBand(next.viewWidth);scheduleMapCameraFrame();
 },{passive:false});
 
-app.addEventListener("submit",(event)=>{const form=event.target;if(!(form instanceof HTMLFormElement))return;event.preventDefault(); if(form.id==="creation-form"){try{state=createGame(creationFromForm(form));selectedMapTarget=undefined;mapCameraState=undefined;tab="town";dialogueLines=[];activeDialogueNpcId=undefined;inspectedCrewNpcId=undefined;poiFocusAction=undefined;captainPanelTab="sheet";crewPanelTab="sheet";selectedInventoryOwnerId="player";selectedInventoryItemId=undefined;inventoryFilters={player:"all"};renderGame();toast("Your captain begins in Veyrholm.");void audio.unlock().then(()=>cue("bell"));}catch(error){toast(error instanceof Error?error.message:"Could not create campaign.");}return;} if(form.id==="dialogue-form"&&state){const input=form.elements.namedItem("message") as HTMLInputElement|null;const message=input?.value.trim()??"";if(!message)return;const npcId=activeDialogueNpcId;if(!npcId||!state.npcs[npcId]){toast("No conversation is active.");return;}dialogueLines.push({speaker:state.player.character.name,text:message});const reply=deterministicCharacterMindReply(state,npcId,message);dialogueLines.push({speaker:state.npcs[npcId]?.name??"NPC",text:reply.text});if(reply.proposedMemory){const memoryId=`event.dialogue.${state.absoluteHour}.${state.worldEvents.length}`;state.worldEvents.push({id:memoryId,type:"character_conversation",atHour:state.absoluteHour,...(state.player.currentPortId?{locationId:state.player.currentPortId}:{}),participants:[state.player.character.id,npcId],summary:reply.proposedMemory,canonicalData:{interpretedIntent:reply.interpretedIntent,source:reply.source},importance:1});const npc=state.npcs[npcId];if(npc&&!npc.brain.memories.includes(memoryId))npc.brain.memories.push(memoryId);}cue("ui");renderGame();requestAnimationFrame(()=>revealWithinLocalPane("#dialogue-panel", "end"));}});
+app.addEventListener("submit",(event)=>{const form=event.target;if(!(form instanceof HTMLFormElement))return;event.preventDefault(); if(form.id==="creation-form"){try{state=createGame(creationFromForm(form));activateExpandedWorld(state);selectedMapTarget=undefined;mapCameraState=undefined;tab="town";dialogueLines=[];activeDialogueNpcId=undefined;inspectedCrewNpcId=undefined;poiFocusAction=undefined;captainPanelTab="sheet";crewPanelTab="sheet";selectedInventoryOwnerId="player";selectedInventoryItemId=undefined;inventoryFilters={player:"all"};renderGame();toast(`Your captain begins in ${PORT_BY_ID[state.player.currentPortId??""]?.name??"port"}.`);void audio.unlock().then(()=>cue("bell"));}catch(error){toast(error instanceof Error?error.message:"Could not create campaign.");}return;} if(form.id==="dialogue-form"&&state){const input=form.elements.namedItem("message") as HTMLInputElement|null;const message=input?.value.trim()??"";if(!message)return;const npcId=activeDialogueNpcId;if(!npcId||!state.npcs[npcId]){toast("No conversation is active.");return;}dialogueLines.push({speaker:state.player.character.name,text:message});const reply=deterministicCharacterMindReply(state,npcId,message);dialogueLines.push({speaker:state.npcs[npcId]?.name??"NPC",text:reply.text});if(reply.proposedMemory){const memoryId=`event.dialogue.${state.absoluteHour}.${state.worldEvents.length}`;state.worldEvents.push({id:memoryId,type:"character_conversation",atHour:state.absoluteHour,...(state.player.currentPortId?{locationId:state.player.currentPortId}:{}),participants:[state.player.character.id,npcId],summary:reply.proposedMemory,canonicalData:{interpretedIntent:reply.interpretedIntent,source:reply.source},importance:1});const npc=state.npcs[npcId];if(npc&&!npc.brain.memories.includes(memoryId))npc.brain.memories.push(memoryId);}cue("ui");renderGame();requestAnimationFrame(()=>revealWithinLocalPane("#dialogue-panel", "end"));}});
 window.addEventListener("keydown",(event)=>{
   if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==="s"&&state){event.preventDefault();saveLocal(state);cue("page");toast("Campaign saved.");return;}
   if(!state||!document.querySelector("svg.chart-v04"))return;
