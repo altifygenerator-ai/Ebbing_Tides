@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 
 const fixture = JSON.parse(await readFile(new URL("./fixtures/atlas-registration-v06d.json", import.meta.url), "utf8"));
 const manifest = JSON.parse(await readFile(new URL("../public/alpha/atlas-lod-manifest.json", import.meta.url), "utf8"));
+const report = JSON.parse(await readFile(new URL("../public/art/maps/lod/atlas-lod-generation-report.json", import.meta.url), "utf8"));
 const { PORTS } = await import("../public/alpha/js/data/seed/ports.js");
 const { POINTS_OF_INTEREST } = await import("../public/alpha/js/data/seed/pois.js");
 const { GLOBAL_ATLAS, WORLD_DEVELOPED_BOUNDS, getWorldCell } = await import("../public/alpha/js/data/seed/worldMap.js");
@@ -78,11 +79,39 @@ test("atlas LOD registration remains exact and higher levels tile without gaps",
   }
 });
 
-test("alpha shell loads the resolution-aware atlas runtime", async () => {
+test("registered 12k navigation tiles are active and generation-locked", () => {
+  const level = manifest.levels.find((entry) => entry.id === "atlas-12000-nav-tiles");
+  assert.ok(level);
+  assert.equal(level.status, "active");
+  assert.equal(level.columns, 6);
+  assert.equal(level.rows, 4);
+  assert.equal(level.tilePixelWidth, 2000);
+  assert.equal(level.tilePixelHeight, 2000);
+  assert.equal(report.level.id, level.id);
+  assert.equal(report.tiles.length, 24);
+  assert.ok(report.totalBytes > 0);
+  const paths = new Set();
+  for (const tile of report.tiles) {
+    assert.equal(tile.width, 2000);
+    assert.equal(tile.height, 2000);
+    assert.match(tile.sha256, /^[0-9a-f]{64}$/);
+    assert.match(tile.path, /^\/art\/maps\/lod\/atlas-12000\/c[0-5]-r[0-3]\.webp$/);
+    paths.add(tile.path);
+  }
+  assert.equal(paths.size, 24, "generation report should contain 24 unique registered tiles");
+});
+
+test("alpha shell loads resolution-aware atlas runtime and smooth tile fallback styling", async () => {
   const html = await readFile(new URL("../public/alpha/index.html", import.meta.url), "utf8");
   const runtime = await readFile(new URL("../public/alpha/atlas-lod.js", import.meta.url), "utf8");
+  const css = await readFile(new URL("../public/alpha/atlas-quality.css", import.meta.url), "utf8");
   assert.match(html, /\/alpha\/atlas-lod\.js/);
+  assert.match(html, /\/alpha\/atlas-quality\.css/);
   assert.match(runtime, /requiredAtlasPixels/);
   assert.match(runtime, /data-atlas-tile/);
   assert.match(runtime, /devicePixelRatio/);
+  assert.match(runtime, /classList\.add\("is-loaded"\)/);
+  assert.match(runtime, /Set href only after listeners and fallback are in place/);
+  assert.match(css, /\.atlas-lod-tile\.is-loaded/);
+  assert.match(css, /prefers-reduced-motion/);
 });
