@@ -12,7 +12,11 @@
     "build": "next build",
     "start": "next start",
     "alpha:registry": "node scripts/generate-alpha-06c-registry-artifacts.mjs",
-    "alpha:art-layouts": "node scripts/verify-art-layouts.mjs"
+    "alpha:art-layouts": "node scripts/verify-art-layouts.mjs",
+    "atlas:prepare": "node scripts/apply-atlas-quality-pass1.mjs",
+    "atlas:generate": "node scripts/generate-atlas-lod.mjs --level=atlas-12000-nav-tiles --activate",
+    "atlas:verify": "node scripts/generate-atlas-lod.mjs --level=atlas-12000-nav-tiles --verify-only",
+    "atlas:test": "node scripts/apply-atlas-quality-pass1.mjs && node --test tests/atlas-quality-pass1.test.mjs && node --check public/alpha/atlas-lod.js && node --check public/alpha/js/alpha/main.js"
   },
   "dependencies": {
     "next": "^16.0.0",
