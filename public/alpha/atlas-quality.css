@@ -17,6 +17,25 @@
   visibility: visible;
 }
 
+/*
+ * Runtime labels are vector UI, not baked map paint. The LOD controller computes these
+ * world-unit values from the live SVG viewBox so labels stay near a readable screen size
+ * instead of becoming microscopic at strategy zoom and enormous at close navigation zoom.
+ */
+.chart-v04 .port-glyph text,
+.chart-v04 .poi-glyph text {
+  font-size: var(--atlas-map-label-size, .35px);
+  stroke-width: var(--atlas-map-label-stroke, .08px);
+}
+
+.chart-v04 .port-glyph circle,
+.chart-v04 .port-glyph .anchor-mark,
+.chart-v04 .poi-glyph path,
+.chart-v04 .poi-glyph circle,
+.chart-v04 .selected-target-ring {
+  vector-effect: non-scaling-stroke;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .chart-v04 .atlas-lod-tile {
     transition: none;
