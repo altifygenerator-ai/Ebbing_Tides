@@ -118,9 +118,10 @@ function tip(text) { return `data-tooltip="${esc(text)}" tabindex="0"`; }
 // accent mounted into purpose-built sockets in that culture frame. Unimplemented packs
 // fall back to the neutral structural UI rather than borrowing another culture's art.
 const IMPLEMENTED_CHARACTER_CULTURE_PACKS = new Set(["skeldran"]);
+const IMPLEMENTED_CREATOR_CULTURE_PACKS = new Set(["skeldran", "asterian"]);
 const IMPLEMENTED_CHARACTER_RELIGION_PACKS = new Set(["old_gods", "covenant"]);
-function characterThemeAttributes(culture, religion) {
-    const culturePack = IMPLEMENTED_CHARACTER_CULTURE_PACKS.has(culture) ? culture : "neutral";
+function characterThemeAttributes(culture, religion, culturePacks = IMPLEMENTED_CHARACTER_CULTURE_PACKS) {
+    const culturePack = culturePacks.has(culture) ? culture : "neutral";
     const religionPack = IMPLEMENTED_CHARACTER_RELIGION_PACKS.has(religion) ? religion : "none";
     return `data-character-art="culture-religion-v2" data-character-production="reference-locked-v1" data-character-production1f="shipwright-ledger" data-culture-theme="${esc(culture)}" data-culture-pack="${esc(culturePack)}" data-religion-accent="${esc(religion)}" data-religion-pack="${esc(religionPack)}"`;
 }
@@ -131,7 +132,7 @@ function syncCreatorCharacterTheme(form) {
     const culture = String(form.elements.namedItem("culture")?.value ?? "skeldran");
     const religion = String(form.elements.namedItem("religion")?.value ?? "unaffiliated");
     root.dataset.cultureTheme = culture;
-    root.dataset.culturePack = IMPLEMENTED_CHARACTER_CULTURE_PACKS.has(culture) ? culture : "neutral";
+    root.dataset.culturePack = IMPLEMENTED_CREATOR_CULTURE_PACKS.has(culture) ? culture : "neutral";
     root.dataset.religionAccent = religion;
     root.dataset.religionPack = IMPLEMENTED_CHARACTER_RELIGION_PACKS.has(religion) ? religion : "none";
 }
@@ -664,8 +665,7 @@ function navalAudioSnapshot(s) {
     const enemy = e ? s.ships[e.otherShipId] : undefined;
     const player = getPlayerShip(s);
     return {
-        encounterId: e?.id,
-        otherShipId: e?.otherShipId,
+        ...(e ? { encounterId: e.id, otherShipId: e.otherShipId } : {}),
         enemyHull: enemy?.systems.hull ?? 0,
         enemySails: enemy?.systems.sails ?? 0,
         enemyRigging: enemy?.systems.rigging ?? 0,
@@ -1023,7 +1023,7 @@ function renderCreation() {
     const portraitHtml = `<div class="creator-preview-frame" id="creator-portrait-preview">${defaultPortraitArt?.path ? `<img src="${defaultPortraitArt.path}" alt="Selected portrait">` : `<div class="portrait-placeholder">Portrait</div>`}<div class="creator-identity-caption" id="creator-identity-caption" aria-label="Selected homeland culture and faith"></div></div>`;
     const footerHtml = `<div class="creator-footer-controls"><div class="creator-footer-main"><button class="et-button" type="button" data-creator-prev data-action="creator-step-delta" data-dir="-1">‹ Previous</button><span data-creator-current>${creatorStep + 1} / 6</span><button class="et-button" type="button" data-creator-next data-action="creator-step-delta" data-dir="1">Next ›</button><button class="et-button" type="submit" form="creation-form" data-creator-begin hidden>Enter the world</button></div>${hasLocalSave() ? `<div class="creator-footer-secondary"><button type="button" class="et-button small" data-action="continue-save">Continue Save</button></div>` : ""}</div>`;
     const referencePath = ASSET_BY_ID["ui.reference.character_creator"]?.path;
-    app.innerHTML = `<main class="creation creator-production-screen character-structure-screen" data-character-structure="purpose-painted-lock-candidate" data-character-refinement="frame-vignette-1e" ${characterThemeAttributes(c.culture, c.religion)} data-game-viewport><div class="creator-production-surface character-structure-grid reference-ghost-surface"><span class="character-culture-outer-frame" aria-hidden="true"></span><div class="character-art-cell character-art-rail"><aside class="creator-production-rail character-structure-rail"><div class="creator-brand"><span class="eyebrow">Ebbing Tides</span><b>Captain's Record</b><small>Character setup</small></div>${navHtml}<div class="character-culture-rail-gallery" aria-hidden="true"><span class="character-culture-banner-art"></span><span class="character-culture-lantern-art"></span></div></aside><span class="character-culture-frame" aria-hidden="true"></span></div><div class="character-art-cell character-art-pane">${characterManuscriptHousing("creator-manuscript-housing")}<section class="creator-production-form character-structure-pane">${formHtml}<span class="character-culture-manuscript-watermark" aria-hidden="true"></span><span class="character-faith-socket" aria-hidden="true"></span></section><span class="character-culture-frame" aria-hidden="true"></span></div><div class="character-art-cell character-art-side"><aside class="creator-production-side"><div class="creator-production-portrait character-structure-portrait">${portraitHtml}</div><div class="character-culture-side-vignette" aria-hidden="true"></div><div class="creator-production-footer character-structure-footer">${footerHtml}</div></aside><span class="character-culture-frame" aria-hidden="true"></span></div>${referencePath ? renderReferenceGhost(referencePath, "Approved character creator reference") : ""}</div></main><div class="toast-host"></div>`;
+    app.innerHTML = `<main class="creation creator-production-screen character-structure-screen" data-character-structure="purpose-painted-lock-candidate" data-character-refinement="frame-vignette-1e" ${characterThemeAttributes(c.culture, c.religion, IMPLEMENTED_CREATOR_CULTURE_PACKS)} data-game-viewport><div class="creator-production-surface character-structure-grid reference-ghost-surface"><span class="character-culture-outer-frame" aria-hidden="true"></span><div class="character-art-cell character-art-rail"><aside class="creator-production-rail character-structure-rail"><div class="creator-brand"><span class="eyebrow">Ebbing Tides</span><b>Captain's Record</b><small>Character setup</small></div>${navHtml}<div class="character-culture-rail-gallery" aria-hidden="true"><span class="character-culture-banner-art"></span><span class="character-culture-lantern-art"></span></div></aside><span class="character-culture-frame" aria-hidden="true"></span></div><div class="character-art-cell character-art-pane">${characterManuscriptHousing("creator-manuscript-housing")}<section class="creator-production-form character-structure-pane">${formHtml}<span class="character-culture-manuscript-watermark" aria-hidden="true"></span><span class="character-faith-socket" aria-hidden="true"></span></section><span class="character-culture-frame" aria-hidden="true"></span></div><div class="character-art-cell character-art-side"><aside class="creator-production-side"><div class="creator-production-portrait character-structure-portrait">${portraitHtml}</div><div class="character-culture-side-vignette" aria-hidden="true"></div><div class="creator-production-footer character-structure-footer">${footerHtml}</div></aside><span class="character-culture-frame" aria-hidden="true"></span></div>${referencePath ? renderReferenceGhost(referencePath, "Approved character creator reference") : ""}</div></main><div class="toast-host"></div>`;
     initializePresentation();
     const form = document.querySelector("#creation-form");
     const updateCounters = () => { const fd = new FormData(form); const attrTotal = attrs.reduce((sum, a) => sum + Number(fd.get(`attr_${a}`)), 0); const selected = fd.getAll("coreSkill").length; const attrNode = form.querySelector("#attr-total"); const skillNode = form.querySelector("#skill-total"); if (attrNode)

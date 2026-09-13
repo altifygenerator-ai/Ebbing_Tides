@@ -1,0 +1,8 @@
+/* Atlas finish recovery pass: presentation only. It does not own movement, hit cells, ports, POIs, routes, or camera state.
+   Marker / label geometry stays fully owned by the existing game styles. */
+.chart-v04 .atlas-lod-tiles { pointer-events: none; }
+.chart-v04 .atlas-lod-tile { opacity: 0; pointer-events: none; transition: opacity 140ms ease-out; }
+.chart-v04 .atlas-lod-tile.is-loaded { opacity: 1; }
+.chart-v04 .atlas-art,
+.chart-v04 .atlas-lod-tile { image-rendering: auto; }
+@media (prefers-reduced-motion: reduce) { .chart-v04 .atlas-lod-tile { transition: none; } }

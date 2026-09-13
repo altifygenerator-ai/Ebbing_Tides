@@ -1,0 +1,47 @@
+﻿[
+    {
+        "path":  "public/alpha/atlas-lod.js",
+        "existed":  true,
+        "kind":  "file"
+    },
+    {
+        "path":  "public/alpha/atlas-quality.css",
+        "existed":  true,
+        "kind":  "file"
+    },
+    {
+        "path":  "public/alpha/atlas-lod-manifest.json",
+        "existed":  true,
+        "kind":  "file"
+    },
+    {
+        "path":  "scripts/generate-atlas-lod.mjs",
+        "existed":  true,
+        "kind":  "file"
+    },
+    {
+        "path":  "tests/map-finish-git-aligned.test.mjs",
+        "existed":  true,
+        "kind":  "file"
+    },
+    {
+        "path":  "tests/fixtures/atlas-registration-v06d.json",
+        "existed":  true,
+        "kind":  "file"
+    },
+    {
+        "path":  "docs/handoffs/alpha-06d-map-finish-git-aligned.md",
+        "existed":  true,
+        "kind":  "file"
+    },
+    {
+        "path":  "public/alpha/index.html",
+        "existed":  true,
+        "kind":  "file"
+    },
+    {
+        "path":  "public/art/maps/lod",
+        "existed":  false,
+        "kind":  "file"
+    }
+]

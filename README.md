@@ -1,28 +1,62 @@
-# Ebbing Tides Alpha 0.6D — Character / RPG Pass 1D
+# Naval Audio Variation v2 — TypeScript Compatibility Fix
 
-**Manuscript Integration Cleanup**
+This fixes the one TypeScript error shown after Map Finish Pass 3 installed successfully:
 
-This pass responds directly to the live Pass 1C screenshots. It keeps the painted manuscript direction, but removes the frame stacking and art/content collisions that made parts of the Character Creator, Captain Sheet, Crew Roster, and Journal still read like digital panels with decoration laid over them.
+`TS2375` on `NavalAudioSnapshot` with `exactOptionalPropertyTypes: true`.
 
-Key changes:
+## Why it happens
 
-- Reworked the active manuscript page and muster-book paintings into quieter runtime-safe interiors while preserving the painted binding/page edge treatment.
-- Cleaned the Journal writing pages so the painted open book remains the physical surface without decorative art intruding into live entries.
-- Removed extra full-screen brass/chart corner overlays from manuscript screens.
-- Removed duplicated cornerwork, decorative header overlays, repeated painted subsection frames, and other layers that were visually colliding with live UI.
-- Character Creator now uses one dominant folio surface; its portrait + navigation side is one parchment side folio instead of separate framed cards.
-- Captain/Officer records now enforce horizontal containment and use a quieter parchment portrait column with no extra ship vignette behind live information.
-- Crew Roster uses a cleaner painted muster ledger with code-owned rows and summary strips unobstructed.
-- Journal remains large and dominant, but page-edge tabs and live writing are separated cleanly from the book painting.
-- Manuscript-local controls remain readable but use a softer leather/ink treatment instead of heavy black digital frames.
-- No gameplay, Reputation/Law, crime, smuggling, privateering, or save-schema changes.
+The v2 audio snapshot always returns both properties:
 
-Automated gate on the development tree:
+- `encounterId`
+- `otherShipId`
 
-- Tests: 281/281 PASS
-- TypeScript: PASS
-- Alpha build: PASS
-- Art-layout verification: 2/2 PASS
-- Save schema: v11
+but either value may be `undefined`.
 
-Manual visual approval is still required before Phase 1 is locked and Phase 2 begins.
+The interface incorrectly declared them as optional properties:
+
+```ts
+encounterId?: string;
+otherShipId?: string;
+```
+
+With `exactOptionalPropertyTypes`, an optional property means the property may be omitted; it
+does **not** automatically mean a present property may explicitly contain `undefined`.
+
+The correct type for the actual returned object is:
+
+```ts
+encounterId: string | undefined;
+otherShipId: string | undefined;
+```
+
+## What this changes
+
+Only the TypeScript interface in:
+
+`src/alpha/main.ts`
+
+There is no runtime JavaScript change and no gameplay change.
+
+It does not alter:
+
+- Naval Audio Variation v2 behavior
+- map/atlas LOD
+- navigation timing or interpolation
+- naval combat
+- travel/economy/weather/encounters
+- saves/schema
+
+## Apply
+
+From the Ebbing Tides project root:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File ".\apply_naval_audio_v2_typescript_fix.ps1"
+```
+
+The script makes a backup and then runs:
+
+```powershell
+npm run typecheck:alpha
+```

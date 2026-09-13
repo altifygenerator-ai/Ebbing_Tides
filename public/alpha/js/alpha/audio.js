@@ -6,7 +6,8 @@ const EXTERNAL_SCENES = new Set([
     "sea_calm",
     "sea_coastal",
     "sea_rough",
-    "sea_storm"
+    "sea_storm",
+    "naval_combat"
 ]);
 const SCENE_BEDS = {
     veyrholm_market: { path: "/audio/locations/veyrholm_market_layered_prototype.ogg", gain: 0.52 },
@@ -16,7 +17,8 @@ const SCENE_BEDS = {
     sea_calm: { path: "/audio/navigation/nav_calm_open_sea_v1.ogg", gain: 0.44 },
     sea_coastal: { path: "/audio/navigation/nav_coastal_near_port_v1.ogg", gain: 0.46 },
     sea_rough: { path: "/audio/navigation/nav_rough_sea_v1.ogg", gain: 0.48 },
-    sea_storm: { path: "/audio/navigation/nav_storm_heavy_weather_v1.ogg", gain: 0.5 }
+    sea_storm: { path: "/audio/navigation/nav_storm_heavy_weather_v1.ogg", gain: 0.5 },
+    naval_combat: { path: "/audio/combat/naval/naval_combat_music_loop.ogg", gain: 0.34 }
 };
 const OCEAN_OVERLAYS = {
     calm: [
@@ -27,6 +29,51 @@ const OCEAN_OVERLAYS = {
         { path: "/audio/navigation/navigation_music_ocean_ambience_forward_v1.ogg", gain: 0.2 },
         { path: "/audio/navigation/navigation_music_ocean_balanced_v1.ogg", gain: 0.18 }
     ]
+};
+const EXTERNAL_CUES = {
+    cannon: {
+        clips: [{ path: "/audio/combat/naval/cannon_round_shot.ogg", gain: 0.90 }],
+        cooldownMs: 190
+    },
+    cannon_round: {
+        clips: [{ path: "/audio/combat/naval/round_shot_volley.ogg", gain: 0.96 }],
+        cooldownMs: 220
+    },
+    cannon_chain: {
+        clips: [{ path: "/audio/combat/naval/chain_shot_volley.ogg", gain: 0.94 }],
+        cooldownMs: 260
+    },
+    enemy_cannon: {
+        clips: [{ path: "/audio/combat/naval/cannon_round_shot.ogg", gain: 0.78 }],
+        cooldownMs: 220
+    },
+    naval_maneuver: {
+        clips: [{ path: "/audio/combat/naval/maneuver_crew_cue.ogg", gain: 0.72 }],
+        cooldownMs: 180,
+        chance: 0.42
+    },
+    grapple: {
+        clips: [{ path: "/audio/combat/naval/crew_shout_hey.ogg", gain: 0.66 }],
+        cooldownMs: 220,
+        chance: 0.68
+    },
+    boarding: {
+        clips: [{ path: "/audio/combat/naval/boarding_charge_cue.ogg", gain: 0.86 }],
+        cooldownMs: 300
+    },
+    surrender: {
+        clips: [{ path: "/audio/combat/naval/crew_shout_hey.ogg", gain: 0.58 }],
+        cooldownMs: 350,
+        chance: 0.50
+    },
+    naval_victory: {
+        clips: [{ path: "/audio/combat/naval/naval_victory_cheer_sting.ogg", gain: 0.88 }],
+        cooldownMs: 1800
+    },
+    naval_defeat: {
+        clips: [{ path: "/audio/combat/naval/naval_defeat_explosion_sting.ogg", gain: 0.82 }],
+        cooldownMs: 1800
+    }
 };
 function clamp01(value) {
     return Math.max(0, Math.min(1, value));
@@ -60,6 +107,10 @@ export class AlphaAudio {
     overlay;
     overlayTimer;
     sceneToken = 0;
+    activeSfx = new Set();
+    lastCueAt = new Map();
+    cuePreloads = [];
+    cuesPreloaded = false;
     ensure() {
         if (!this.ctx) {
             const AC = window.AudioContext || window.webkitAudioContext;
@@ -77,6 +128,11 @@ export class AlphaAudio {
             this.gain.gain.value = enabled ? master : 0;
         if (!enabled) {
             this.stopSceneAudio();
+            for (const media of this.activeSfx) {
+                media.pause();
+                media.currentTime = 0;
+            }
+            this.activeSfx.clear();
             return;
         }
         this.refreshSceneVolumes();
@@ -84,12 +140,16 @@ export class AlphaAudio {
             this.startScene();
     }
     async unlock() {
+        const firstUnlock = !this.unlocked;
         this.ensure();
         if (this.ctx?.state === "suspended")
             await this.ctx.resume();
         this.unlocked = true;
-        if (this.enabled)
-            this.startScene();
+        if (firstUnlock) {
+            this.preloadExternalCues();
+            if (this.enabled)
+                this.startScene();
+        }
     }
     setScene(scene) {
         if (this.scene === scene)
@@ -100,9 +160,59 @@ export class AlphaAudio {
         else if (!this.enabled)
             this.stopSceneAudio();
     }
+    preloadExternalCues() {
+        if (this.cuesPreloaded)
+            return;
+        this.cuesPreloaded = true;
+        const paths = new Set();
+        for (const spec of Object.values(EXTERNAL_CUES)) {
+            for (const clip of spec?.clips ?? [])
+                paths.add(clip.path);
+        }
+        for (const path of paths) {
+            const media = new Audio(path);
+            media.preload = "auto";
+            media.volume = 0;
+            media.load();
+            this.cuePreloads.push(media);
+        }
+    }
+    playExternalCue(cue, spec) {
+        const now = performance.now();
+        const last = this.lastCueAt.get(cue) ?? Number.NEGATIVE_INFINITY;
+        if (now - last < spec.cooldownMs)
+            return;
+        if ((spec.chance ?? 1) < 1 && Math.random() >= (spec.chance ?? 1))
+            return;
+        this.lastCueAt.set(cue, now);
+        for (const clip of spec.clips) {
+            const start = () => {
+                if (!this.enabled || !this.unlocked)
+                    return;
+                const media = new Audio(clip.path);
+                media.preload = "auto";
+                media.loop = false;
+                media.volume = this.targetVolume(clip.gain);
+                this.activeSfx.add(media);
+                const cleanup = () => this.activeSfx.delete(media);
+                media.addEventListener("ended", cleanup, { once: true });
+                media.addEventListener("error", cleanup, { once: true });
+                media.play().catch(cleanup);
+            };
+            if ((clip.delayMs ?? 0) > 0)
+                window.setTimeout(start, clip.delayMs);
+            else
+                start();
+        }
+    }
     play(cue) {
         if (!this.enabled || !this.unlocked)
             return;
+        const externalCue = EXTERNAL_CUES[cue];
+        if (externalCue) {
+            this.playExternalCue(cue, externalCue);
+            return;
+        }
         const ctx = this.ensure();
         const out = this.gain;
         const baseNow = ctx.currentTime;
@@ -424,4 +534,3 @@ export class AlphaAudio {
     }
 }
 export const audio = new AlphaAudio();
-//# sourceMappingURL=audio.js.map

@@ -2,8 +2,8 @@ import type { GridPoint } from "./types.js";
 import { GLOBAL_ATLAS } from "../data/seed/worldMap.js";
 
 export const NAV_CAMERA = {
-  minViewWidth: 12,
-  defaultViewWidth: 18,
+  minViewWidth: 24,
+  defaultViewWidth: 30,
   farViewWidth: 120,
   maxViewWidth: 120,
   aspectRatio: 3 / 2,
@@ -68,14 +68,14 @@ export function cameraViewBox(camera: Pick<NavigationCameraState, "x" | "y" | "v
 
 export function cameraLod(viewWidth: number): "far" | "medium" | "navigation" | "close" {
   if (viewWidth >= 36) return "far";
-  if (viewWidth >= 24) return "medium";
-  if (viewWidth > 14) return "navigation";
+  if (viewWidth >= 30) return "medium";
+  if (viewWidth > 24) return "navigation";
   return "close";
 }
 
 export function legacyZoomBand(viewWidth: number): "far" | "navigation" | "close" {
   if (viewWidth >= 30) return "far";
-  if (viewWidth <= 14) return "close";
+  if (viewWidth <= 24) return "close";
   return "navigation";
 }
 

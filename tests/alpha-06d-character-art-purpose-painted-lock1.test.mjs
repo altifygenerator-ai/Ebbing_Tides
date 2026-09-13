@@ -12,6 +12,7 @@ test('character art lock is scoped to Character Creator and Captain and selects 
   const main=read('src/alpha/main.ts');
   assert.match(main,/data-character-art="culture-religion-v2"/);
   assert.match(main,/IMPLEMENTED_CHARACTER_CULTURE_PACKS[^\n]*\["skeldran"\]/);
+  assert.match(main,/IMPLEMENTED_CREATOR_CULTURE_PACKS[^\n]*\["skeldran","asterian"\]/);
   assert.match(main,/IMPLEMENTED_CHARACTER_RELIGION_PACKS[^\n]*\["old_gods","covenant"\]/);
   assert.match(main,/syncCreatorCharacterTheme\(form\)/);
   assert.match(main,/characterThemeAttributes\(s\.player\.character\.culture,s\.player\.character\.religion\)/);
@@ -56,10 +57,12 @@ test('religion remains a small accent mounted in a culture-built socket',()=>{
   assert.match(css,/\[data-religion-pack="none"\] \.character-faith-socket\{display:none\}/);
 });
 
-test('unimplemented cultures stay neutral instead of borrowing Skeldran art',()=>{
+test('unimplemented cultures stay neutral and Asterian remains creator-only until Captain is fitted',()=>{
   const main=read('src/alpha/main.ts');
   const css=read('public/alpha/styles.css');
-  assert.match(main,/IMPLEMENTED_CHARACTER_CULTURE_PACKS\.has\(culture\)\?culture:"neutral"/);
+  assert.match(main,/const culturePack=culturePacks\.has\(culture\)\?culture:"neutral"/);
+  assert.match(main,/characterThemeAttributes\(c\.culture,c\.religion,IMPLEMENTED_CREATOR_CULTURE_PACKS\)/);
+  assert.match(main,/characterThemeAttributes\(s\.player\.character\.culture,s\.player\.character\.religion\)/);
   assert.match(css,/\[data-culture-pack="neutral"\][\s\S]*character-culture-frame[\s\S]*display:none!important/);
 });
 

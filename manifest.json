@@ -1,0 +1,27 @@
+{
+  "files": [
+    "public/audio/combat/naval/crew_shout_hey.mp3",
+    "public/audio/combat/naval/crew_shout_hey.ogg",
+    "public/audio/combat/naval/command_fire.mp3",
+    "public/audio/combat/naval/command_fire.ogg",
+    "public/audio/combat/naval/cannon_round_shot.mp3",
+    "public/audio/combat/naval/cannon_round_shot.ogg",
+    "public/audio/combat/naval/maneuver_crew_cue.mp3",
+    "public/audio/combat/naval/maneuver_crew_cue.ogg",
+    "public/audio/combat/naval/round_shot_volley.mp3",
+    "public/audio/combat/naval/round_shot_volley.ogg",
+    "public/audio/combat/naval/chain_shot_volley.mp3",
+    "public/audio/combat/naval/chain_shot_volley.ogg",
+    "public/audio/combat/naval/naval_combat_music_loop.mp3",
+    "public/audio/combat/naval/naval_combat_music_loop.ogg",
+    "README_NAVAL_COMBAT_AUDIO.md"
+  ],
+  "source_files": [
+    "freesound_community-men-shouting-hey-6376.mp3",
+    "universfield-male-shouting-fire-259681.mp3",
+    "universfield-cannon-shot-352459.mp3",
+    "mrfriends-pistol-shot-233473.mp3",
+    "freesound_community-metal-chain-7056.mp3",
+    "cyberwave-orchestra-dramatic-orchestral-combat-music-loop-382814.mp3"
+  ]
+}

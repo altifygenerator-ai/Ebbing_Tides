@@ -56,8 +56,8 @@ test('creator and captain use code-owned manuscript housings assembled from inde
 
 test('Production 1E retires the remaining rectangular frame treatment where the new painted housing owns structure',()=>{
   const css=read('public/alpha/styles.css');
-  assert.match(css,/\.creator-production-screen\[data-character-refinement="frame-vignette-1e"\]\[data-culture-pack="skeldran"\] \.character-art-pane>\.character-culture-frame\{[\s\S]*?display:none!important/);
-  assert.match(css,/\.captain-sheet-screen\[data-character-refinement="frame-vignette-1e"\]\[data-culture-pack="skeldran"\] \.character-structure-page::before,[\s\S]*?\.character-structure-page::after\{[\s\S]*?display:none!important/);
+  assert.match(css,/\.creator-production-screen\[data-character-refinement="frame-vignette-1e"\]\[data-culture-pack\]:not\(\[data-culture-pack="neutral"\]\) \.character-art-pane>\.character-culture-frame\{[\s\S]*?display:none!important/);
+  assert.match(css,/\.captain-sheet-screen\[data-character-refinement="frame-vignette-1e"\]\[data-culture-pack\]:not\(\[data-culture-pack="neutral"\]\) \.character-structure-page::before,[\s\S]*?\.character-structure-page::after\{[\s\S]*?display:none!important/);
   assert.match(css,/\.creator-choice-impact,[\s\S]*\.creator-toolbox-panel,[\s\S]*\.creator-effects-panel\{[\s\S]*border:0!important/);
   assert.match(css,/\.record-accordion-summary\{[\s\S]*border:0!important/);
 });

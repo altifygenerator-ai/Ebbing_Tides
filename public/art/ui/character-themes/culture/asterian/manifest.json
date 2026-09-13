@@ -1,0 +1,21 @@
+{
+  "id": "character.culture.asterian.creator.production1i",
+  "scope": ["character_creator"],
+  "role": "primary_culture_frame_pack",
+  "status": "creator_candidate_captain_pending",
+  "geometryOwner": "code",
+  "integration": "one continuous transparent manuscript housing plus fitted border-image slices around locked runtime regions",
+  "palette": {
+    "dominant": ["warm ivory", "sun-aged white limestone", "cream parchment"],
+    "secondary": ["wine red", "oxblood", "muted terracotta red"],
+    "metal": ["aged bronze", "restrained brass"],
+    "minorAccent": ["Mediterranean blue wave line"]
+  },
+  "assets": {
+    "creatorFrame": "production1i/creator_frame.png",
+    "registerTab": "production1i/register_tab.png",
+    "manuscriptTexture": "production1i/manuscript_texture.webp",
+    "railVignette": "/art/location/context/asteria/market.png",
+    "sideVignette": "/art/location/context/asteria/arrival_port.png"
+  }
+}

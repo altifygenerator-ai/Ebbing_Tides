@@ -1,0 +1,16 @@
+/* Atlas finish layer: presentation only. It does not own movement, hit cells, ports, POIs, routes, or camera state. */
+.chart-v04 .atlas-lod-tiles { pointer-events: none; }
+.chart-v04 .atlas-lod-tile { opacity: 0; pointer-events: none; transition: opacity 140ms ease-out; }
+.chart-v04 .atlas-lod-tile.is-loaded { opacity: 1; }
+.chart-v04[data-atlas-lod-level="atlas-12000-nav-tiles"] .atlas-art { visibility: visible; }
+.chart-v04 .port-glyph text,
+.chart-v04 .poi-glyph text {
+  font-size: var(--atlas-map-label-size, .35px);
+  stroke-width: var(--atlas-map-label-stroke, .08px);
+}
+.chart-v04 .port-glyph circle,
+.chart-v04 .port-glyph .anchor-mark,
+.chart-v04 .poi-glyph path,
+.chart-v04 .poi-glyph circle,
+.chart-v04 .selected-target-ring { vector-effect: non-scaling-stroke; }
+@media (prefers-reduced-motion: reduce) { .chart-v04 .atlas-lod-tile { transition: none; } }
