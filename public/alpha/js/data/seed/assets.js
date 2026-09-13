@@ -1,4 +1,6 @@
+import { SHIP_COMBAT_ASSET_REGISTRY } from "./shipCombatVisuals.js";
 export const ASSET_REGISTRY = [
+    ...SHIP_COMBAT_ASSET_REGISTRY,
     {
         "assetId": "map.world_atlas.labeled_v06d",
         "displayName": "Labeled World Atlas — Alpha 0.6D Canonical Navigation Master",
@@ -2508,7 +2510,87 @@ export const ASSET_REGISTRY = [
         path: "/art/characters/portraits/outer_isles/player_v2/OUTER_ISLES_018_Stormbound_Privateer_Of_The_Outer_Isles.png",
         sourceMaster: "OUTER_ISLES_018_Stormbound_Privateer_Of_The_Outer_Isles.png",
         notes: "Curated player-selectable portrait imported from the 0.6D portrait expansion pass. Raw pack copy is also retained in /art/characters/portraits/library/ for reference."
-    }
+    },
+    {
+        assetId: "ship.named.tideworn.portrait.pristine",
+        displayName: "Tideworn Fjord Cutter — Pristine Portrait",
+        type: "SHIP_REFERENCE",
+        category: "ship_portrait",
+        subcategory: "named_ship_portrait",
+        region: "skeldra",
+        status: "APPROVED_ANCHOR",
+        artStyleVersion: "PRODUCTION_1H",
+        regionalStyleVersion: "skeldra.ship.production1h",
+        era: "628 CR",
+        gameplayRole: ["ship_management", "inspection", "combat_portrait"],
+        path: "/art/ships/production1h/tideworn/tideworn_fjord_cutter_portrait_pristine.png",
+        sourceMaster: "Production 1H Tideworn approval set",
+        notes: "Canonical pristine Tideworn portrait. Named-ship art overrides generic Fjord Cutter inspection art."
+    },
+    {
+        assetId: "ship.named.tideworn.token.north",
+        displayName: "Tideworn Token — North",
+        type: "SHIP_TOKEN",
+        category: "ship_token",
+        subcategory: "named_ship_directional_token",
+        region: "skeldra",
+        status: "APPROVED",
+        artStyleVersion: "PRODUCTION_1H",
+        regionalStyleVersion: "skeldra.ship.production1h",
+        era: "628 CR",
+        gameplayRole: ["navigation", "directional_ship_token"],
+        path: "/art/ships/production1h/tideworn/128px/tideworn_token_north_128.png",
+        sourceMaster: "Production 1H Tideworn approval set",
+        notes: "Runtime 128px Tideworn token; bow at 12 o'clock."
+    },
+    {
+        assetId: "ship.named.tideworn.token.east",
+        displayName: "Tideworn Token — East",
+        type: "SHIP_TOKEN",
+        category: "ship_token",
+        subcategory: "named_ship_directional_token",
+        region: "skeldra",
+        status: "APPROVED",
+        artStyleVersion: "PRODUCTION_1H",
+        regionalStyleVersion: "skeldra.ship.production1h",
+        era: "628 CR",
+        gameplayRole: ["navigation", "directional_ship_token"],
+        path: "/art/ships/production1h/tideworn/128px/tideworn_token_east_128.png",
+        sourceMaster: "Production 1H Tideworn approval set",
+        notes: "Runtime 128px Tideworn token; bow at 3 o'clock."
+    },
+    {
+        assetId: "ship.named.tideworn.token.south",
+        displayName: "Tideworn Token — South",
+        type: "SHIP_TOKEN",
+        category: "ship_token",
+        subcategory: "named_ship_directional_token",
+        region: "skeldra",
+        status: "APPROVED",
+        artStyleVersion: "PRODUCTION_1H",
+        regionalStyleVersion: "skeldra.ship.production1h",
+        era: "628 CR",
+        gameplayRole: ["navigation", "directional_ship_token"],
+        path: "/art/ships/production1h/tideworn/128px/tideworn_token_south_128.png",
+        sourceMaster: "Production 1H Tideworn approval set",
+        notes: "Runtime 128px Tideworn token; bow at 6 o'clock."
+    },
+    {
+        assetId: "ship.named.tideworn.token.west",
+        displayName: "Tideworn Token — West",
+        type: "SHIP_TOKEN",
+        category: "ship_token",
+        subcategory: "named_ship_directional_token",
+        region: "skeldra",
+        status: "APPROVED",
+        artStyleVersion: "PRODUCTION_1H",
+        regionalStyleVersion: "skeldra.ship.production1h",
+        era: "628 CR",
+        gameplayRole: ["navigation", "directional_ship_token"],
+        path: "/art/ships/production1h/tideworn/128px/tideworn_token_west_128.png",
+        sourceMaster: "Production 1H Tideworn approval set",
+        notes: "Runtime 128px Tideworn token; bow at 9 o'clock."
+    },
 ];
 export const ASSET_BY_ID = Object.fromEntries(ASSET_REGISTRY.map((asset) => [asset.assetId, asset]));
 //# sourceMappingURL=assets.js.map

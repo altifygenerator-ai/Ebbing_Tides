@@ -1,6 +1,6 @@
 import { PORT_BY_ID } from "../data/seed/ports.js";
 import { POI_BY_ID } from "../data/seed/pois.js";
-import { cellKey, getWorldCell, GLOBAL_ATLAS, isNavigableCell, parseCellKey } from "../data/seed/worldMap.js";
+import { cellKey, getWorldCell, GLOBAL_ATLAS, parseCellKey } from "../data/seed/worldMap.js";
 import type { GameState, GridPoint, NavigationTarget, WorldMapCell } from "./types.js";
 import { effectiveSpecialist } from "./delegation.js";
 import { effectivePlayerVoyageSeamanship } from "./crewState.js";
@@ -12,58 +12,150 @@ const DIRECTIONS = [
   { x: 1, y: 1, factor: Math.SQRT2 }, { x: 1, y: -1, factor: Math.SQRT2 }, { x: -1, y: 1, factor: Math.SQRT2 }, { x: -1, y: -1, factor: Math.SQRT2 }
 ] as const;
 
+const PATH_CACHE_LIMIT = 2048;
+const pathCache = new Map<string, GridPoint[]>();
+const navigationCellCache = new Map<string, WorldMapCell>();
+
+interface OpenNode { key: string; f: number; }
+
+class MinOpenHeap {
+  private readonly nodes: OpenNode[] = [];
+
+  get size(): number { return this.nodes.length; }
+
+  push(node: OpenNode): void {
+    const nodes = this.nodes;
+    nodes.push(node);
+    let index = nodes.length - 1;
+    while (index > 0) {
+      const parent = Math.floor((index - 1) / 2);
+      if ((nodes[parent]?.f ?? Infinity) <= node.f) break;
+      nodes[index] = nodes[parent]!;
+      index = parent;
+    }
+    nodes[index] = node;
+  }
+
+  pop(): OpenNode | undefined {
+    const nodes = this.nodes;
+    const root = nodes[0];
+    const tail = nodes.pop();
+    if (!root || !tail || nodes.length === 0) return root;
+
+    let index = 0;
+    while (true) {
+      const left = index * 2 + 1;
+      if (left >= nodes.length) break;
+      const right = left + 1;
+      const child = right < nodes.length && nodes[right]!.f < nodes[left]!.f ? right : left;
+      if (nodes[child]!.f >= tail.f) break;
+      nodes[index] = nodes[child]!;
+      index = child;
+    }
+    nodes[index] = tail;
+    return root;
+  }
+}
+
 function heuristic(a: GridPoint, b: GridPoint): number { return Math.hypot(a.x - b.x, a.y - b.y); }
+function clonePath(path: GridPoint[]): GridPoint[] { return path.map((point) => ({ ...point })); }
+function routeCacheKey(start: GridPoint, goal: GridPoint): string { return `${cellKey(start)}>${cellKey(goal)}`; }
+
+function cachedWorldCell(point: GridPoint): WorldMapCell {
+  const key = cellKey(point);
+  const cached = navigationCellCache.get(key);
+  if (cached) return cached;
+  const cell = getWorldCell(point);
+  navigationCellCache.set(key, cell);
+  return cell;
+}
+
+function cachedPath(key: string): GridPoint[] | undefined {
+  const cached = pathCache.get(key);
+  if (cached === undefined) return undefined;
+  // Refresh insertion order so frequently reused port-to-port routes stay hot.
+  pathCache.delete(key);
+  pathCache.set(key, cached);
+  return clonePath(cached);
+}
+
+function rememberPath(key: string, path: GridPoint[]): void {
+  if (pathCache.has(key)) pathCache.delete(key);
+  pathCache.set(key, clonePath(path));
+  if (pathCache.size <= PATH_CACHE_LIMIT) return;
+  const oldest = pathCache.keys().next().value as string | undefined;
+  if (oldest !== undefined) pathCache.delete(oldest);
+}
 
 function canTraverseDiagonal(from: GridPoint, to: GridPoint): boolean {
   const dx = to.x - from.x;
   const dy = to.y - from.y;
   if (Math.abs(dx) !== 1 || Math.abs(dy) !== 1) return true;
   // Prevent corner-cutting through two touching land cells.
-  return isNavigableCell({ x: from.x + dx, y: from.y }) && isNavigableCell({ x: from.x, y: from.y + dy });
+  return cachedWorldCell({ x: from.x + dx, y: from.y }).navigable && cachedWorldCell({ x: from.x, y: from.y + dy }).navigable;
 }
 
 export function findSeaPath(start: GridPoint, goal: GridPoint): GridPoint[] {
-  const startCell = getWorldCell(start);
-  const goalCell = getWorldCell(goal);
+  const startCell = cachedWorldCell(start);
+  const goalCell = cachedWorldCell(goal);
   if (!startCell.navigable || !goalCell.navigable) return [];
+
   const startKey = cellKey(start);
   const goalKey = cellKey(goal);
   if (startKey === goalKey) return [{ ...start }];
 
-  const open = new Map<string, number>([[startKey, heuristic(start, goal)]]);
+  const cacheKey = routeCacheKey(start, goal);
+  const existing = cachedPath(cacheKey);
+  if (existing !== undefined) return existing;
+
+  const open = new MinOpenHeap();
+  open.push({ key: startKey, f: heuristic(start, goal) });
   const cameFrom = new Map<string, string>();
   const gScore = new Map<string, number>([[startKey, 0]]);
+  const closed = new Set<string>();
   let guard = GLOBAL_ATLAS.width * GLOBAL_ATLAS.height * 3;
 
   while (open.size && guard-- > 0) {
-    let currentKey = "";
-    let currentF = Infinity;
-    for (const [key, f] of open) if (f < currentF) { currentF = f; currentKey = key; }
-    if (!currentKey) break;
-    if (currentKey === goalKey) {
-      const path: GridPoint[] = [parseCellKey(currentKey)];
-      while (cameFrom.has(currentKey)) {
-        currentKey = cameFrom.get(currentKey)!;
-        path.push(parseCellKey(currentKey));
-      }
-      return path.reverse();
-    }
-    open.delete(currentKey);
+    const entry = open.pop();
+    if (!entry || closed.has(entry.key)) continue;
+
+    const currentKey = entry.key;
     const current = parseCellKey(currentKey);
     const currentG = gScore.get(currentKey) ?? Infinity;
+    // Multiple heap entries can exist after a cheaper route is found. Ignore stale ones.
+    if (entry.f > currentG + heuristic(current, goal) + 1e-9) continue;
+
+    if (currentKey === goalKey) {
+      const path: GridPoint[] = [current];
+      let traceKey = currentKey;
+      while (cameFrom.has(traceKey)) {
+        traceKey = cameFrom.get(traceKey)!;
+        path.push(parseCellKey(traceKey));
+      }
+      path.reverse();
+      rememberPath(cacheKey, path);
+      return clonePath(path);
+    }
+
+    closed.add(currentKey);
     for (const direction of DIRECTIONS) {
       const next = { x: current.x + direction.x, y: current.y + direction.y };
-      const nextCell = getWorldCell(next);
+      const nextCell = cachedWorldCell(next);
       if (!nextCell.navigable || !canTraverseDiagonal(current, next)) continue;
       const nextKey = cellKey(next);
+      if (closed.has(nextKey)) continue;
       // Routing cost chooses a safer/faster-looking path. It is NOT physical distance.
       const tentative = currentG + nextCell.movementCost * direction.factor;
       if (tentative >= (gScore.get(nextKey) ?? Infinity)) continue;
       cameFrom.set(nextKey, currentKey);
       gScore.set(nextKey, tentative);
-      open.set(nextKey, tentative + heuristic(next, goal));
+      open.push({ key: nextKey, f: tentative + heuristic(next, goal) });
     }
   }
+
+  // The atlas is static during a session, so remembering an unreachable directed route is safe
+  // and prevents repeated expensive retries by NPC route selection.
+  rememberPath(cacheKey, []);
   return [];
 }
 

@@ -1,0 +1,4 @@
+/* Production 1H.1 compatibility shim.
+   The corrected naval UI is owned by /alpha/styles.css. This file intentionally
+   contains no rules so older shells cannot reapply the retired circular-token
+   and nested-frame treatment. */

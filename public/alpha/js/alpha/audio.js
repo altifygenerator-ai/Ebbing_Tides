@@ -105,82 +105,159 @@ export class AlphaAudio {
             return;
         const ctx = this.ensure();
         const out = this.gain;
-        const now = ctx.currentTime;
-        const tone = (f0, f1, d = 0.1, type = "sine") => {
+        const baseNow = ctx.currentTime;
+        const tone = (f0, f1, d = 0.1, type = "sine", amp = 0.12, offset = 0) => {
+            const start = Math.max(ctx.currentTime, baseNow + offset);
             const o = ctx.createOscillator();
             const g = ctx.createGain();
             o.type = type;
-            o.frequency.setValueAtTime(f0, now);
-            o.frequency.exponentialRampToValueAtTime(Math.max(20, f1), now + d);
-            g.gain.setValueAtTime(0.0001, now);
-            g.gain.exponentialRampToValueAtTime(0.12 * this.master, now + 0.01);
-            g.gain.exponentialRampToValueAtTime(0.0001, now + d);
+            o.frequency.setValueAtTime(Math.max(20, f0), start);
+            o.frequency.exponentialRampToValueAtTime(Math.max(20, f1), start + d);
+            g.gain.setValueAtTime(0.0001, start);
+            g.gain.exponentialRampToValueAtTime(Math.max(0.0001, amp * this.master), start + Math.min(0.012, d * 0.2));
+            g.gain.exponentialRampToValueAtTime(0.0001, start + d);
             o.connect(g).connect(out);
-            o.start(now);
-            o.stop(now + d + 0.02);
+            o.start(start);
+            o.stop(start + d + 0.03);
         };
-        const noiseBurst = (d = 0.12, hp = 800, amp = 0.08) => {
+        const noiseBurst = (d = 0.12, hp = 800, amp = 0.08, offset = 0, lowpass) => {
+            const start = Math.max(ctx.currentTime, baseNow + offset);
             const src = ctx.createBufferSource();
             src.buffer = this.noiseBuf(ctx);
-            const f = ctx.createBiquadFilter();
-            f.type = "highpass";
-            f.frequency.value = hp;
+            let node = src;
+            const high = ctx.createBiquadFilter();
+            high.type = "highpass";
+            high.frequency.value = hp;
+            node.connect(high);
+            node = high;
+            if (lowpass !== undefined) {
+                const low = ctx.createBiquadFilter();
+                low.type = "lowpass";
+                low.frequency.value = lowpass;
+                node.connect(low);
+                node = low;
+            }
             const g = ctx.createGain();
-            g.gain.setValueAtTime(0.0001, now);
-            g.gain.exponentialRampToValueAtTime(amp * this.master, now + 0.01);
-            g.gain.exponentialRampToValueAtTime(0.0001, now + d);
-            src.connect(f).connect(g).connect(out);
-            src.start(now);
-            src.stop(now + d + 0.02);
+            g.gain.setValueAtTime(0.0001, start);
+            g.gain.exponentialRampToValueAtTime(Math.max(0.0001, amp * this.master), start + Math.min(0.01, d * 0.18));
+            g.gain.exponentialRampToValueAtTime(0.0001, start + d);
+            node.connect(g).connect(out);
+            src.start(start);
+            src.stop(start + d + 0.03);
         };
         switch (cue) {
             case "click":
-                tone(620, 420, 0.06, "triangle");
+                tone(620, 420, 0.06, "triangle", 0.08);
                 break;
             case "coin":
-                tone(1200, 1600, 0.12, "sine");
+                tone(1200, 1600, 0.12, "sine", 0.10);
                 break;
             case "sail":
                 noiseBurst(0.18, 500, 0.05);
-                tone(220, 180, 0.18, "sawtooth");
+                tone(220, 180, 0.18, "sawtooth", 0.06);
                 break;
             case "cannon":
-                noiseBurst(0.25, 80, 0.16);
-                tone(90, 45, 0.25, "square");
+            case "cannon_round":
+                noiseBurst(0.34, 45, 0.24, 0, 1150);
+                noiseBurst(0.16, 700, 0.10, 0.018, 5200);
+                tone(82, 34, 0.48, "sine", 0.20);
+                tone(46, 28, 0.62, "triangle", 0.08, 0.035);
+                break;
+            case "cannon_chain":
+                noiseBurst(0.27, 70, 0.18, 0, 1700);
+                tone(92, 42, 0.31, "sine", 0.13);
+                noiseBurst(0.19, 1450, 0.12, 0.045, 7200);
+                tone(980, 310, 0.17, "sawtooth", 0.055, 0.055);
+                tone(1320, 520, 0.12, "triangle", 0.04, 0.13);
+                break;
+            case "enemy_cannon":
+                noiseBurst(0.31, 50, 0.15, 0, 1050);
+                tone(68, 31, 0.46, "sine", 0.13);
+                noiseBurst(0.12, 850, 0.055, 0.035, 4600);
+                break;
+            case "naval_maneuver":
+                noiseBurst(0.34, 260, 0.045, 0, 1700);
+                tone(170, 108, 0.36, "triangle", 0.045);
+                tone(92, 72, 0.43, "sawtooth", 0.024, 0.07);
+                noiseBurst(0.08, 1250, 0.022, 0.18, 4200);
+                break;
+            case "hull_impact":
+                noiseBurst(0.22, 95, 0.13, 0, 1900);
+                noiseBurst(0.13, 1150, 0.08, 0.018, 6200);
+                tone(170, 62, 0.22, "square", 0.09);
+                tone(74, 42, 0.32, "triangle", 0.05, 0.03);
+                break;
+            case "rigging_impact":
+                noiseBurst(0.14, 1200, 0.095, 0, 7600);
+                tone(1180, 360, 0.14, "sawtooth", 0.05);
+                noiseBurst(0.10, 2200, 0.055, 0.08, 8800);
+                tone(760, 250, 0.16, "triangle", 0.035, 0.09);
+                break;
+            case "grapple":
+                tone(360, 125, 0.16, "square", 0.07);
+                noiseBurst(0.09, 650, 0.06, 0.015, 3300);
+                tone(290, 110, 0.14, "square", 0.055, 0.12);
+                noiseBurst(0.10, 500, 0.05, 0.14, 2800);
+                break;
+            case "boarding":
+                noiseBurst(0.18, 430, 0.08, 0, 3400);
+                tone(940, 420, 0.10, "sawtooth", 0.045, 0.02);
+                tone(720, 280, 0.09, "square", 0.04, 0.11);
+                noiseBurst(0.12, 1300, 0.05, 0.13, 6200);
+                tone(510, 190, 0.11, "triangle", 0.04, 0.20);
+                break;
+            case "surrender":
+                tone(760, 610, 0.34, "sine", 0.075);
+                tone(1140, 920, 0.30, "sine", 0.045, 0.04);
+                tone(620, 520, 0.36, "triangle", 0.04, 0.31);
+                break;
+            case "naval_victory":
+                tone(220, 330, 0.34, "triangle", 0.055);
+                tone(330, 440, 0.36, "triangle", 0.06, 0.24);
+                tone(440, 660, 0.48, "sine", 0.075, 0.50);
+                tone(880, 660, 0.56, "sine", 0.045, 0.58);
+                noiseBurst(0.22, 850, 0.026, 0.54, 4200);
+                break;
+            case "naval_defeat":
+                tone(220, 150, 0.42, "triangle", 0.055);
+                tone(150, 92, 0.52, "sine", 0.06, 0.30);
+                tone(92, 52, 0.64, "triangle", 0.045, 0.64);
+                noiseBurst(0.24, 120, 0.035, 0.18, 900);
                 break;
             case "bell":
-                tone(880, 660, 0.4, "sine");
+                tone(880, 660, 0.4, "sine", 0.10);
                 break;
             case "damage":
                 noiseBurst(0.12, 200, 0.09);
-                tone(260, 120, 0.12, "square");
+                tone(260, 120, 0.12, "square", 0.08);
                 break;
             case "level_up":
-                tone(520, 740, 0.12, "triangle");
-                setTimeout(() => tone(740, 1040, 0.14, "triangle"), 90);
+                tone(520, 740, 0.12, "triangle", 0.08);
+                tone(740, 1040, 0.14, "triangle", 0.08, 0.09);
                 break;
             case "page":
-                tone(420, 320, 0.08, "triangle");
+                tone(420, 320, 0.08, "triangle", 0.05);
                 noiseBurst(0.05, 900, 0.03);
                 break;
             case "ui":
-                tone(740, 560, 0.05, "triangle");
+                tone(740, 560, 0.05, "triangle", 0.055);
                 break;
             case "blade":
                 noiseBurst(0.04, 1800, 0.04);
-                tone(860, 440, 0.08, "sawtooth");
+                tone(860, 440, 0.08, "sawtooth", 0.06);
                 break;
             case "pistol":
                 noiseBurst(0.08, 450, 0.11);
-                tone(180, 80, 0.09, "square");
+                tone(180, 80, 0.09, "square", 0.09);
                 break;
             case "repair":
-                tone(340, 460, 0.09, "triangle");
-                setTimeout(() => tone(460, 520, 0.08, "triangle"), 60);
+                tone(340, 460, 0.09, "triangle", 0.06);
+                tone(460, 520, 0.08, "triangle", 0.055, 0.06);
+                noiseBurst(0.06, 900, 0.025, 0.02, 3600);
                 break;
             case "hit":
                 noiseBurst(0.07, 320, 0.05);
-                tone(220, 140, 0.06, "square");
+                tone(220, 140, 0.06, "square", 0.055);
                 break;
         }
     }
@@ -298,6 +375,8 @@ export class AlphaAudio {
             if (token !== this.sceneToken || !this.enabled || !this.unlocked)
                 return;
             const pick = pool[Math.floor(Math.random() * pool.length)];
+            if (!pick)
+                return;
             const overlay = new Audio(pick.path);
             overlay.preload = "auto";
             overlay.loop = false;

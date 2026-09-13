@@ -1,0 +1,3 @@
+0889b53dd6f8f20b4615e561aff79044cb8206bb2ea26945f12dcfa4090ab370  src/game/navigation.ts
+0b19e96bc7c393b2bed0bc31d8fd5b4dfe218fdd79ddbb53ce889130630e2283  public/alpha/js/game/navigation.js
+6fc4ddcc9c708b3b76ec5db87e1adaae5d1648a1c6b84a2aa045212fcc1878c2  docs/handoffs/alpha-06d-navigation-pathing-performance-audit.md

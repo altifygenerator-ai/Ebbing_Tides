@@ -1,0 +1,11 @@
+Consistency baseline checked for this staging overlay:
+
+User-pushed working baseline commit referenced in project logs:
+20f416bb4012a1d4194070e6b95d9c50595a9d16
+
+Direct source files used as current-code reference in this runtime:
+- src/alpha/main.ts
+- src/alpha/audio.ts
+- src/data/seed/assets.ts
+
+Important: that Git commit also contained unrelated world-location/contextual-art work. This naval overlay does not package or replay that unrelated content; Git/current source was used only to avoid conflicting with the user's current code.

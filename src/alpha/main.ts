@@ -12,6 +12,7 @@ import { buildInitialPortMarkets } from "../game/marketGeneration.js";
 import { buildCharacterMindContext, deterministicCharacterMindReply } from "../game/characterMind.js";
 import { clockFromAbsoluteHour, formatClock } from "../game/clock.js";
 import { shipClassDefinition } from "../data/seed/contentRegistry.js";
+import { combatVisualRangeBand, shipCombatAssetId, shipCombatVisualSet, shipDirectionForRoute, shipHullVisualState, shipTokenAssetId } from "../data/seed/shipCombatVisuals.js";
 import { COMPANION_EQUIPMENT_SLOTS, PLAYER_EQUIPMENT_SLOTS, equipItem, equipmentForOwner, inventoryForOwner, isItemEquipped, purchaseItem, slotLabel, unequipItem, type InventoryOwnerId } from "../game/inventory.js";
 import { intelFreshnessLabel } from "../game/intelligence.js";
 import { beginBoardingCombat, beginDeckDrill, personalCombatAction, treatInjuries, type PersonalCombatAction } from "../game/personalCombat.js";
@@ -24,7 +25,7 @@ import { ALL_SKILLS, SKILL_LABELS, skillRatingLabel, startingSkillContributions 
 import { PORTRAIT_BY_ID, PORTRAIT_CHOICES } from "../data/seed/portraits.js";
 import { attunementBand, calculateInterference, strainBand } from "../game/attunement.js";
 import { usePlayerAbility } from "../game/abilitiesRuntime.js";
-import { attackEncounter, avoidEncounter, beginNavigation, cancelVoyage, currentVoyageEtaHours, estimateVoyageSupplyUnits, hailEncounter, observeEncounter, sailUntilInterrupted, searchWaters, submitToAuthorityEncounter, type SearchWatersResult } from "../game/travel.js";
+import { attackEncounter, avoidEncounter, beginNavigation, cancelVoyage, currentVoyageEtaHours, estimateVoyageSupplyUnits, hailEncounter, observeEncounter, PLAYER_VOYAGE_SUPPLY_STEP_HOURS, sailUntilInterrupted, searchWaters, submitToAuthorityEncounter, type SearchWatersResult } from "../game/travel.js";
 import { MAX_TACTICAL_RANGE_YARDS, yardsToNm } from "../game/physicalDistance.js";
 import { deterministicUnit } from "../game/rng.js";
 import type { Attributes, CharacterCreationChoices, CustomPortraitRequest, EquipmentSlot, GameState, GridPoint, NavigationTarget, NpcCharacter, PoiActionId, PortActionId, ShipEntity, SkillId, VoyageReport } from "../game/types.js";
@@ -99,6 +100,25 @@ let suppressNextMapClick = false;
 let lastSearchWatersResult: SearchWatersResult | undefined;
 let poiFocusAction: PoiActionId | undefined;
 let toastTimer: number | undefined;
+
+// Navigation presentation baseline restored after Production 1H.2 recovery.
+// Deep simulation remains authoritative; the map interpolates Tideworn visually.
+const VOYAGE_AUTOMATION_TARGET_FRAMES=32;
+const VOYAGE_AUTOMATION_TWEEN_TARGET_MS=3000;
+const VOYAGE_AUTOMATION_TWEEN_MIN_MS=70;
+const VOYAGE_AUTOMATION_TWEEN_MAX_MS=170;
+const VOYAGE_AUTOMATION_MAX_STEPS=240;
+let voyageAutomationActive=false;
+let voyageAutomationRunId=0;
+
+type CardinalHeading="north"|"east"|"south"|"west";
+const TIDEWORN_DIRECTIONAL_TOKEN_ASSETS:Record<CardinalHeading,string>={
+  north:"ship.named.tideworn.token.north",
+  east:"ship.named.tideworn.token.east",
+  south:"ship.named.tideworn.token.south",
+  west:"ship.named.tideworn.token.west"
+};
+let playerMapHeading:CardinalHeading="north";
 
 const LAUNCHER_READY_EVENT = "ebbing-tides:runtime-ready";
 const LAUNCHER_REQUEST_EVENT = "ebbing-tides:launch-request";
@@ -646,7 +666,117 @@ function syncAudio(): void {
   audio.configure(state.settings.audioEnabled, state.settings.masterVolume);
   audio.setScene(audioScene(state));
 }
-function cue(name: AudioCue): void { audio.play(name); }
+function cue(name: AudioCue): void {
+  // Queue playback behind the browser's user-gesture unlock so the first
+  // cannon, repair, or interface cue is not silently discarded.
+  void audio.unlock().then(() => audio.play(name));
+}
+interface NavalAudioSnapshot {
+  encounterId?:string;
+  otherShipId?:string;
+  enemyHull:number;
+  enemySails:number;
+  enemyRigging:number;
+  enemyMorale:number;
+  playerHull:number;
+  playerCrew:number;
+  shipsSecured:boolean;
+  logLength:number;
+  worldEventCount:number;
+}
+
+function navalAudioSnapshot(s:GameState):NavalAudioSnapshot {
+  const e=s.encounter;
+  const enemy=e?s.ships[e.otherShipId]:undefined;
+  const player=getPlayerShip(s);
+  return {
+    encounterId:e?.id,
+    otherShipId:e?.otherShipId,
+    enemyHull:enemy?.systems.hull??0,
+    enemySails:enemy?.systems.sails??0,
+    enemyRigging:enemy?.systems.rigging??0,
+    enemyMorale:enemy?.systems.morale??0,
+    playerHull:player?.systems.hull??0,
+    playerCrew:player?.systems.crew??0,
+    shipsSecured:Boolean(e?.shipsSecured),
+    logLength:e?.log.length??0,
+    worldEventCount:s.worldEvents.length
+  };
+}
+
+function cueAfter(name:AudioCue,delayMs:number):void {
+  window.setTimeout(()=>cue(name),Math.max(0,delayMs));
+}
+
+function navalResolutionCueFromNewEvents(s:GameState,beforeEventCount:number,delayMs:number):boolean {
+  const event=s.worldEvents.slice(beforeEventCount).find(row=>row.type==="naval_combat_resolved");
+  const result=String(event?.canonicalData?.result??"");
+  if(result==="player_victory"){cueAfter("naval_victory",delayMs);return true;}
+  if(result==="player_defeat"){cueAfter("naval_defeat",delayMs);return true;}
+  return false;
+}
+
+function playNavalCombatAudio(s:GameState,action:CombatAction,before:NavalAudioSnapshot,result:{ok:boolean;message:string}):void {
+  if(!result.ok){cue("ui");return;}
+  const e=s.encounter;
+  const enemy=e?s.ships[e.otherShipId]:undefined;
+  const player=getPlayerShip(s);
+  if(!e||!enemy||!player){cue("ui");return;}
+
+  const newLogs=e.log.slice(before.logLength);
+  let tailDelay=260;
+
+  if(action==="fire_hull"){
+    cue("cannon_round");
+    tailDelay=520;
+    if(enemy.systems.hull<before.enemyHull)cueAfter("hull_impact",180);
+  } else if(action==="fire_rigging"){
+    cue("cannon_chain");
+    tailDelay=540;
+    if(enemy.systems.sails<before.enemySails||enemy.systems.rigging<before.enemyRigging)cueAfter("rigging_impact",190);
+  } else if(action==="close"||action==="open"){
+    cue("naval_maneuver");
+    tailDelay=360;
+  } else if(action==="grapple"){
+    if(!before.shipsSecured&&e.shipsSecured)cue("grapple");
+    else cue("naval_maneuver");
+    tailDelay=390;
+  } else if(action==="repair"){
+    cue("repair");
+    tailDelay=350;
+  } else if(action==="demand_surrender"){
+    if(before.enemyMorale>0&&enemy.systems.morale<=0)cue("surrender");
+    else cue("ui");
+    tailDelay=420;
+  } else if(action==="flee"){
+    cue("naval_maneuver");
+    tailDelay=340;
+  }
+
+  const enemyFired=newLogs.some(line=>/fires effectively|broadside/i.test(line));
+  const enemyBoarding=newLogs.some(line=>/boarders press|tests the grapples/i.test(line));
+  const enemyManeuvered=newLogs.some(line=>/bears down, closing/i.test(line));
+  const playerTookHullDamage=player.systems.hull<before.playerHull;
+  const playerLostCrew=player.systems.crew<before.playerCrew;
+
+  if(enemyFired){
+    const fireDelay=Math.max(tailDelay,430);
+    cueAfter("enemy_cannon",fireDelay);
+    if(playerTookHullDamage)cueAfter("hull_impact",fireDelay+180);
+    tailDelay=fireDelay+420;
+  } else if(enemyBoarding){
+    cueAfter("boarding",Math.max(tailDelay,360));
+    tailDelay=Math.max(tailDelay,360)+360;
+  } else if(enemyManeuvered){
+    cueAfter("naval_maneuver",Math.max(tailDelay,330));
+    tailDelay=Math.max(tailDelay,330)+300;
+  } else if(playerLostCrew){
+    cueAfter("boarding",Math.max(tailDelay,360));
+    tailDelay=Math.max(tailDelay,360)+340;
+  }
+
+  navalResolutionCueFromNewEvents(s,before.worldEventCount,Math.max(780,tailDelay+120));
+}
 
 function initializePresentation(): void {
   initializeGameViewport(app);
@@ -1166,7 +1296,8 @@ function renderShip(s: GameState): string {
   const activeHere = portId ? s.contracts.filter((c) => c.status === "accepted" && c.destinationPortId === portId) : [];
   const classDef = shipClassDefinition(ship.classId);
   const inspectionAsset = classDef?.inspectionAssetId ? ASSET_BY_ID[classDef.inspectionAssetId] : undefined;
-  const shipArt = inspectionAsset?.path ?? ASSET_BY_ID[ship.artAssetId ?? ""]?.path;
+  const namedShipArt=ship.id==="ship.player.flagship"?ASSET_BY_ID["ship.named.tideworn.portrait.pristine"]:undefined;
+  const shipArt = namedShipArt?.path ?? inspectionAsset?.path ?? ASSET_BY_ID[ship.artAssetId ?? ""]?.path;
   const refits = Object.entries(SHIP_REFITS);
   const cargo = ship.cargo.slice(0, 12);
   const shipSwitcher = `<div class="screen-local-tabs context-ship-switcher"><button class="subtab ${shipPanelTab === "overview" ? "active" : ""}" data-action="ship-subtab" data-view="overview">Ship</button><button class="subtab ${shipPanelTab === "work" ? "active" : ""}" data-action="ship-subtab" data-view="work" ${portId ? "" : "disabled"}>Harbor</button></div>`;
@@ -1573,7 +1704,10 @@ function searchResultPanel(result:SearchWatersResult|undefined):string {
 }
 
 function renderChart(s: GameState): string {
-  const ship=getPlayerShip(s)!; const voyage=s.voyage; const target=voyage?.destination??selectedMapTarget; const preview=!voyage&&target?plotCourse(s,target):undefined; const trail=voyage?.path??preview?.path??[]; const selectedCell=target?.point; const camera=ensureMapCamera(s); const box=cameraViewBox(camera); const lod=cameraLod(box.width); const playerToken=ASSET_BY_ID[ship.tokenAssetId??""]?.path;
+  const ship=getPlayerShip(s)!; const voyage=s.voyage; const target=voyage?.destination??selectedMapTarget; const preview=!voyage&&target?plotCourse(s,target):undefined; const trail=voyage?.path??preview?.path??[]; const selectedCell=target?.point; const camera=ensureMapCamera(s); const box=cameraViewBox(camera); const lod=cameraLod(box.width);
+  const playerVisualSet=shipCombatVisualSet(ship.classId,ship.name); const playerDirection=shipDirectionForRoute(trail,ship.position);
+  const preferredPlayerToken=shipTokenAssetId(playerVisualSet,playerDirection); const playerTokenFallback=ship.tokenAssetId;
+  const playerToken=playerMapTokenPath(s,ship,trail)??ASSET_BY_ID[preferredPlayerToken??playerTokenFallback??""]?.path;
 
   const mapArtSvg=REGIONAL_MAP_LAYERS.filter(layer=>layer.development==="active").map(layer=>{const art=ASSET_BY_ID[layer.assetId];if(!art?.path)return"";const b=layer.globalBounds;const regional=layer.priority>0;return `<image class="map-layer-art ${regional?"regional-map-art":"atlas-art"}" ${regional?`data-regional-map-layer="${esc(layer.id)}" style="opacity:${regionalLayerOpacity(box.width)}"`:""} href="${art.path}" x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}" preserveAspectRatio="none"></image>`;}).join("");
 
@@ -1630,14 +1764,20 @@ function combatShipStatus(ship:ShipEntity,concealed=false):string {
 function renderEncounter(s: GameState): string {
   const e=s.encounter!; const player=getPlayerShip(s)!; const other=s.ships[e.otherShipId]!;
   const playerClass=shipClassDefinition(player.classId); const otherClass=shipClassDefinition(other.classId);
-  const playerArt=(playerClass?.inspectionAssetId?ASSET_BY_ID[playerClass.inspectionAssetId]?.path:undefined) ?? ASSET_BY_ID[player.artAssetId??""]?.path;
-  const otherArt=e.identified ? ((otherClass?.inspectionAssetId?ASSET_BY_ID[otherClass.inspectionAssetId]?.path:undefined) ?? (other.artAssetId?ASSET_BY_ID[other.artAssetId]?.path:undefined)) : undefined;
+  const playerVisualSet=shipCombatVisualSet(player.classId,player.name); const otherVisualSet=shipCombatVisualSet(other.classId,other.name);
+  const playerVisualState=shipHullVisualState(player.systems.hull,player.systems.hullMax); const otherVisualState=shipHullVisualState(other.systems.hull,other.systems.hullMax);
+  const playerCombatArtId=shipCombatAssetId(playerVisualSet,playerVisualState); const otherCombatArtId=shipCombatAssetId(otherVisualSet,otherVisualState);
+  const playerArt=(playerCombatArtId?ASSET_BY_ID[playerCombatArtId]?.path:undefined)??(playerClass?.inspectionAssetId?ASSET_BY_ID[playerClass.inspectionAssetId]?.path:undefined)??ASSET_BY_ID[player.artAssetId??""]?.path;
+  const otherArt=e.identified?((otherCombatArtId?ASSET_BY_ID[otherCombatArtId]?.path:undefined)??(otherClass?.inspectionAssetId?ASSET_BY_ID[otherClass.inspectionAssetId]?.path:undefined)??ASSET_BY_ID[other.artAssetId??""]?.path):undefined;
+  const playerTokenId=shipTokenAssetId(playerVisualSet,"east"); const otherTokenId=shipTokenAssetId(otherVisualSet,"west");
+  const playerToken=playerTokenId?ASSET_BY_ID[playerTokenId]?.path:undefined; const otherToken=otherTokenId?ASSET_BY_ID[otherTokenId]?.path:undefined;
   const tacticalStage=ASSET_BY_ID["ui.combat.skeldra_tactical_sea"]?.path ?? "/art/ui/combat/skeldra_tactical_sea_stage.svg";
   const playerMark=shipIdentityMark(s,player.id);
   const otherMark=e.identified?shipIdentityMark(s,other.id):undefined;
   const sighting=e.phase==="sighting"; const combat=e.phase==="combat"; const outsideTactical=e.rangeYards>MAX_TACTICAL_RANGE_YARDS;
   const rangeBand=outsideTactical?"CONTACT":titleize(e.range).toUpperCase();
   const exactRange=outsideTactical?`${yardsToNm(e.rangeYards).toFixed(1)} nm`:`${Math.round(e.rangeYards).toLocaleString()} yd`;
+  const visualRange=combatVisualRangeBand(e.rangeYards,e.shipsSecured);
   const canFire=combat&&!e.shipsSecured&&e.rangeYards<=1500; const canGrapple=combat&&!e.shipsSecured&&e.rangeYards<=50;
   const canDemand=combat&&other.systems.hull<other.systems.hullMax*.55;
   const enemyConditionConcealed=sighting&&!e.identified;
@@ -1648,25 +1788,37 @@ function renderEncounter(s: GameState): string {
   const authorityAction=e.authorityDemanded&&posture.kind==="detain"?`<button class="naval-action primary" data-action="submit-authority"><b>Heave To</b><span>Answer the active warrant</span></button>`:"";
   const sightingActions=`${authorityAction}<button class="naval-action" data-action="observe"><b>Observe</b><span>Study the vessel</span></button><button class="naval-action" data-action="hail"><b>Hail / Signal</b><span>Test its intent</span></button><button class="naval-action" data-action="avoid"><b>Avoid</b><span>Break contact</span></button><button class="naval-action danger" data-action="attack"><b>Approach</b><span>Clear for action</span></button>`;
   const combatActions=`<button class="naval-action" data-combat="close" ${e.shipsSecured?"disabled":""}><b>Close</b><span>Reduce range</span></button><button class="naval-action" data-combat="open" ${e.shipsSecured?"disabled":""}><b>Open Range</b><span>Increase separation</span></button><button class="naval-action primary" data-combat="fire_hull" ${!canFire?"disabled":""}><b>Fire Hull</b><span>${canFire?"Round shot":"Out of range"}</span></button><button class="naval-action" data-combat="fire_rigging" ${!canFire?"disabled":""}><b>Fire Rigging</b><span>${canFire?"Chain shot":"Out of range"}</span></button><button class="naval-action" data-combat="repair"><b>Repair</b><span>Damage control</span></button><button class="naval-action" data-combat="demand_surrender" ${!canDemand?"disabled title=\"Enemy hull must be below 55% before a surrender demand can succeed.\"":""}><b>Demand Surrender</b><span>${canDemand?"Press the advantage":"Enemy still fighting"}</span></button>${e.shipsSecured?`<button class="naval-action danger" data-action="board"><b>Board</b><span>Cross the rail</span></button>`:`<button class="naval-action danger" data-combat="grapple" ${!canGrapple?"disabled":""}><b>Grapple</b><span>${canGrapple?"Secure alongside":"Inside 50 yd"}</span></button>`}<button class="naval-action" data-combat="flee" ${e.shipsSecured?"disabled":""}><b>Flee</b><span>Break tactical contact</span></button>`;
-  return `<section class="naval-combat-screen" style="--naval-tactical-stage:url('${esc(tacticalStage)}')">
+  return `<section class="naval-combat-screen range-${visualRange}" style="--naval-tactical-stage:url('${esc(tacticalStage)}')">
     <header class="naval-combat-header"><div><span class="eyebrow">${sighting?"Vessel sighted":"Naval engagement"}</span><h1>${sighting?"Contact on the Water":"Battle Stations"}</h1></div><div class="naval-round-chip"><span>${outsideTactical?"Visual contact":`Round ${e.round}`}</span><b>${e.elapsedMinutes} min</b></div></header>
     <div class="naval-stage-shell">
       <div class="naval-stage-art" aria-hidden="true"></div>
       <article class="naval-ship-panel player">
         <div class="naval-ship-heading">${markStripHtml([playerMark],"naval-identity-mark")}<div><span>Your ship</span><h2>${esc(player.name)}</h2><small>${esc(playerClass?.name ?? player.classId)}</small></div></div>
-        <div class="naval-ship-visual">${playerArt?`<img src="${esc(playerArt)}" alt="${esc(player.name)}">`:`<div class="naval-ship-silhouette">SHIP</div>`}</div>
+        <div class="naval-ship-visual state-${playerVisualState}"><span class="naval-visual-state">${titleize(playerVisualState)}</span>${playerArt?`<img class="naval-ship-portrait" src="${esc(playerArt)}" alt="${esc(player.name)}">`:`<div class="naval-ship-silhouette">SHIP</div>`}</div>
         ${combatShipStatus(player)}
       </article>
-      <div class="naval-engagement-plaque" aria-label="Current engagement range"><span>${sighting?"Contact":"Range"}</span><b>${esc(rangeBand)}</b><strong>${esc(exactRange)}</strong><small>${outsideTactical?"Sighting / signaling / pursuit":e.shipsSecured?"Ships secured together":`Tactical separation · ${e.elapsedMinutes} min elapsed`}</small></div>
+      <div class="naval-engagement-column" aria-label="Current engagement range"><div class="naval-tactical-lane ${e.shipsSecured?"secured":""}" aria-hidden="true">${playerToken?`<img class="naval-lane-token player" src="${esc(playerToken)}" alt="">`:`<span class="naval-lane-token fallback">◆</span>`}<span class="naval-range-line"><i></i></span>${e.identified&&otherToken?`<img class="naval-lane-token enemy" src="${esc(otherToken)}" alt="">`:`<span class="naval-contact-token">?</span>`}</div><div class="naval-engagement-readout"><span>${sighting?"Contact":"Range"}</span><b>${esc(rangeBand)}</b><strong>${esc(exactRange)}</strong><small>${outsideTactical?"Sighting / signaling / pursuit":e.shipsSecured?"Ships secured together":`Tactical separation · ${e.elapsedMinutes} min elapsed`}</small></div></div>
       <article class="naval-ship-panel enemy">
         <div class="naval-ship-heading enemy">${markStripHtml([otherMark],"naval-identity-mark")}<div><span>${e.identified?titleize(other.disposition):"Unknown contact"}</span><h2>${esc(e.identified?other.name:"Unidentified vessel")}</h2><small>${esc(e.identified?(otherClass?.name ?? other.classId):"Rig and silhouette only")}</small></div></div>
-        <div class="naval-ship-visual enemy">${otherArt?`<img src="${esc(otherArt)}" alt="${esc(other.name)}">`:`<div class="naval-ship-silhouette"><span>SAILS</span><small>Identity unknown</small></div>`}</div>
+        <div class="naval-ship-visual enemy state-${otherVisualState}"><span class="naval-visual-state">${enemyConditionConcealed?"Unassessed":titleize(otherVisualState)}</span>${otherArt?`<img class="naval-ship-portrait" src="${esc(otherArt)}" alt="${esc(other.name)}">`:`<div class="naval-ship-silhouette"><span>SAILS</span><small>Identity unknown</small></div>`}</div>
         ${combatShipStatus(other,enemyConditionConcealed)}
       </article>
     </div>
     <section class="naval-action-band" aria-label="Naval combat actions"><div class="naval-action-band-title"><span class="eyebrow">Orders</span><small>${sighting?esc(postureSummary):e.shipsSecured?"The ships are secured. Board or resolve the grapple.":canFire?"Battery is within effective range.":"Main battery is outside effective range."}</small></div><div class="naval-action-grid">${sighting?sightingActions:combat?combatActions:""}</div></section>
     <section class="battle-report-panel"><div class="battle-report-heading"><div><span class="eyebrow">Battle Report</span><h2>Most recent action first</h2></div><span class="battle-report-count">${e.log.length} ${e.log.length===1?"entry":"entries"}</span></div><div class="battle-report-list" data-order="newest-first">${newestLog.length?newestLog.map((line,index)=>`<div class="battle-report-entry ${index===0?"latest":""}"><span>${index===0?"Latest":`-${index}`}</span><p>${esc(line)}</p></div>`).join(""):`<div class="battle-report-entry latest"><span>Latest</span><p>No combat action has been resolved yet.</p></div>`}</div></section>
   </section>`;
+}
+
+function encounterResolutionEvent(s:GameState,encounterId:string){return[...s.worldEvents].reverse().find(event=>event.id.endsWith(encounterId)||event.canonicalData.encounterId===encounterId)}
+function renderNavalResolution(s:GameState):string {
+  const e=s.encounter!,player=getPlayerShip(s)!,other=s.ships[e.otherShipId]!; const lifecycle=other.lifecycle;
+  const victory=lifecycle?.resolvedEncounterId===e.id&&(lifecycle.status==="captured"||lifecycle.status==="disabled");
+  const defeat=s.worldEvents.some(event=>event.id===`event.combat.defeat.${e.id}`)||(s.worldEvents.some(event=>event.type==="boarding_resolved"&&event.canonicalData.result==="player_defeat"&&event.participants.includes(other.ownerCharacterId))&&!victory);
+  const outcome=victory?"victory":defeat?"defeat":e.playerEscaped?"disengaged":"resolved"; const title=victory?"Victory at Sea":defeat?"The Action Is Lost":e.playerEscaped?"Contact Broken":"Contact Resolved";
+  const event=encounterResolutionEvent(s,e.id),summary=event?.summary??e.log.at(-1)??"The encounter has ended."; const focus=defeat?player:other;
+  const focusSet=shipCombatVisualSet(focus.classId,focus.name),focusState=victory&&lifecycle?.status==="disabled"?"wrecked":shipHullVisualState(focus.systems.hull,focus.systems.hullMax); const focusArtId=shipCombatAssetId(focusSet,focusState),focusArt=(focusArtId?ASSET_BY_ID[focusArtId]?.path:undefined)??ASSET_BY_ID[focus.artAssetId??""]?.path;
+  const prize=victory?lifecycle?.prizeValue??0:0,crewShare=ensureCrewCommunity(player).outstandingPrizeShare,disposition=victory?(lifecycle?.status==="captured"?"Captured prize":"Disabled vessel"):defeat?"Released after surrender":e.playerEscaped?"Still operational":"Contact concluded";
+  return `<section class="naval-resolution-screen outcome-${outcome}"><header class="naval-resolution-header"><span class="eyebrow">${victory?"The enemy colors are down":defeat?"Your ship survives":e.playerEscaped?"The pursuit is over":"The vessels part company"}</span><h1>${title}</h1><p>${esc(summary)}</p></header><div class="naval-resolution-body"><div class="naval-resolution-art state-${focusState}">${focusArt?`<img src="${esc(focusArt)}" alt="${esc(focus.name)}">`:`<div class="naval-ship-silhouette">${esc(focus.name)}</div>`}<span>${disposition}</span></div><div class="naval-resolution-ledger"><div class="eyebrow">After-action ledger</div><h2>${esc(focus.name)}</h2><div class="naval-resolution-stats"><div><span>Result</span><b>${disposition}</b></div><div><span>Prize secured</span><b>${victory?`${Math.round(prize)} crowns`:"—"}</b></div><div><span>Crew share due</span><b>${victory?`${Math.round(crewShare)} crowns`:"—"}</b></div><div><span>Elapsed</span><b>${Math.round(e.elapsedMinutes)} min</b></div></div><div class="naval-resolution-condition"><span>Your ship</span><b>Hull ${Math.round(player.systems.hull)}/${Math.round(player.systems.hullMax)}</b><b>Crew ${Math.round(player.systems.crew)}/${Math.round(player.systems.crewMax)}</b><b>Morale ${Math.round(player.systems.morale)}/100</b></div><div class="naval-resolution-log">${[...e.log].reverse().slice(0,3).map((line,index)=>`<p class="${index===0?"latest":""}">${esc(line)}</p>`).join("")}</div></div></div><footer class="naval-resolution-footer"><p>${victory?"The vessel disposition and prize have been recorded once. Further consequences continue through the existing campaign systems.":"The result is recorded. Continue when you are ready."}</p><button class="btn primary" data-action="leave-naval-resolution">${s.voyage?"Continue Voyage":"Return to Chart"}</button></footer></section>`;
 }
 
 function renderPersonalCombat(s: GameState): string {
@@ -1734,7 +1886,7 @@ function restoreGameScrollPositions(snapshot:Map<string,ScrollPosition>,viewKey:
 }
 function gameViewKey(s:GameState):string{
   if(s.personalCombat)return `personal:${s.personalCombat.opponentId}`;
-  if(s.encounter&&s.encounter.phase!=="resolved")return `encounter:${s.encounter.otherShipId}:${s.encounter.phase}`;
+  if(s.encounter)return `encounter:${s.encounter.otherShipId}:${s.encounter.phase}`;
   if(s.arrival)return `arrival:${s.player.currentPortId??s.player.currentPoiId??"unknown"}`;
   const place=s.player.currentPortId??s.player.currentPoiId??"sea";
   if(tab==="ship")return `${place}:ship:${shipPanelTab}`;
@@ -1749,7 +1901,7 @@ function renderGame(): void {
   const viewKey=gameViewKey(state);
   const scrollSnapshot=lastRenderedGameViewKey===viewKey?captureGameScrollPositions():undefined;
   if (state.personalCombat) app.innerHTML=`<div class="shell">${renderTopBar(state)}${renderPersonalCombat(state)}</div>`;
-  else if (state.encounter && state.encounter.phase!=="resolved") app.innerHTML=`<div class="shell">${renderTopBar(state)}${renderEncounter(state)}</div>`;
+  else if (state.encounter) app.innerHTML=`<div class="shell">${renderTopBar(state)}${state.encounter.phase==="resolved"?renderNavalResolution(state):renderEncounter(state)}</div>`;
   else if (state.arrival) app.innerHTML=`<div class="shell">${renderTopBar(state)}${renderArrival(state)}</div>`;
   else {
     let content:string;
@@ -1776,25 +1928,265 @@ function renderGame(): void {
 
 function handleResult(result:{ok:boolean;message:string}, sound?:AudioCue):void { if(sound&&result.ok)cue(sound); toast(result.message); renderGame(); }
 
-function runVoyageUntilAttention(s:GameState, prefix?:string):void {
-  const result=sailUntilInterrupted(s);
-  mapCameraState=undefined;
+function voyageAutomationFrame():Promise<void> {
+  return new Promise((resolve)=>window.requestAnimationFrame(()=>resolve()));
+}
+
+function followVoyageCamera(s:GameState):void {
+  const ship=getPlayerShip(s);
+  if(!ship)return;
+  if(mapCameraState){
+    const center=clampCameraCenter(ship.position,mapCameraState.targetViewWidth);
+    mapCameraState.targetX=center.x;
+    mapCameraState.targetY=center.y;
+  } else {
+    mapCameraState=cameraForPoint(ship.position,initialCameraWidth(s));
+  }
+  scheduleMapCameraFrame();
+}
+
+function cardinalHeadingForDelta(dx:number,dy:number,fallback:CardinalHeading):CardinalHeading {
+  const ax=Math.abs(dx);
+  const ay=Math.abs(dy);
+  if(ax>ay)return dx>=0?"east":"west";
+  if(ay>ax)return dy>=0?"south":"north";
+  if(dx>0&&fallback==="east")return fallback;
+  if(dx<0&&fallback==="west")return fallback;
+  if(dy>0&&fallback==="south")return fallback;
+  if(dy<0&&fallback==="north")return fallback;
+  if(ax>0)return dx>=0?"east":"west";
+  if(ay>0)return dy>=0?"south":"north";
+  return fallback;
+}
+
+function tidewornHeadingForPath(position:GridPoint,path:GridPoint[],fallback:CardinalHeading):CardinalHeading {
+  if(path.length<2)return fallback;
+  let bestIndex=0;
+  let bestDistance=Number.POSITIVE_INFINITY;
+  for(let i=0;i<path.length-1;i+=1){
+    const a=path[i]!,b=path[i+1]!;
+    const dx=b.x-a.x,dy=b.y-a.y,lengthSq=dx*dx+dy*dy;
+    if(lengthSq<=0)continue;
+    const t=Math.max(0,Math.min(1,((position.x-a.x)*dx+(position.y-a.y)*dy)/lengthSq));
+    const px=a.x+dx*t,py=a.y+dy*t;
+    const distance=(position.x-px)*(position.x-px)+(position.y-py)*(position.y-py);
+    if(distance<=bestDistance+1e-9){bestDistance=distance;bestIndex=i;}
+  }
+  const a=path[bestIndex]!,b=path[Math.min(path.length-1,bestIndex+1)]!;
+  return cardinalHeadingForDelta(b.x-a.x,b.y-a.y,fallback);
+}
+
+function updateTidewornHeading(s:GameState,path?:GridPoint[]):void {
+  const ship=getPlayerShip(s);
+  if(!ship||ship.id!=="ship.player.flagship")return;
+  const route=path??s.voyage?.path;
+  if(route?.length)playerMapHeading=tidewornHeadingForPath(ship.position,route,playerMapHeading);
+}
+
+function playerMapTokenPath(s:GameState,ship:ShipEntity,path?:GridPoint[]):string|undefined {
+  if(ship.id!=="ship.player.flagship")return ASSET_BY_ID[ship.tokenAssetId??""]?.path;
+  updateTidewornHeading(s,path);
+  return ASSET_BY_ID[TIDEWORN_DIRECTIONAL_TOKEN_ASSETS[playerMapHeading]]?.path;
+}
+
+interface RouteProjectionSample { distance:number; distanceSq:number; }
+interface RouteVisualSample { position:GridPoint; heading:CardinalHeading; }
+
+let tidewornTokensPreloaded=false;
+function preloadTidewornDirectionalTokens():void {
+  if(tidewornTokensPreloaded)return;
+  tidewornTokensPreloaded=true;
+  for(const assetId of Object.values(TIDEWORN_DIRECTIONAL_TOKEN_ASSETS)){
+    const path=ASSET_BY_ID[assetId]?.path;
+    if(!path)continue;
+    const image=new Image();
+    image.src=path;
+  }
+}
+
+function projectPointToRoute(position:GridPoint,path:GridPoint[]):RouteProjectionSample {
+  if(path.length<2)return {distance:0,distanceSq:0};
+  let cumulative=0,bestDistance=0,bestDistanceSq=Number.POSITIVE_INFINITY;
+  for(let i=0;i<path.length-1;i+=1){
+    const a=path[i]!,b=path[i+1]!;
+    const dx=b.x-a.x,dy=b.y-a.y,segmentLength=Math.hypot(dx,dy);
+    if(segmentLength<=1e-9)continue;
+    const lengthSq=segmentLength*segmentLength;
+    const t=Math.max(0,Math.min(1,((position.x-a.x)*dx+(position.y-a.y)*dy)/lengthSq));
+    const px=a.x+dx*t,py=a.y+dy*t;
+    const distanceSq=(position.x-px)*(position.x-px)+(position.y-py)*(position.y-py);
+    const routeDistance=cumulative+segmentLength*t;
+    if(distanceSq<=bestDistanceSq+1e-9){bestDistanceSq=distanceSq;bestDistance=routeDistance;}
+    cumulative+=segmentLength;
+  }
+  return {distance:bestDistance,distanceSq:bestDistanceSq};
+}
+
+function sampleRouteAtDistance(path:GridPoint[],distance:number,fallback:CardinalHeading):RouteVisualSample {
+  if(path.length<2){
+    const point=path[0]??{x:0,y:0};
+    return {position:{...point},heading:fallback};
+  }
+  let remaining=Math.max(0,distance);
+  for(let i=0;i<path.length-1;i+=1){
+    const a=path[i]!,b=path[i+1]!;
+    const dx=b.x-a.x,dy=b.y-a.y,length=Math.hypot(dx,dy);
+    if(length<=1e-9)continue;
+    const isLast=i===path.length-2;
+    if(remaining<=length||isLast){
+      const t=Math.max(0,Math.min(1,remaining/length));
+      return {position:{x:a.x+dx*t,y:a.y+dy*t},heading:cardinalHeadingForDelta(dx,dy,fallback)};
+    }
+    remaining-=length;
+  }
+  const last=path[path.length-1]!;
+  return {position:{...last},heading:fallback};
+}
+
+function applyTidewornVisualState(position:GridPoint,heading:CardinalHeading):void {
+  playerMapHeading=heading;
+  const token=document.querySelector<SVGImageElement>(".player-map-token");
+  if(token){
+    const tokenPath=ASSET_BY_ID[TIDEWORN_DIRECTIONAL_TOKEN_ASSETS[heading]]?.path;
+    if(tokenPath&&token.getAttribute("href")!==tokenPath)token.setAttribute("href",tokenPath);
+    token.setAttribute("x",String(position.x-.25));
+    token.setAttribute("y",String(position.y-.35));
+  }
+  if(mapCameraState){
+    const center=clampCameraCenter(position,mapCameraState.targetViewWidth);
+    mapCameraState.targetX=center.x;
+    mapCameraState.targetY=center.y;
+    scheduleMapCameraFrame();
+  }
+}
+
+function animateTidewornVisualTravel(
+  s:GameState,
+  from:GridPoint,
+  to:GridPoint,
+  path:GridPoint[],
+  durationMs:number,
+  runId:number
+):Promise<boolean> {
+  const startProjection=projectPointToRoute(from,path);
+  const endProjection=projectPointToRoute(to,path);
+  const useRoute=path.length>1
+    && Number.isFinite(startProjection.distance)
+    && Number.isFinite(endProjection.distance)
+    && endProjection.distance>=startProjection.distance-1e-6;
+  const duration=Math.max(1,durationMs);
+
+  return new Promise((resolve)=>{
+    const startedAt=performance.now();
+    const tick=(now:number)=>{
+      if(s!==state||runId!==voyageAutomationRunId){resolve(false);return;}
+      const t=Math.max(0,Math.min(1,(now-startedAt)/duration));
+      let sample:RouteVisualSample;
+      if(useRoute){
+        const routeDistance=startProjection.distance+(endProjection.distance-startProjection.distance)*t;
+        sample=sampleRouteAtDistance(path,routeDistance,playerMapHeading);
+      } else {
+        const dx=to.x-from.x,dy=to.y-from.y;
+        sample={position:{x:from.x+dx*t,y:from.y+dy*t},heading:cardinalHeadingForDelta(dx,dy,playerMapHeading)};
+      }
+      applyTidewornVisualState(sample.position,sample.heading);
+      if(t>=1){resolve(true);return;}
+      window.requestAnimationFrame(tick);
+    };
+    window.requestAnimationFrame(tick);
+  });
+}
+
+function finishVoyageAutomation(result:ReturnType<typeof sailUntilInterrupted>,prefix:string|undefined,weatherEvents:string[],s:GameState):void {
+  followVoyageCamera(s);
   lastSearchWatersResult=undefined;
   if(result.stopReason==="arrival"){ cue("bell"); selectedMapTarget=undefined; }
   else if(result.stopReason==="encounter") cue("bell");
   else cue("sail");
   const report=result.voyageReport;
-  const reportNote=report?` · ${Math.round(report.distanceTravelledNm)} nm sailed · supplies ${report.suppliesUsed} used${report.suppliesExhausted?" / exhausted":""} · ${report.hullDamage||report.sailsDamage||report.riggingDamage?`damage H${report.hullDamage} S${report.sailsDamage} R${report.riggingDamage}`:"no ship damage"}`:result.weatherEvents.length?` · ${result.weatherEvents.length} weather event${result.weatherEvents.length===1?"":"s"} passed underway.`:"";
+  const reportNote=report?` · ${Math.round(report.distanceTravelledNm)} nm sailed · supplies ${report.suppliesUsed} used${report.suppliesExhausted?" / exhausted":""} · ${report.hullDamage||report.sailsDamage||report.riggingDamage?`damage H${report.hullDamage} S${report.sailsDamage} R${report.riggingDamage}`:"no ship damage"}`:weatherEvents.length?` · ${weatherEvents.length} weather event${weatherEvents.length===1?"":"s"} passed underway.`:"";
   toast(`${prefix?`${prefix} `:""}${result.message}${reportNote}`);
   tab="chart";
   renderGame();
+  scheduleMapCameraFrame();
+}
+
+async function runVoyageUntilAttention(s:GameState,prefix?:string):Promise<void> {
+  if(voyageAutomationActive){toast("Voyage simulation is already underway.");return;}
+  voyageAutomationActive=true;
+  const runId=++voyageAutomationRunId;
+  const weatherEvents:string[]=[];
+  let completedSteps=0;
+
+  const estimatedSteps=Math.max(1,Math.min(
+    VOYAGE_AUTOMATION_MAX_STEPS,
+    Math.ceil(currentVoyageEtaHours(s)/PLAYER_VOYAGE_SUPPLY_STEP_HOURS)
+  ));
+  const stepsPerFrame=Math.max(1,Math.ceil(estimatedSteps/VOYAGE_AUTOMATION_TARGET_FRAMES));
+  const plannedSegments=Math.max(1,Math.ceil(estimatedSteps/stepsPerFrame));
+  const tweenDurationMs=Math.max(
+    VOYAGE_AUTOMATION_TWEEN_MIN_MS,
+    Math.min(VOYAGE_AUTOMATION_TWEEN_MAX_MS,VOYAGE_AUTOMATION_TWEEN_TARGET_MS/plannedSegments)
+  );
+
+  preloadTidewornDirectionalTokens();
+  followVoyageCamera(s);
+  updateTidewornHeading(s);
+  lastSearchWatersResult=undefined;
+  tab="chart";
+  renderGame();
+  scheduleMapCameraFrame();
+
+  try {
+    await voyageAutomationFrame();
+    while(s===state&&s.voyage&&runId===voyageAutomationRunId&&completedSteps<VOYAGE_AUTOMATION_MAX_STEPS){
+      const ship=getPlayerShip(s);
+      if(!ship)return;
+
+      const from={...ship.position};
+      const activePath=s.voyage.path.map((point)=>({...point}));
+      const chunkSteps=Math.min(stepsPerFrame,VOYAGE_AUTOMATION_MAX_STEPS-completedSteps);
+      const result=sailUntilInterrupted(s,undefined,chunkSteps);
+      weatherEvents.push(...result.weatherEvents);
+      const to={...ship.position};
+
+      const visualCompleted=await animateTidewornVisualTravel(s,from,to,activePath,tweenDurationMs,runId);
+      if(!visualCompleted)return;
+
+      const chunkExhausted=result.stopReason==="guard"
+        && !result.ok
+        && result.message==="Voyage automation stopped at its safety limit."
+        && Boolean(s.voyage);
+
+      if(!chunkExhausted){
+        finishVoyageAutomation(result,prefix,weatherEvents,s);
+        return;
+      }
+
+      completedSteps+=chunkSteps;
+      if(!s.voyage)return;
+    }
+
+    if(s!==state||runId!==voyageAutomationRunId||!s.voyage)return;
+
+    followVoyageCamera(s);
+    updateTidewornHeading(s);
+    lastSearchWatersResult=undefined;
+    cue("sail");
+    const weatherNote=weatherEvents.length?` · ${weatherEvents.length} weather event${weatherEvents.length===1?"":"s"} passed underway.`:"";
+    toast(`${prefix?`${prefix} `:""}Voyage automation paused after ${VOYAGE_AUTOMATION_MAX_STEPS} steps for safety.${weatherNote}`);
+    tab="chart";
+    renderGame();
+    scheduleMapCameraFrame();
+  } finally {
+    if(runId===voyageAutomationRunId)voyageAutomationActive=false;
+  }
 }
 
 function resolveEncounterAndResume(s:GameState, result:{ok:boolean;message:string}, sound?:AudioCue):void {
   if(sound&&result.ok)cue(sound);
   if(result.ok && s.encounter?.phase==="resolved"){
-    delete s.encounter;
-    if(s.voyage){ runVoyageUntilAttention(s,result.message); return; }
+    toast(result.message); renderGame(); return;
   }
   toast(result.message);
   renderGame();
@@ -1880,8 +2272,8 @@ function handleClick(target: Element):void {
   const d=(el:Element,key:string)=>el.getAttribute(`data-${key}`) ?? "";
   void audio.unlock();
   if(tabEl&&state){tab=d(tabEl,"tab") as TabId; cue(tab==="journal"?"page":"ui"); renderGame(); return;}
-  if(personalEl&&state){ const action=d(personalEl,"personal") as PersonalCombatAction; const sound:AudioCue|undefined=action==="pistol"?"pistol":action==="slash"?"blade":action==="defend"?"hit":"ui"; handleResult(personalCombatAction(state,action),sound); return; }
-  if(combatEl&&state){ const action=d(combatEl,"combat") as CombatAction; const sound:AudioCue|undefined=action.startsWith("fire")?"cannon":action==="repair"?"repair":"ui"; const before=crewReactionSnapshot(state); const result=combatAction(state,action); const reaction=result.ok?crewReactionDelta(before,state):{morale:0,loyalty:0}; resolveEncounterAndResume(state,result,sound); if(result.ok)showCrewReaction(reaction,"battle"); return; }
+  if(personalEl&&state){ const action=d(personalEl,"personal") as PersonalCombatAction; const sound:AudioCue|undefined=action==="pistol"?"pistol":action==="slash"?"blade":action==="defend"?"hit":"ui"; const eventCount=state.worldEvents.length; const result=personalCombatAction(state,action); handleResult(result,sound); if(result.ok)navalResolutionCueFromNewEvents(state,eventCount,520); return; }
+  if(combatEl&&state){ const action=d(combatEl,"combat") as CombatAction; const audioBefore=navalAudioSnapshot(state); const before=crewReactionSnapshot(state); const result=combatAction(state,action); const reaction=result.ok?crewReactionDelta(before,state):{morale:0,loyalty:0}; playNavalCombatAudio(state,action,audioBefore,result); resolveEncounterAndResume(state,result); if(result.ok)showCrewReaction(reaction,"battle"); return; }
   if(!actionEl)return; const action=d(actionEl,"action");
   if(action==="creator-step"){setCreatorStepInDom(Number(d(actionEl,"step"))||0);return;}
   if(action==="creator-step-delta"){setCreatorStepInDom(creatorStep+(Number(d(actionEl,"dir"))||0));return;}
@@ -1942,6 +2334,7 @@ function handleClick(target: Element):void {
     case "map-zoom-step": { const direction=String(d(actionEl,"direction"))==="in"?"in":"out"; setMapZoom(direction); cue("page"); return; }
     case "select-map-cell": { const x=Number(d(actionEl,"x")); const y=Number(d(actionEl,"y")); selectedMapTarget=navigationTargetForSea({x,y}); lastSearchWatersResult=undefined; if(selectedMapTarget)cue("ui"); renderGame(); return; }
     case "begin-navigation": {
+      if(voyageAutomationActive){toast("Voyage simulation is already underway.");return;}
       if(!selectedMapTarget){toast("Select a destination first.");return;}
       const before=crewReactionSnapshot(s);
       const result=beginNavigation(s,selectedMapTarget);
@@ -1963,9 +2356,10 @@ function handleClick(target: Element):void {
     case "hail": resolveEncounterAndResume(s,hailEncounter(s),"bell"); return;
     case "submit-authority": resolveEncounterAndResume(s,submitToAuthorityEncounter(s),"bell"); return;
     case "avoid": resolveEncounterAndResume(s,avoidEncounter(s),"sail"); return;
-    case "attack": handleResult(attackEncounter(s),"cannon"); return;
-    case "board": handleResult(beginBoardingCombat(s),"blade"); return;
-    case "leave-personal": delete s.personalCombat; if(s.encounter?.phase==="resolved")delete s.encounter; if(s.voyage){runVoyageUntilAttention(s,"Boarding resolved.");return;} tab=s.player.currentPortId?"ship":"chart"; renderGame(); return;
+    case "attack": handleResult(attackEncounter(s),"naval_maneuver"); return;
+    case "board": handleResult(beginBoardingCombat(s),"boarding"); return;
+    case "leave-personal": delete s.personalCombat; if(s.encounter?.phase==="resolved"){renderGame();return;} if(s.voyage){runVoyageUntilAttention(s,"Boarding resolved.");return;} tab=s.player.currentPortId?"ship":"chart"; renderGame(); return;
+    case "leave-naval-resolution": delete s.encounter; if(s.voyage){runVoyageUntilAttention(s,"Encounter resolved.");return;} tab="chart"; cue("sail"); renderGame(); return;
     case "open-dialogue": { const npcId=d(actionEl,"id"); if(!s.npcs[npcId]){toast("That person is not available.");return;} if(activeDialogueNpcId!==npcId)dialogueLines=[]; activeDialogueNpcId=npcId; cue("ui"); renderGame(); requestAnimationFrame(()=>revealWithinLocalPane("#dialogue-panel", "center")); return; }
   }
 }

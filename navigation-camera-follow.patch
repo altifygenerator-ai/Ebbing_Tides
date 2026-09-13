@@ -1,0 +1,53 @@
+--- a/src/alpha/main.ts	2026-09-12 04:37:45.000000000 +0000
++++ b/src/alpha/main.ts	2026-09-12 21:27:06.714225875 +0000
+@@ -1778,7 +1778,14 @@
+ 
+ function runVoyageUntilAttention(s:GameState, prefix?:string):void {
+   const result=sailUntilInterrupted(s);
+-  mapCameraState=undefined;
++  const ship=getPlayerShip(s)!;
++  if(mapCameraState){
++    const center=clampCameraCenter(ship.position,mapCameraState.targetViewWidth);
++    mapCameraState.targetX=center.x;
++    mapCameraState.targetY=center.y;
++  } else {
++    mapCameraState=cameraForPoint(ship.position,initialCameraWidth(s));
++  }
+   lastSearchWatersResult=undefined;
+   if(result.stopReason==="arrival"){ cue("bell"); selectedMapTarget=undefined; }
+   else if(result.stopReason==="encounter") cue("bell");
+@@ -1788,6 +1795,7 @@
+   toast(`${prefix?`${prefix} `:""}${result.message}${reportNote}`);
+   tab="chart";
+   renderGame();
++  scheduleMapCameraFrame();
+ }
+ 
+ function resolveEncounterAndResume(s:GameState, result:{ok:boolean;message:string}, sound?:AudioCue):void {
+--- a/public/alpha/js/alpha/main.js	2026-09-12 04:37:45.000000000 +0000
++++ b/public/alpha/js/alpha/main.js	2026-09-12 21:27:06.715855225 +0000
+@@ -1966,7 +1966,15 @@
+     cue(sound); toast(result.message); renderGame(); }
+ function runVoyageUntilAttention(s, prefix) {
+     const result = sailUntilInterrupted(s);
+-    mapCameraState = undefined;
++    const ship = getPlayerShip(s);
++    if (mapCameraState) {
++        const center = clampCameraCenter(ship.position, mapCameraState.targetViewWidth);
++        mapCameraState.targetX = center.x;
++        mapCameraState.targetY = center.y;
++    }
++    else {
++        mapCameraState = cameraForPoint(ship.position, initialCameraWidth(s));
++    }
+     lastSearchWatersResult = undefined;
+     if (result.stopReason === "arrival") {
+         cue("bell");
+@@ -1981,6 +1989,7 @@
+     toast(`${prefix ? `${prefix} ` : ""}${result.message}${reportNote}`);
+     tab = "chart";
+     renderGame();
++    scheduleMapCameraFrame();
+ }
+ function resolveEncounterAndResume(s, result, sound) {
+     if (sound && result.ok)

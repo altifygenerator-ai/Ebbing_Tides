@@ -1,0 +1,16 @@
+5d38d0689145f1da0b44298cebbf53c0d1b0fcc2635f666f66a5871fc647029f  ./README_PRODUCTION_1H_1_NAVAL_COMBAT_TIGHTENING.md
+9fdec74193071649459f6dcbd7729fdf3b9c1c7b66990841f66d64fd0dba8b81  ./public/alpha/js/alpha/audio.js
+4b967177008511fc129cae4920ea7721a7b99f939a2ce86a6492c6ba68351706  ./public/alpha/js/alpha/audio.js.map
+1cc46a093dd9ed5a37bf46ae1bf05cfda1c3b2e2ff08494641b15bd9ec01b5bb  ./public/alpha/js/alpha/main.js
+64172a9d34dd97c8d4392ec81a4b7178f21cd88c41ba0b6926725f3ffcb7c1b7  ./public/alpha/js/alpha/main.js.map
+4787ff1e623e6720cbad2a514bba4286927f3598a64896a115243a38822c0d97  ./public/alpha/js/data/seed/assets.js
+e74ae0d312b8ac90474aebc78f7da00a433823ff68d38f89279cc23388d39014  ./public/alpha/js/data/seed/assets.js.map
+a8a54f63f12d1da3f7102ef52ef3bc15c896199bc1e5b81cd70cd5d34a422598  ./public/alpha/js/data/seed/shipCombatVisuals.js
+c674f41dd9b3e81d3a4ec699316b85cd8c63132f2072df7e0e1a286aa250fc13  ./public/alpha/js/data/seed/shipCombatVisuals.js.map
+6ab2d78ca27e2993c9f09128e915a1fe6ec0d77f3eac35828eca65b6d0e2861e  ./public/alpha/naval-combat-polish.css
+c9125db25fb86c28fa50815eeacc9131213b9df0f1962b441503fc6a2941fc41  ./public/alpha/styles.css
+7e433341835fa8463994d7fa996578fbf19097ef9b7d611c07c2a07dfe449936  ./src/alpha/audio.ts
+18d36c7475fc8c208d7d7f839e7ee0343a36f97a17f4c92cce43532255b1082c  ./src/alpha/main.ts
+722e2e26c090b9f767e0f0b0bc375cec979490d1f6439054af86cdceb162f5bc  ./src/data/seed/assets.ts
+e18ee493da4c513989701e68f360e85b58dcd567404ef887a62de812fd113433  ./src/data/seed/shipCombatVisuals.ts
+0ed1d0fd34cdc565e04a2ee6d8d11bc2edfd5aba11e20e1920f027ad59e9b7c8  ./tests/alpha-06d-naval-combat-1h1-correction.test.mjs
