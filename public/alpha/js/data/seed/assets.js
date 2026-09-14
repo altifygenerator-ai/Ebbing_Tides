@@ -14,13 +14,13 @@ export const ASSET_REGISTRY = [
         "gameplayRole": ["navigation", "cartography", "world_geography", "regional_context"],
         "visualAnchor": "User-approved labeled world atlas used as the sole active navigation painting for Alpha 0.6D.",
         "alphaPriority": "0.6D-canonical-navigation-art",
-        "path": "/art/maps/world_atlas_labeled_v06d_master.webp",
+        "path": "/art/maps/world_atlas_labeled_v06d_detail_master_12k.jpg",
         "sourceMaster": "ChatGPT Image Sep 8, 2026, 02_03_54 PM.png",
         "notes": "Exact supplied labeled map, deterministically resampled and projection-normalized to 6000x4000 for the locked 120x80 world grid. No generative geography changes. Passability is versioned separately in WORLD_TERRAIN_MASK_V06D_LABELED and must remain calibrated to this atlas.",
         "mapRegistration": {
             "globalBounds": { "x": 0, "y": 0, "width": 120, "height": 80 },
-            "nativePixelWidth": 6000,
-            "nativePixelHeight": 4000,
+            "nativePixelWidth": 12000,
+            "nativePixelHeight": 8000,
             "overlapCells": 0,
             "zoomMin": "far",
             "zoomMax": "close"

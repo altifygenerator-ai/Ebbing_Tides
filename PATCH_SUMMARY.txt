@@ -1,0 +1,28 @@
+EBBING TIDES — 12K DETAIL ATLAS INTEGRATION
+
+Runtime art added:
+  public/art/maps/world_atlas_labeled_v06d_detail_master_12k.jpg
+  12000 x 8000 RGB, q98 4:4:4 JPEG
+
+Files patched by installer:
+  src/data/seed/assets.ts
+    - same asset ID: map.world_atlas.labeled_v06d
+    - path -> new 12K runtime image
+    - nativePixelWidth -> 12000
+    - nativePixelHeight -> 8000
+    - metadata updated to identify ComfyUI detail master
+
+  src/game/navigationCamera.ts
+    - minViewWidth 24 -> 12
+    - defaultViewWidth 30 -> 18
+
+Explicitly untouched:
+  worldMap logical bounds/grid
+  terrain/passability mask
+  ports/POIs/routes/pathfinding
+  src/alpha/main.ts navigation/tween stack
+  Tideworn directional token logic
+  naval combat/audio
+  saves/save schema
+
+Original 6000x4000 atlas remains in the repository unchanged.

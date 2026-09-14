@@ -1,0 +1,31 @@
+{
+  "id": "character.culture.serathi.production1l",
+  "scope": ["character_creator", "captain_sheet"],
+  "role": "primary_culture_frame_pack",
+  "status": "creator_accepted_captain_candidate",
+  "geometryOwner": "code",
+  "integration": "one transparent block-limestone and cedar manuscript housing plus fitted panel frames and terracotta register leaves around locked runtime regions",
+  "direction": "Salt-Limestone Ledger",
+  "palette": {
+    "dominant": ["warm ivory", "sun-bleached limestone", "cream plaster"],
+    "secondary": ["terracotta", "brick red", "dark cedar"],
+    "accent": ["sparse indigo glass", "sparse sea-green glass"],
+    "metal": ["hammered copper", "restrained aged brass"]
+  },
+  "assets": {
+    "creatorFrame": "production1k/creator_frame.png",
+    "registerTab": "production1k/register_tab.png",
+    "manuscriptTexture": "production1k/manuscript_texture.webp",
+    "railVignette": "/art/location/context/serath/market.png",
+    "sideVignette": "/art/location/context/serath/arrival_port.png",
+    "captainProfileVignette": "/art/location/context/serath/arrival_port.png",
+    "captainHistoryHeader": "/art/location/context/serath/royal_palace.png",
+    "captainCapabilitiesHeader": "/art/location/context/serath/harbor.png",
+    "captainConditionHeader": "/art/location/context/serath/temple.png"
+  },
+  "identityRules": {
+    "cultureMark": "none invented",
+    "religion": "Covenant remains an optional religion-owned accent and is never repeated as Serathi culture ornament",
+    "visualDifferentiation": "no starbursts, sun medallions, compass roses, circular bosses, or continuous wave rails; Serathi identity comes from limestone blockwork, cedar uprights, square copper joints, terracotta tesserae, and sparse colored-glass insets"
+  }
+}

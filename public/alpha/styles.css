@@ -6567,3 +6567,814 @@ html,body,#app{width:100%;height:100%;min-height:0;overflow:hidden}
   .creator-production-screen[data-culture-pack="asterian"] .character-culture-rail-gallery,
   .creator-production-screen[data-culture-pack="asterian"] .character-culture-side-vignette{display:none!important}
 }
+
+/* ========================================================================== */
+/* Production 1J — Asterian Civic-Maritime Captain                            */
+/*                                                                            */
+/* The accepted Creator language is fitted to Captain's real sticky dossier   */
+/* and independent scroll-owned chapters. No viewport-sized or full-scroll    */
+/* painting owns geometry; every frame is a local nine-sliced skin.            */
+/* ========================================================================== */
+
+.captain-sheet-screen[data-culture-pack="asterian"]{
+  --asterian-captain-frame:url('/art/ui/character-themes/culture/asterian/production1i/creator_frame.png');
+  --asterian-register-tab:url('/art/ui/character-themes/culture/asterian/production1i/register_tab.png');
+  --asterian-paper:url('/art/ui/character-themes/culture/asterian/production1i/manuscript_texture.webp');
+  --asterian-captain-profile:url('/art/location/context/asteria/arrival_port.png');
+  --asterian-captain-history:url('/art/location/context/asteria/royal_palace.png');
+  --asterian-captain-capabilities:url('/art/location/context/asteria/harbor.png');
+  --asterian-captain-condition:url('/art/location/context/asteria/temple.png');
+  --asterian-red:#741f1d;
+  --asterian-red-deep:#471113;
+  --asterian-red-soft:#963733;
+  --asterian-ivory:#eadfc9;
+  --asterian-stone:#d9c9ad;
+  --asterian-bronze:#a9753d;
+  --asterian-blue:#24556d;
+  --char-paper:#eee3ca;
+  --char-paper-deep:#dfcfad;
+  --char-ink:#31251b;
+  --char-ink-strong:#20160f;
+  --char-ink-soft:#51402f;
+  --char-ink-faint:#76634c;
+  --char-rule:rgba(99,61,32,.38);
+  --char-rule-soft:rgba(99,61,32,.18);
+  background:
+    radial-gradient(ellipse at 42% 0%,rgba(137,45,42,.15),transparent 44%),
+    linear-gradient(180deg,#140b0c,#070809)!important;
+}
+
+.captain-sheet-screen[data-culture-pack="asterian"]>.character-culture-captain-stage{display:none!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-local-bar{
+  color:#efe1c8!important;
+  border-bottom-color:rgba(198,145,82,.46)!important;
+  background:
+    linear-gradient(90deg,rgba(116,31,29,.74),rgba(44,12,14,.92) 42%,#0b1113 82%)!important;
+  box-shadow:inset 0 -1px rgba(234,215,180,.08)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-local-bar .eyebrow{color:#d3a763!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-local-bar .screen-local-title{color:#fff0d3!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-local-bar .subtab.active{
+  color:#fff0d3!important;
+  border-bottom-color:var(--asterian-bronze)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-scroll{
+  overflow:auto!important;
+  background:
+    linear-gradient(90deg,rgba(81,19,21,.20),transparent 23%,transparent 78%,rgba(81,19,21,.13)),
+    #090f11!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-layout{gap:34px!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-main{gap:34px!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-sidebar{position:sticky!important;top:0!important}
+
+/* Sticky personal dossier: one fitted local skin, never a full-screen frame. */
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile{
+  position:relative!important;
+  isolation:isolate!important;
+  padding:24px 22px 22px!important;
+  border:0!important;
+  color:#f0e2c9!important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.035),transparent 22%),
+    linear-gradient(180deg,var(--asterian-red),var(--asterian-red-deep))!important;
+  box-shadow:0 14px 34px rgba(24,4,6,.34)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile::before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  inset:-6px!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  box-sizing:border-box!important;
+  border-style:solid!important;
+  border-color:transparent!important;
+  border-width:20px 12px 16px!important;
+  border-image-source:var(--asterian-captain-frame)!important;
+  border-image-slice:58 30 44 30!important;
+  border-image-width:20px 12px 16px!important;
+  border-image-repeat:stretch!important;
+  filter:drop-shadow(0 9px 9px rgba(31,6,7,.28));
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile::after{display:none!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile>*{position:relative;z-index:2}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile .manuscript-rubric{color:#ddb77a!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile .manuscript-name{color:#fff1d4!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile .manuscript-byline,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile .small{color:#dcc7a7!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile .character-role{color:#f2dfbd!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile .sidebar-stat{
+  color:#ead9bd!important;
+  border-bottom-color:rgba(239,220,185,.18)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile .sidebar-stat b{color:#fff0ce!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile .manuscript-portrait-mat{
+  margin:18px 0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+  border-style:solid!important;
+  border-color:transparent!important;
+  border-width:12px 7px 10px!important;
+  border-image-source:var(--asterian-captain-frame)!important;
+  border-image-slice:58 30 44 30!important;
+  border-image-width:12px 7px 10px!important;
+  border-image-repeat:stretch!important;
+  background:#251012!important;
+  box-shadow:0 8px 18px rgba(29,5,7,.28)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile .character-culture-profile-vignette{
+  display:block!important;
+  height:116px!important;
+  margin:14px -4px -4px!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(180deg,var(--asterian-red-deep),rgba(71,17,19,.05) 35%,rgba(71,17,19,.18) 70%,var(--asterian-red-deep)),
+    var(--asterian-captain-profile) center/cover no-repeat!important;
+  opacity:.78!important;
+  mask-image:linear-gradient(180deg,transparent 0,#000 19%,#000 82%,transparent 100%)!important;
+}
+
+/* Every chapter owns a separate fitted housing, so live height can expand. */
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page{
+  position:relative!important;
+  isolation:isolate!important;
+  padding:0 0 30px!important;
+  border:0!important;
+  color:var(--char-ink)!important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.18),transparent 130px),
+    linear-gradient(90deg,rgba(151,55,50,.026),transparent 18%,transparent 82%,rgba(151,55,50,.026)),
+    var(--asterian-paper) center/512px 512px repeat!important;
+  box-shadow:0 13px 32px rgba(32,7,8,.22)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page::before,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page::after{display:none!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .captain-manuscript-housing{
+  display:block!important;
+  position:absolute!important;
+  inset:-2px!important;
+  z-index:7!important;
+  pointer-events:none!important;
+  overflow:visible!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .captain-manuscript-housing::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  box-sizing:border-box;
+  border-style:solid;
+  border-color:transparent;
+  border-width:26px 16px 22px;
+  border-image-source:var(--asterian-captain-frame);
+  border-image-slice:58 30 44 30;
+  border-image-width:26px 16px 22px;
+  border-image-repeat:stretch;
+  filter:drop-shadow(0 8px 9px rgba(36,7,8,.20));
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .captain-manuscript-housing .manuscript-edge,
+.captain-sheet-screen[data-culture-pack="asterian"] .captain-manuscript-housing .manuscript-corner{display:none!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page>*:not(.character-manuscript-housing){position:relative;z-index:2}
+
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page>.manuscript-record-header{
+  min-height:92px!important;
+  padding:28px 34px 18px!important;
+  border-bottom:0!important;
+  background-color:var(--asterian-stone)!important;
+  background-repeat:no-repeat!important;
+  background-position:center,right center!important;
+  background-size:cover,390px auto!important;
+  box-shadow:inset 0 -1px rgba(116,31,29,.22)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page>.manuscript-record-header>div{max-width:64%!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .captain-page-history>.manuscript-record-header{
+  background-image:linear-gradient(90deg,#ded0b5 0%,#ded0b5 49%,rgba(222,208,181,.92) 62%,rgba(222,208,181,.16) 100%),var(--asterian-captain-history)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .captain-page-capabilities>.manuscript-record-header{
+  background-image:linear-gradient(90deg,#ded0b5 0%,#ded0b5 49%,rgba(222,208,181,.92) 62%,rgba(222,208,181,.16) 100%),var(--asterian-captain-capabilities)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .captain-page-condition>.manuscript-record-header{
+  background-image:linear-gradient(90deg,#ded0b5 0%,#ded0b5 49%,rgba(222,208,181,.92) 62%,rgba(222,208,181,.16) 100%),var(--asterian-captain-condition)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page>.manuscript-record-header .manuscript-rubric{color:#7a4a32!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page>.manuscript-record-header .section-title{color:#271811!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page .section-title,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page .manuscript-section-heading h3,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page b,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page strong{color:var(--char-ink-strong)!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page p,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page li,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page td,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page dd{color:var(--char-ink-soft)!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page small,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page .muted{color:var(--char-ink-faint)!important}
+
+/* Register leaves echo Creator tabs inside the existing accordion geometry. */
+.captain-sheet-screen[data-culture-pack="asterian"] .record-accordion-summary{
+  min-height:72px!important;
+  box-sizing:border-box!important;
+  padding:11px 15px 13px!important;
+  border-style:solid!important;
+  border-color:transparent!important;
+  border-width:7px 8px 10px!important;
+  border-image-source:var(--asterian-register-tab)!important;
+  border-image-slice:30 32 42 32 fill!important;
+  border-image-width:7px 8px 10px!important;
+  border-image-repeat:stretch!important;
+  background:linear-gradient(180deg,#862724,#641718)!important;
+  box-shadow:0 5px 12px rgba(45,8,9,.14)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .record-accordion-heading>small{color:#e0b270!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .record-accordion-heading>strong{color:#fff0d4!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .record-accordion-meta>b{color:#f5dfbb!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .record-accordion-meta>small{color:#d9c1a0!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .record-accordion-summary::after{color:#efd7aa!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .record-accordion-body{
+  padding:14px 14px 5px!important;
+  background:linear-gradient(90deg,rgba(116,31,29,.045),transparent 82%)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .record-accordion[open]>.record-accordion-summary{
+  filter:saturate(.96) brightness(1.02);
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .advancement-points span{
+  color:#f1d7a2!important;
+  border-color:rgba(169,117,61,.66)!important;
+  background:linear-gradient(180deg,#7b2724,#4b1113)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .advancement-points b{color:#fff0c7!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page .xp-fill,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page .skill-progress>span{background:linear-gradient(90deg,var(--asterian-red),var(--asterian-bronze))!important}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page .standing-label,
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page .relationship-badge{
+  color:#5b211d!important;
+  border-color:rgba(116,31,29,.42)!important;
+  background:rgba(255,250,238,.24)!important;
+}
+.captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page .btn{
+  color:#fce8c5!important;
+  border-color:rgba(169,117,61,.58)!important;
+  background:linear-gradient(180deg,#7b2925,#4b1214)!important;
+}
+
+@media(max-width:1450px){
+  .captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page>.manuscript-record-header{background-size:cover,310px auto!important}
+}
+@media(max-width:1180px){
+  .captain-sheet-screen[data-culture-pack="asterian"] .captain-manuscript-housing,
+  .captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile::before{display:none!important}
+  .captain-sheet-screen[data-culture-pack="asterian"] .character-structure-page>.manuscript-record-header{
+    min-height:0!important;
+    padding:22px!important;
+    background-image:none!important;
+  }
+  .captain-sheet-screen[data-culture-pack="asterian"] .character-structure-profile{padding:20px!important}
+}
+
+/* ========================================================================== */
+/* Production 1K — Serathi Salt-Limestone Ledger Creator                      */
+/*                                                                            */
+/* The selected direction is translated into fitted nine-slice skins around  */
+/* the accepted live Creator. The responsive shell owns the outer perimeter;  */
+/* no painted viewport frame is stretched to fit changing aspect ratios.      */
+/* ========================================================================== */
+
+.creator-production-screen[data-culture-pack="serathi"]{
+  --serathi-creator-frame:url('/art/ui/character-themes/culture/serathi/production1k/creator_frame.png');
+  --serathi-register-tab:url('/art/ui/character-themes/culture/serathi/production1k/register_tab.png');
+  --serathi-paper:url('/art/ui/character-themes/culture/serathi/production1k/manuscript_texture.webp');
+  --serathi-harbor:url('/art/location/context/serath/arrival_port.png');
+  --serathi-market:url('/art/location/context/serath/market.png');
+  --serathi-limestone:#eadfca;
+  --serathi-plaster:#f2e7cf;
+  --serathi-terracotta:#8d3426;
+  --serathi-brick:#5f211c;
+  --serathi-cedar:#251714;
+  --serathi-indigo:#174e73;
+  --serathi-brass:#a87535;
+  --char-paper:#f1e6cf;
+  --char-paper-deep:#e2d3b6;
+  --char-ink:#34261b;
+  --char-ink-strong:#21160f;
+  --char-ink-soft:#594330;
+  --char-ink-faint:#776149;
+  --char-rule:rgba(115,70,34,.38);
+  --char-rule-soft:rgba(115,70,34,.18);
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(151,73,44,.15),transparent 46%),
+    linear-gradient(180deg,#160f0d,#08090a)!important;
+}
+
+.creator-production-screen[data-culture-pack="serathi"] .creator-production-surface{
+  position:relative!important;
+  isolation:isolate!important;
+  background:
+    linear-gradient(180deg,rgba(255,244,214,.025),transparent 24%),
+    linear-gradient(180deg,#4b241d,#241411)!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(196,145,77,.48),
+    inset 0 0 0 5px rgba(44,21,17,.78),
+    inset 0 0 36px rgba(10,5,4,.52),
+    0 22px 58px rgba(0,0,0,.46)!important;
+}
+
+.creator-production-screen[data-culture-pack="serathi"] .character-culture-outer-frame{display:none!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-art-cell{isolation:isolate;overflow:visible!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-art-cell>.character-culture-frame{
+  display:block!important;
+  position:absolute!important;
+  inset:-6px!important;
+  z-index:8!important;
+  pointer-events:none!important;
+  box-sizing:border-box!important;
+  border-style:solid!important;
+  border-color:transparent!important;
+  border-width:18px 10px 16px!important;
+  border-image-source:var(--serathi-creator-frame)!important;
+  border-image-slice:92 76 88 74!important;
+  border-image-width:18px 10px 16px!important;
+  border-image-repeat:stretch!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-art-pane>.character-culture-frame{display:none!important}
+
+.creator-production-screen[data-culture-pack="serathi"] .creator-manuscript-housing{
+  display:block!important;
+  position:absolute!important;
+  inset:-2px!important;
+  z-index:7!important;
+  pointer-events:none!important;
+  overflow:visible!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .creator-manuscript-housing::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  box-sizing:border-box;
+  border-style:solid;
+  border-color:transparent;
+  border-width:46px 24px 42px;
+  border-image-source:var(--serathi-creator-frame);
+  border-image-slice:92 76 88 74;
+  border-image-width:46px 24px 42px;
+  border-image-repeat:stretch;
+  filter:drop-shadow(0 8px 9px rgba(28,14,10,.20));
+}
+.creator-production-screen[data-culture-pack="serathi"] .creator-manuscript-housing .manuscript-edge,
+.creator-production-screen[data-culture-pack="serathi"] .creator-manuscript-housing .manuscript-corner{display:none!important}
+
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane{
+  position:relative!important;
+  padding:40px 40px 36px!important;
+  border:0!important;
+  color:var(--char-ink)!important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.17),transparent 124px),
+    var(--serathi-paper) center/620px 620px repeat!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(119,78,39,.10),
+    inset 0 18px 34px rgba(255,255,255,.07),
+    inset 0 -18px 28px rgba(94,55,26,.035),
+    0 10px 26px rgba(34,15,10,.15)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane::before,
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane::after{display:none!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane>*{position:relative;z-index:2}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane .creator-page-title,
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane .creator-page-title h2,
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane b,
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane strong{color:var(--char-ink-strong)!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane p,
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane li,
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane td,
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane dd{color:var(--char-ink-soft)!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane small,
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane .creator-counters{color:var(--char-ink-faint)!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane .creator-page-title{
+  padding-left:0!important;
+  border-bottom-color:rgba(141,52,38,.25)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane .creator-page-title::before{display:none!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane .creator-page-title::after{
+  background:linear-gradient(90deg,var(--serathi-terracotta),var(--serathi-brass) 48%,rgba(23,78,115,.42),transparent)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane input:not([type=checkbox]):not([type=radio]),
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane select,
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-pane textarea{
+  color:#2d2117!important;
+  border:1px solid rgba(136,91,43,.54)!important;
+  background:linear-gradient(180deg,rgba(255,254,247,.98),rgba(247,236,214,.96))!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.60)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .creator-choice-impact,
+.creator-production-screen[data-culture-pack="serathi"] .creator-toolbox-panel,
+.creator-production-screen[data-culture-pack="serathi"] .creator-effects-panel,
+.creator-production-screen[data-culture-pack="serathi"] .custom-portrait-panel,
+.creator-production-screen[data-culture-pack="serathi"] .creator-situational-effects{
+  border-left-color:rgba(141,52,38,.62)!important;
+  background:linear-gradient(90deg,rgba(141,52,38,.065),rgba(255,255,255,.08) 68%,transparent)!important;
+}
+
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-rail,
+.creator-production-screen[data-culture-pack="serathi"] .creator-production-side{
+  position:relative!important;
+  color:#f1e4ca!important;
+  background:
+    linear-gradient(180deg,rgba(255,244,215,.035),transparent 22%),
+    linear-gradient(180deg,#5e281f,#2a1713 64%,#1d1210)!important;
+  box-shadow:inset 0 0 0 1px rgba(234,211,170,.09)!important;
+  overflow:hidden!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-rail{padding:14px 13px 12px!important}
+.creator-production-screen[data-culture-pack="serathi"] .creator-production-side{padding:15px 14px 13px!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-rail .creator-brand{
+  padding:4px 7px 16px!important;
+  border-bottom-color:rgba(237,216,180,.27)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-rail .creator-brand .eyebrow{color:#ddb277!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-rail .creator-brand b{color:#fff0d2!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-rail .creator-brand small{color:#d8bda1!important}
+
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-rail .creator-step-button{
+  min-height:50px!important;
+  margin:1px 0!important;
+  padding:8px 14px 10px 10px!important;
+  box-sizing:border-box!important;
+  border-style:solid!important;
+  border-color:transparent!important;
+  border-width:7px 9px 10px!important;
+  border-image-source:var(--serathi-register-tab)!important;
+  border-image-slice:58 80 78 80 fill!important;
+  border-image-width:7px 9px 10px!important;
+  border-image-repeat:stretch!important;
+  color:#ead7bd!important;
+  text-shadow:0 1px 1px rgba(50,17,12,.82)!important;
+  background:#72291f!important;
+  filter:saturate(.70) brightness(.72)!important;
+  transform:none!important;
+  transition:filter .16s ease,transform .16s ease!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-rail .creator-step-button:hover{
+  color:#fff0d3!important;
+  filter:saturate(.90) brightness(.91)!important;
+  transform:translateX(2px)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-rail .creator-step-button.active{
+  color:#fff5df!important;
+  filter:saturate(.98) brightness(1.02)!important;
+  transform:translateX(3px)!important;
+  box-shadow:0 5px 10px rgba(36,13,10,.24)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-rail .creator-step-button span{
+  color:#f2d5a0!important;
+  border-color:rgba(232,203,151,.70)!important;
+  background:rgba(69,24,18,.50)!important;
+  box-shadow:inset 0 0 0 1px rgba(34,11,8,.40)!important;
+}
+
+.creator-production-screen[data-culture-pack="serathi"] .character-culture-rail-gallery{
+  display:block!important;
+  position:absolute!important;
+  z-index:1!important;
+  left:10px!important;
+  right:10px!important;
+  bottom:12px!important;
+  height:42%!important;
+  min-height:240px!important;
+  max-height:350px!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(180deg,#281612,rgba(40,22,18,.08) 28%,rgba(40,22,18,.22) 75%,#211310),
+    var(--serathi-market) center/cover no-repeat!important;
+  opacity:.76!important;
+  mask-image:linear-gradient(180deg,transparent 0,#000 19%,#000 100%)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-culture-banner-art,
+.creator-production-screen[data-culture-pack="serathi"] .character-culture-lantern-art{display:none!important}
+.creator-production-screen[data-culture-pack="serathi"] .creator-brand,
+.creator-production-screen[data-culture-pack="serathi"] .creator-step-list{position:relative;z-index:5}
+
+.creator-production-screen[data-culture-pack="serathi"] .creator-production-portrait,
+.creator-production-screen[data-culture-pack="serathi"] .creator-production-footer{position:relative;z-index:4}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-portrait .creator-preview-frame{
+  position:relative!important;
+  padding:0!important;
+  border-style:solid!important;
+  border-color:transparent!important;
+  border-width:14px 8px 12px!important;
+  border-image-source:var(--serathi-creator-frame)!important;
+  border-image-slice:92 76 88 74!important;
+  border-image-width:14px 8px 12px!important;
+  border-image-repeat:stretch!important;
+  background:#251714!important;
+  box-shadow:0 8px 20px rgba(31,14,10,.29)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-portrait .creator-identity-caption{
+  color:#f0e0c5!important;
+  border-top-color:rgba(237,216,178,.22)!important;
+  background:linear-gradient(180deg,rgba(237,216,178,.05),transparent 72%)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-portrait .creator-identity-caption small{color:#deb57c!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-structure-portrait .creator-identity-caption b{color:#fff0d0!important}
+.creator-production-screen[data-culture-pack="serathi"] .character-culture-side-vignette{
+  display:block!important;
+  position:absolute!important;
+  z-index:1!important;
+  left:10px!important;
+  right:10px!important;
+  bottom:88px!important;
+  height:238px!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(180deg,#261511,rgba(38,21,17,.04) 24%,rgba(38,21,17,.10) 68%,#211310),
+    linear-gradient(90deg,#251512,transparent 38%),
+    var(--serathi-harbor) center/cover no-repeat!important;
+  opacity:.84!important;
+  mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 84%,transparent 100%)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .creator-production-footer::before{
+  background:linear-gradient(90deg,transparent,rgba(232,210,171,.40),var(--serathi-indigo),transparent)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .creator-production-footer .et-button{
+  color:#fff0d0!important;
+  border-color:rgba(225,197,145,.58)!important;
+  background:linear-gradient(180deg,#8a3829,#552018)!important;
+}
+.creator-production-screen[data-culture-pack="serathi"] .creator-production-footer .et-button:hover{
+  border-color:#e8c994!important;
+  background:linear-gradient(180deg,#9e4734,#66271e)!important;
+}
+
+/* Culture remains primary. A religion accent will be fitted separately. */
+.creator-production-screen[data-culture-pack="serathi"] .character-faith-socket{display:none!important}
+
+@media(max-width:1450px){
+  .creator-production-screen[data-culture-pack="serathi"] .character-structure-pane{padding:35px 33px 31px!important}
+  .creator-production-screen[data-culture-pack="serathi"] .character-culture-rail-gallery{opacity:.56!important;height:36%!important;min-height:205px!important}
+}
+@media(max-width:1180px){
+  .creator-production-screen[data-culture-pack="serathi"] .creator-manuscript-housing{display:none!important}
+  .creator-production-screen[data-culture-pack="serathi"] .character-art-pane>.character-culture-frame{display:block!important}
+  .creator-production-screen[data-culture-pack="serathi"] .character-structure-pane{padding:22px!important}
+  .creator-production-screen[data-culture-pack="serathi"] .character-culture-rail-gallery,
+  .creator-production-screen[data-culture-pack="serathi"] .character-culture-side-vignette{display:none!important}
+}
+
+/* ========================================================================== */
+/* Production 1L — Serathi Salt-Limestone Ledger Captain                      */
+/*                                                                            */
+/* The approved block-limestone, cedar, copper, and tesserae language wraps   */
+/* Captain's real sticky dossier and independent scroll-owned chapters.       */
+/* No viewport-sized art owns layout or scrolling.                             */
+/* ========================================================================== */
+
+.captain-sheet-screen[data-culture-pack="serathi"]{
+  --serathi-captain-frame:url('/art/ui/character-themes/culture/serathi/production1k/creator_frame.png');
+  --serathi-captain-register:url('/art/ui/character-themes/culture/serathi/production1k/register_tab.png');
+  --serathi-captain-paper:url('/art/ui/character-themes/culture/serathi/production1k/manuscript_texture.webp');
+  --serathi-captain-profile:url('/art/location/context/serath/arrival_port.png');
+  --serathi-captain-history:url('/art/location/context/serath/royal_palace.png');
+  --serathi-captain-capabilities:url('/art/location/context/serath/harbor.png');
+  --serathi-captain-condition:url('/art/location/context/serath/temple.png');
+  --serathi-limestone:#eadfca;
+  --serathi-stone:#dac9aa;
+  --serathi-terracotta:#8d3426;
+  --serathi-brick:#5f211c;
+  --serathi-cedar:#251714;
+  --serathi-copper:#a76032;
+  --serathi-glass:#174e73;
+  --char-paper:#f1e6cf;
+  --char-paper-deep:#e2d3b6;
+  --char-ink:#34261b;
+  --char-ink-strong:#21160f;
+  --char-ink-soft:#594330;
+  --char-ink-faint:#776149;
+  --char-rule:rgba(115,70,34,.38);
+  --char-rule-soft:rgba(115,70,34,.18);
+  background:
+    radial-gradient(ellipse at 42% 0%,rgba(160,94,53,.14),transparent 44%),
+    linear-gradient(180deg,#160f0d,#08090a)!important;
+}
+
+.captain-sheet-screen[data-culture-pack="serathi"]>.character-culture-captain-stage{display:none!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-local-bar{
+  color:#f0e2c9!important;
+  border-bottom-color:rgba(179,101,55,.48)!important;
+  background:
+    linear-gradient(90deg,rgba(141,52,38,.78),rgba(55,25,19,.94) 44%,#10100f 84%)!important;
+  box-shadow:inset 0 -1px rgba(241,221,184,.08)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-local-bar .eyebrow{color:#d5a871!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-local-bar .screen-local-title{color:#fff1d5!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-local-bar .subtab.active{
+  color:#fff1d5!important;
+  border-bottom-color:var(--serathi-copper)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-scroll{
+  overflow:auto!important;
+  background:
+    linear-gradient(90deg,rgba(91,40,29,.22),transparent 23%,transparent 78%,rgba(55,30,23,.16)),
+    #0b0d0d!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-layout{gap:34px!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-main{gap:34px!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-sidebar{position:sticky!important;top:0!important}
+
+/* Sticky dossier: one local skin around the existing large portrait block. */
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile{
+  position:relative!important;
+  isolation:isolate!important;
+  padding:24px 22px 22px!important;
+  border:0!important;
+  color:#f1e4ca!important;
+  background:
+    linear-gradient(180deg,rgba(255,245,216,.04),transparent 22%),
+    linear-gradient(180deg,var(--serathi-terracotta),var(--serathi-cedar))!important;
+  box-shadow:0 14px 34px rgba(24,10,6,.36)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile::before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  inset:-6px!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  box-sizing:border-box!important;
+  border-style:solid!important;
+  border-color:transparent!important;
+  border-width:21px 13px 18px!important;
+  border-image-source:var(--serathi-captain-frame)!important;
+  border-image-slice:92 76 88 74!important;
+  border-image-width:21px 13px 18px!important;
+  border-image-repeat:stretch!important;
+  filter:drop-shadow(0 9px 9px rgba(31,13,8,.29));
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile::after{display:none!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile>*{position:relative;z-index:2}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile .manuscript-rubric{color:#dbad74!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile .manuscript-name{color:#fff1d4!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile .manuscript-byline,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile .small{color:#ddc7aa!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile .character-role{color:#f3dfbd!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile .sidebar-stat{
+  color:#ead9bd!important;
+  border-bottom-color:rgba(239,220,185,.18)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile .sidebar-stat b{color:#fff0ce!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile .manuscript-portrait-mat{
+  margin:18px 0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+  border-style:solid!important;
+  border-color:transparent!important;
+  border-width:13px 8px 11px!important;
+  border-image-source:var(--serathi-captain-frame)!important;
+  border-image-slice:92 76 88 74!important;
+  border-image-width:13px 8px 11px!important;
+  border-image-repeat:stretch!important;
+  background:#251714!important;
+  box-shadow:0 8px 18px rgba(29,12,7,.29)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile .character-culture-profile-vignette{
+  display:block!important;
+  height:116px!important;
+  margin:14px -4px -4px!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(180deg,var(--serathi-cedar),rgba(37,23,20,.05) 35%,rgba(37,23,20,.18) 70%,var(--serathi-cedar)),
+    var(--serathi-captain-profile) center/cover no-repeat!important;
+  opacity:.80!important;
+  mask-image:linear-gradient(180deg,transparent 0,#000 19%,#000 82%,transparent 100%)!important;
+}
+
+/* Each live-height chapter owns an independent fitted housing. */
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page{
+  position:relative!important;
+  isolation:isolate!important;
+  padding:0 0 30px!important;
+  border:0!important;
+  color:var(--char-ink)!important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.18),transparent 130px),
+    linear-gradient(90deg,rgba(141,52,38,.026),transparent 18%,transparent 82%,rgba(23,78,115,.018)),
+    var(--serathi-captain-paper) center/620px 620px repeat!important;
+  box-shadow:0 13px 32px rgba(33,14,8,.23)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page::before,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page::after{display:none!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .captain-manuscript-housing{
+  display:block!important;
+  position:absolute!important;
+  inset:-2px!important;
+  z-index:7!important;
+  pointer-events:none!important;
+  overflow:visible!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .captain-manuscript-housing::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  box-sizing:border-box;
+  border-style:solid;
+  border-color:transparent;
+  border-width:28px 17px 24px;
+  border-image-source:var(--serathi-captain-frame);
+  border-image-slice:92 76 88 74;
+  border-image-width:28px 17px 24px;
+  border-image-repeat:stretch;
+  filter:drop-shadow(0 8px 9px rgba(36,15,9,.21));
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .captain-manuscript-housing .manuscript-edge,
+.captain-sheet-screen[data-culture-pack="serathi"] .captain-manuscript-housing .manuscript-corner{display:none!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page>*:not(.character-manuscript-housing){position:relative;z-index:2}
+
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page>.manuscript-record-header{
+  min-height:94px!important;
+  padding:29px 35px 19px!important;
+  border-bottom:0!important;
+  background-color:var(--serathi-stone)!important;
+  background-repeat:no-repeat!important;
+  background-position:center,right center!important;
+  background-size:cover,390px auto!important;
+  box-shadow:inset 0 -1px rgba(141,52,38,.22)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page>.manuscript-record-header>div{max-width:64%!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .captain-page-history>.manuscript-record-header{
+  background-image:linear-gradient(90deg,#e0d2b8 0%,#e0d2b8 49%,rgba(224,210,184,.92) 62%,rgba(224,210,184,.16) 100%),var(--serathi-captain-history)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .captain-page-capabilities>.manuscript-record-header{
+  background-image:linear-gradient(90deg,#e0d2b8 0%,#e0d2b8 49%,rgba(224,210,184,.92) 62%,rgba(224,210,184,.16) 100%),var(--serathi-captain-capabilities)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .captain-page-condition>.manuscript-record-header{
+  background-image:linear-gradient(90deg,#e0d2b8 0%,#e0d2b8 49%,rgba(224,210,184,.92) 62%,rgba(224,210,184,.16) 100%),var(--serathi-captain-condition)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page>.manuscript-record-header .manuscript-rubric{color:#805138!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page>.manuscript-record-header .section-title{color:#281910!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page .section-title,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page .manuscript-section-heading h3,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page b,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page strong{color:var(--char-ink-strong)!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page p,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page li,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page td,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page dd{color:var(--char-ink-soft)!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page small,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page .muted{color:var(--char-ink-faint)!important}
+
+/* Terracotta register leaves remain within existing accordion geometry. */
+.captain-sheet-screen[data-culture-pack="serathi"] .record-accordion-summary{
+  min-height:74px!important;
+  box-sizing:border-box!important;
+  padding:11px 15px 13px!important;
+  border-style:solid!important;
+  border-color:transparent!important;
+  border-width:7px 9px 10px!important;
+  border-image-source:var(--serathi-captain-register)!important;
+  border-image-slice:58 80 78 80 fill!important;
+  border-image-width:7px 9px 10px!important;
+  border-image-repeat:stretch!important;
+  background:linear-gradient(180deg,#963a28,#682319)!important;
+  box-shadow:0 5px 12px rgba(45,18,9,.15)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .record-accordion-heading>small{color:#e1b77e!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .record-accordion-heading>strong{color:#fff0d4!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .record-accordion-meta>b{color:#f6dfb9!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .record-accordion-meta>small{color:#dcc2a0!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .record-accordion-summary::after{color:#f0d7aa!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .record-accordion-body{
+  padding:14px 14px 5px!important;
+  background:linear-gradient(90deg,rgba(141,52,38,.045),transparent 82%)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .record-accordion[open]>.record-accordion-summary{filter:saturate(.96) brightness(1.02)}
+.captain-sheet-screen[data-culture-pack="serathi"] .advancement-points span{
+  color:#f2d8a6!important;
+  border-color:rgba(167,96,50,.68)!important;
+  background:linear-gradient(180deg,#843224,#4f1b15)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .advancement-points b{color:#fff0c7!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page .xp-fill,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page .skill-progress>span{background:linear-gradient(90deg,var(--serathi-terracotta),var(--serathi-copper))!important}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page .standing-label,
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page .relationship-badge{
+  color:#64291d!important;
+  border-color:rgba(141,52,38,.42)!important;
+  background:rgba(255,250,238,.24)!important;
+}
+.captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page .btn{
+  color:#fce8c5!important;
+  border-color:rgba(167,96,50,.60)!important;
+  background:linear-gradient(180deg,#853226,#4f1a15)!important;
+}
+
+@media(max-width:1450px){
+  .captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page>.manuscript-record-header{background-size:cover,310px auto!important}
+}
+@media(max-width:1180px){
+  .captain-sheet-screen[data-culture-pack="serathi"] .captain-manuscript-housing,
+  .captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile::before{display:none!important}
+  .captain-sheet-screen[data-culture-pack="serathi"] .character-structure-page>.manuscript-record-header{
+    min-height:0!important;
+    padding:22px!important;
+    background-image:none!important;
+  }
+  .captain-sheet-screen[data-culture-pack="serathi"] .character-structure-profile{padding:20px!important}
+}

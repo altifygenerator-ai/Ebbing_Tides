@@ -5,13 +5,14 @@
   "integration": "transparent frame assets wrap locked UI cells; no full-panel culture painting is placed beneath controls",
   "culturePacks": {
     "skeldran": "culture/skeldran/manifest.json",
-    "asterianCreator": "culture/asterian/manifest.json"
+    "asterian": "culture/asterian/manifest.json",
+    "serathi": "culture/serathi/manifest.json"
   },
   "religionPacks": {
     "old_gods": "religion/old_gods/manifest.json",
     "covenant": "religion/covenant/manifest.json"
   },
-  "pendingCulturePacks": ["asterianCaptain", "serathi", "kaishin", "vesperan", "outer_isles"],
+  "pendingCulturePacks": ["kaishin", "vesperan", "outer_isles"],
   "pendingReligionPacks": ["pantheon", "turning_wheel"],
   "unaffiliatedReligion": "no religion accent"
 }

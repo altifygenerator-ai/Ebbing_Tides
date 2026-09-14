@@ -1,10 +1,10 @@
 {
-  "id": "character.culture.asterian.creator.production1i",
-  "scope": ["character_creator"],
+  "id": "character.culture.asterian.production1j",
+  "scope": ["character_creator", "captain_sheet"],
   "role": "primary_culture_frame_pack",
-  "status": "creator_candidate_captain_pending",
+  "status": "creator_accepted_captain_candidate",
   "geometryOwner": "code",
-  "integration": "one continuous transparent manuscript housing plus fitted border-image slices around locked runtime regions",
+  "integration": "fitted border-image slices wrap the accepted Creator regions, sticky Captain dossier, and independent scroll-owned Captain chapters",
   "palette": {
     "dominant": ["warm ivory", "sun-aged white limestone", "cream parchment"],
     "secondary": ["wine red", "oxblood", "muted terracotta red"],
@@ -16,6 +16,11 @@
     "registerTab": "production1i/register_tab.png",
     "manuscriptTexture": "production1i/manuscript_texture.webp",
     "railVignette": "/art/location/context/asteria/market.png",
-    "sideVignette": "/art/location/context/asteria/arrival_port.png"
+    "sideVignette": "/art/location/context/asteria/arrival_port.png",
+    "captainFrame": "production1i/creator_frame.png",
+    "captainProfileVignette": "/art/location/context/asteria/arrival_port.png",
+    "captainHistoryVignette": "/art/location/context/asteria/royal_palace.png",
+    "captainCapabilitiesVignette": "/art/location/context/asteria/harbor.png",
+    "captainConditionVignette": "/art/location/context/asteria/temple.png"
   }
 }

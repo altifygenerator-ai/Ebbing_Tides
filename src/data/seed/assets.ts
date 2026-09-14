@@ -5,24 +5,24 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   ...SHIP_COMBAT_ASSET_REGISTRY,
   {
     "assetId": "map.world_atlas.labeled_v06d",
-    "displayName": "Labeled World Atlas — Alpha 0.6D Canonical Navigation Master",
+    "displayName": "Labeled World Atlas â€” Alpha 0.6D 12K Detail Navigation Master",
     "type": "MAP_REFERENCE",
     "category": "map",
     "subcategory": "global_atlas",
     "tier": "A_UNIQUE",
     "status": "APPROVED_ANCHOR",
-    "artStyleVersion": "NAV_MAP_LABELED_0.6D",
+    "artStyleVersion": "NAV_MAP_LABELED_0.6D_DETAIL_12K",
     "era": "628 CR",
     "gameplayRole": ["navigation", "cartography", "world_geography", "regional_context"],
     "visualAnchor": "User-approved labeled world atlas used as the sole active navigation painting for Alpha 0.6D.",
     "alphaPriority": "0.6D-canonical-navigation-art",
-    "path": "/art/maps/world_atlas_labeled_v06d_master.webp",
-    "sourceMaster": "ChatGPT Image Sep 8, 2026, 02_03_54 PM.png",
-    "notes": "Exact supplied labeled map, deterministically resampled and projection-normalized to 6000x4000 for the locked 120x80 world grid. No generative geography changes. Passability is versioned separately in WORLD_TERRAIN_MASK_V06D_LABELED and must remain calibrated to this atlas.",
+    "path": "/art/maps/world_atlas_labeled_v06d_detail_master_12k.jpg",
+    "sourceMaster": "ComfyUI_00002_.png",
+    "notes": "User-approved ComfyUI 2x detail enhancement of the canonical labeled atlas. Runtime art is 12000x8000 and remains registered to the locked 120x80 world grid; terrain/passability remains authoritative in WORLD_TERRAIN_MASK_V06D_LABELED. The original 6000x4000 atlas remains in the repository as a fallback. Runtime JPEG is a visually near-lossless q98 4:4:4 derivative of the lossless 12K source.",
     "mapRegistration": {
       "globalBounds": {"x": 0, "y": 0, "width": 120, "height": 80},
-      "nativePixelWidth": 6000,
-      "nativePixelHeight": 4000,
+      "nativePixelWidth": 12000,
+      "nativePixelHeight": 8000,
       "overlapCells": 0,
       "zoomMin": "far",
       "zoomMax": "close"
@@ -30,7 +30,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   },
   {
     "assetId": "canon.world_settlement_maritime_geography.0_1.map",
-    "displayName": "World Settlement & Maritime Geography Canon 0.1 — Map",
+    "displayName": "World Settlement & Maritime Geography Canon 0.1 â€” Map",
     "type": "DOCUMENT",
     "category": "canon",
     "subcategory": "world_geography_source",
@@ -47,7 +47,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   },
   {
     "assetId": "canon.world_settlement_maritime_geography.0_1.settlement_record",
-    "displayName": "World Settlement & Maritime Geography Canon 0.1 — Settlement Record",
+    "displayName": "World Settlement & Maritime Geography Canon 0.1 â€” Settlement Record",
     "type": "DOCUMENT",
     "category": "canon",
     "subcategory": "world_settlement_source",
@@ -81,11 +81,11 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     "alphaPriority": "0.5C-fallback / replace-regionally",
     "path": "/art/maps/world_atlas_visual_dna_v06d_crisp.png",
     "sourceMaster": "unlabeled_fantasy_world_map.png",
-    "notes": "Provisional illustrated global atlas layer derived from supplied map-art DNA. Alpha 0.6D uses a pre-projected 3600×2400 lossless runtime master with restrained sharpening so the browser does not stretch/dim the low-resolution source on every frame. Geometry remains authoritative and versioned separately."
+    "notes": "Provisional illustrated global atlas layer derived from supplied map-art DNA. Alpha 0.6D uses a pre-projected 3600Ã—2400 lossless runtime master with restrained sharpening so the browser does not stretch/dim the low-resolution source on every frame. Geometry remains authoritative and versioned separately."
   },
   {
     "assetId": "map.skeldra.region_layer.v05c",
-    "displayName": "Skeldra Regional Navigation Chart — Alpha 0.5C",
+    "displayName": "Skeldra Regional Navigation Chart â€” Alpha 0.5C",
     "type": "MAP_REGION_LAYER",
     "category": "map",
     "subcategory": "regional_chart",
@@ -104,7 +104,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     "alphaPriority": "reference-only after 0.6D labeled atlas",
     "path": "/art/maps/skeldra_regional_chart_v06d_crisp.png",
     "sourceMaster": "world_atlas_visual_dna_v04.png",
-    "notes": "Coordinate-aligned high-resolution regional presentation layer. Alpha 0.6D promotes a lossless 4096×2926 runtime master with restrained non-generative sharpening and no SVG dim filter. Geometry remains the authoritative world grid. The accepted generated navigation mockup remains reference-only because its baked sample state cannot own runtime coordinates.",
+    "notes": "Coordinate-aligned high-resolution regional presentation layer. Alpha 0.6D promotes a lossless 4096Ã—2926 runtime master with restrained non-generative sharpening and no SVG dim filter. Geometry remains the authoritative world grid. The accepted generated navigation mockup remains reference-only because its baked sample state cannot own runtime coordinates.",
     "mapRegistration": {
       "globalBounds": {
         "x": 10,
@@ -332,7 +332,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   },
   {
     "assetId": "ui.navigation.skeldra.generated_reference_v05c",
-    "displayName": "Skeldra Navigation Generated Visual Reference — 0.5C",
+    "displayName": "Skeldra Navigation Generated Visual Reference â€” 0.5C",
     "type": "UI_REFERENCE",
     "category": "map",
     "subcategory": "regional_navigation_reference",
@@ -373,7 +373,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   },
   {
     "assetId": "character.skeldra.player.male.naval_captain.anchor",
-    "displayName": "Skeldran Naval Captain Anchor — Player Pool",
+    "displayName": "Skeldran Naval Captain Anchor â€” Player Pool",
     "type": "PORTRAIT",
     "category": "character_portrait",
     "subcategory": "skeldran_character_reference",
@@ -598,7 +598,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   },
   {
     "assetId": "character.skeldra.player.male.naval_officer_studio.01",
-    "displayName": "Skeldran Naval Officer — Studio",
+    "displayName": "Skeldran Naval Officer â€” Studio",
     "type": "PORTRAIT",
     "category": "character_portrait",
     "subcategory": "skeldran_character_reference",
@@ -1550,7 +1550,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "High-resolution approved composition reference; form and control geometry are code-owned in Phase 3."
   },{
     assetId: "ui.identity.ancestry.skeldran.runtime",
-    displayName: "Skeldran — Main Ancestry Identity Symbol",
+    displayName: "Skeldran â€” Main Ancestry Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_ancestry",
@@ -1565,7 +1565,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.ancestry.asterian.runtime",
-    displayName: "Asterian — Main Ancestry Identity Symbol",
+    displayName: "Asterian â€” Main Ancestry Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_ancestry",
@@ -1580,7 +1580,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.ancestry.serathi.runtime",
-    displayName: "Serathi — Main Ancestry Identity Symbol",
+    displayName: "Serathi â€” Main Ancestry Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_ancestry",
@@ -1595,7 +1595,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.ancestry.kaishin.runtime",
-    displayName: "Kaishin — Main Ancestry Identity Symbol",
+    displayName: "Kaishin â€” Main Ancestry Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_ancestry",
@@ -1610,7 +1610,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.ancestry.vesperan.runtime",
-    displayName: "Vesperan — Main Ancestry Identity Symbol",
+    displayName: "Vesperan â€” Main Ancestry Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_ancestry",
@@ -1625,7 +1625,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.ancestry.outer_isles.runtime",
-    displayName: "Outer Isles — Main Ancestry Identity Symbol",
+    displayName: "Outer Isles â€” Main Ancestry Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_ancestry",
@@ -1640,7 +1640,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.religion.old_gods.runtime",
-    displayName: "Old Gods — Main Religion Identity Symbol",
+    displayName: "Old Gods â€” Main Religion Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_religion",
@@ -1655,7 +1655,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.religion.pantheon.runtime",
-    displayName: "Pantheon — Main Religion Identity Symbol",
+    displayName: "Pantheon â€” Main Religion Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_religion",
@@ -1670,7 +1670,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.religion.covenant.runtime",
-    displayName: "Covenant — Main Religion Identity Symbol",
+    displayName: "Covenant â€” Main Religion Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_religion",
@@ -1685,7 +1685,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.religion.turning_wheel.runtime",
-    displayName: "Turning Wheel — Main Religion Identity Symbol",
+    displayName: "Turning Wheel â€” Main Religion Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_religion",
@@ -1700,7 +1700,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.homeland.skeldra.runtime",
-    displayName: "Skeldra — Main Homeland Identity Symbol",
+    displayName: "Skeldra â€” Main Homeland Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_homeland",
@@ -1715,7 +1715,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.homeland.asteria.runtime",
-    displayName: "Asteria — Main Homeland Identity Symbol",
+    displayName: "Asteria â€” Main Homeland Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_homeland",
@@ -1730,7 +1730,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.homeland.serath.runtime",
-    displayName: "Serath — Main Homeland Identity Symbol",
+    displayName: "Serath â€” Main Homeland Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_homeland",
@@ -1745,7 +1745,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.homeland.kaishin.runtime",
-    displayName: "Kaishin — Main Homeland Identity Symbol",
+    displayName: "Kaishin â€” Main Homeland Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_homeland",
@@ -1760,7 +1760,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.homeland.vespera.runtime",
-    displayName: "Vespera — Main Homeland Identity Symbol",
+    displayName: "Vespera â€” Main Homeland Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_homeland",
@@ -1775,7 +1775,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.homeland.outer_isles.runtime",
-    displayName: "Outer Isles — Main Homeland Identity Symbol",
+    displayName: "Outer Isles â€” Main Homeland Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_homeland",
@@ -1790,7 +1790,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.affiliation.house_vaering.runtime",
-    displayName: "House Vaering — Main Affiliation Identity Symbol",
+    displayName: "House Vaering â€” Main Affiliation Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_affiliation",
@@ -1805,7 +1805,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.affiliation.skeldran_royal_navy.runtime",
-    displayName: "Skeldran Royal Navy — Main Affiliation Identity Symbol",
+    displayName: "Skeldran Royal Navy â€” Main Affiliation Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_affiliation",
@@ -1820,7 +1820,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.affiliation.merchant_guild.runtime",
-    displayName: "Merchant Guild — Main Affiliation Identity Symbol",
+    displayName: "Merchant Guild â€” Main Affiliation Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_affiliation",
@@ -1834,7 +1834,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.affiliation.marine_order.runtime",
-    displayName: "Marine Order — Main Affiliation Identity Symbol",
+    displayName: "Marine Order â€” Main Affiliation Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_affiliation",
@@ -1848,7 +1848,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.affiliation.harbor_authority.runtime",
-    displayName: "Harbor Authority — Main Affiliation Identity Symbol",
+    displayName: "Harbor Authority â€” Main Affiliation Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_affiliation",
@@ -1862,7 +1862,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
     notes: "Runtime-transparent derivative of the approved Main Identity Symbols source. Used only in the four-channel Ancestry / Religion / Homeland / Affiliation UI system."
   },{
     assetId: "ui.identity.affiliation.free_captains.runtime",
-    displayName: "Free Captains — Main Affiliation Identity Symbol",
+    displayName: "Free Captains â€” Main Affiliation Identity Symbol",
     type: "GENERIC",
     category: "identity_symbol",
     subcategory: "main_affiliation",
@@ -2523,7 +2523,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   },
   {
     assetId: "ship.named.tideworn.portrait.pristine",
-    displayName: "Tideworn Fjord Cutter — Pristine Portrait",
+    displayName: "Tideworn Fjord Cutter â€” Pristine Portrait",
     type: "SHIP_REFERENCE",
     category: "ship_portrait",
     subcategory: "named_ship_portrait",
@@ -2539,7 +2539,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   },
   {
     assetId: "ship.named.tideworn.token.north",
-    displayName: "Tideworn Token — North",
+    displayName: "Tideworn Token â€” North",
     type: "SHIP_TOKEN",
     category: "ship_token",
     subcategory: "named_ship_directional_token",
@@ -2555,7 +2555,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   },
   {
     assetId: "ship.named.tideworn.token.east",
-    displayName: "Tideworn Token — East",
+    displayName: "Tideworn Token â€” East",
     type: "SHIP_TOKEN",
     category: "ship_token",
     subcategory: "named_ship_directional_token",
@@ -2571,7 +2571,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   },
   {
     assetId: "ship.named.tideworn.token.south",
-    displayName: "Tideworn Token — South",
+    displayName: "Tideworn Token â€” South",
     type: "SHIP_TOKEN",
     category: "ship_token",
     subcategory: "named_ship_directional_token",
@@ -2587,7 +2587,7 @@ export const ASSET_REGISTRY: AssetRegistryEntry[] = [
   },
   {
     assetId: "ship.named.tideworn.token.west",
-    displayName: "Tideworn Token — West",
+    displayName: "Tideworn Token â€” West",
     type: "SHIP_TOKEN",
     category: "ship_token",
     subcategory: "named_ship_directional_token",

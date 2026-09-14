@@ -1,7 +1,7 @@
 import { GLOBAL_ATLAS } from "../data/seed/worldMap.js";
 export const NAV_CAMERA = {
-    minViewWidth: 24,
-    defaultViewWidth: 30,
+    minViewWidth: 12,
+    defaultViewWidth: 18,
     farViewWidth: 120,
     maxViewWidth: 120,
     aspectRatio: 3 / 2,

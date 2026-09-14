@@ -135,8 +135,8 @@ function tip(text:string):string { return `data-tooltip="${esc(text)}" tabindex=
 // Culture owns the primary frame/material treatment. Religion only supplies the small
 // accent mounted into purpose-built sockets in that culture frame. Unimplemented packs
 // fall back to the neutral structural UI rather than borrowing another culture's art.
-const IMPLEMENTED_CHARACTER_CULTURE_PACKS=new Set<CharacterCreationChoices["culture"]>(["skeldran"]);
-const IMPLEMENTED_CREATOR_CULTURE_PACKS=new Set<CharacterCreationChoices["culture"]>(["skeldran","asterian"]);
+const IMPLEMENTED_CHARACTER_CULTURE_PACKS=new Set<CharacterCreationChoices["culture"]>(["skeldran","asterian","serathi"]);
+const IMPLEMENTED_CREATOR_CULTURE_PACKS=new Set<CharacterCreationChoices["culture"]>(["skeldran","asterian","serathi"]);
 const IMPLEMENTED_CHARACTER_RELIGION_PACKS=new Set<CharacterCreationChoices["religion"]>(["old_gods","covenant"]);
 
 function characterThemeAttributes(culture:CharacterCreationChoices["culture"],religion:CharacterCreationChoices["religion"],culturePacks=IMPLEMENTED_CHARACTER_CULTURE_PACKS):string {

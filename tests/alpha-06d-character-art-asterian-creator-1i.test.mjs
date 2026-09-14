@@ -10,10 +10,10 @@ const bytes=(rel)=>fs.readFileSync(path.join(ROOT,rel));
 const exists=(rel)=>fs.existsSync(path.join(ROOT,rel));
 const artRoot='public/art/ui/character-themes/culture/asterian/production1i';
 
-test('Asterian 1I is enabled for Creator while Captain remains on its separately controlled set',()=>{
+test('Asterian Creator remains on its accepted assembly while Captain uses the fitted culture set',()=>{
   const main=read('src/alpha/main.ts');
-  assert.match(main,/IMPLEMENTED_CREATOR_CULTURE_PACKS[^\n]*\["skeldran","asterian"\]/);
-  assert.match(main,/IMPLEMENTED_CHARACTER_CULTURE_PACKS[^\n]*\["skeldran"\]/);
+  assert.match(main,/IMPLEMENTED_CREATOR_CULTURE_PACKS[^\n]*\["skeldran","asterian","serathi"\]/);
+  assert.match(main,/IMPLEMENTED_CHARACTER_CULTURE_PACKS[^\n]*\["skeldran","asterian","serathi"\]/);
   assert.match(main,/syncCreatorCharacterTheme[\s\S]*IMPLEMENTED_CREATOR_CULTURE_PACKS\.has\(culture\)/);
   assert.match(main,/characterThemeAttributes\(c\.culture,c\.religion,IMPLEMENTED_CREATOR_CULTURE_PACKS\)/);
   assert.match(main,/characterThemeAttributes\(s\.player\.character\.culture,s\.player\.character\.religion\)/);
@@ -30,7 +30,7 @@ test('Asterian Creator uses one transparent joined housing instead of four indep
   assert.match(housing,/border-image-slice:58 30 44 30/);
   assert.doesNotMatch(housing,/100% 100%/,'joined frame must not be flattened to the runtime aspect ratio');
   assert.match(css,/\.creator-production-screen\[data-culture-pack="asterian"\] \.creator-manuscript-housing \.manuscript-edge,[\s\S]*\.manuscript-corner\{display:none!important\}/);
-  assert.doesNotMatch(css,/\.captain-sheet-screen\[data-culture-pack="asterian"\]/);
+  assert.match(css,/\.captain-sheet-screen\[data-culture-pack="asterian"\]/);
 });
 
 test('Asterian register leaves preserve painted corner and rail proportions',()=>{
@@ -57,7 +57,7 @@ test('Asterian Creator palette and assets follow the approved white red bronze h
     assert.equal(exists(`${artRoot}/${asset}`),true,asset);
   }
   const manifest=JSON.parse(read('public/art/ui/character-themes/culture/asterian/manifest.json'));
-  assert.deepEqual(manifest.scope,['character_creator']);
+  assert.deepEqual(manifest.scope,['character_creator','captain_sheet']);
   assert.match(manifest.palette.dominant.join(' '),/ivory|white/i);
   assert.match(manifest.palette.secondary.join(' '),/wine red|oxblood/i);
   assert.match(manifest.palette.metal.join(' '),/bronze/i);

@@ -1,29 +1,28 @@
-Ebbing Tides Alpha 0.6D — Tideworn Travel Pacing v3.4
+EBBING TIDES - 12K ATLAS BUILD VALIDATION FIX v3
 
-This is a small pacing adjustment on top of the working v3.3 continuous-motion pass.
+Why v2 failed
+-------------
+Windows PowerShell 5.1 writes a UTF-8 BOM when using:
+  Set-Content -Encoding UTF8
 
-Visual travel is slowed slightly:
-- long normal voyage target: about 2.3 seconds -> about 3.0 seconds
-- minimum tween segment: 58 ms -> 70 ms
-- maximum tween segment: 140 ms -> 170 ms
+The v2 script used that command when rewriting tsconfig.json. In this project,
+Turbopack then rejected tsconfig.json at line 1 / character 1 with:
+  tsconfig is not parseable: invalid JSON: Unexpected token
 
-The goal is to keep travel short, but make it read as deliberate sailing rather than fast-forward movement.
+v3 fixes that by writing explicit UTF-8 WITHOUT BOM.
 
-This changes presentation timing only. It does not alter:
-- in-game elapsed time
-- ship speed calculations
-- route geometry/pathfinding
-- supplies
-- weather
-- encounters
-- economy
-- saves
-- naval combat
+It also preserves the intended exclusions so root TypeScript validation ignores
+incomplete handoff snapshots under dist/.
 
-Run from the project root:
+The 12K atlas itself was already installed successfully before the build step.
+This package does NOT reinstall the atlas or alter gameplay.
 
-    powershell -ExecutionPolicy Bypass -File ".\apply_tideworn_travel_pacing_hotfix_v3_4.ps1"
+Usage
+-----
+1. Extract both files into the Ebbing_Tides repository root.
+2. From PowerShell in that root, run:
 
-Files changed:
-- src\alpha\main.ts
-- public\alpha\js\alpha\main.js
+powershell -ExecutionPolicy Bypass -File ".\FIX_12K_ATLAS_BUILD_VALIDATION_v3.ps1"
+
+The script backs up tsconfig.json, rewrites it without a BOM, verifies JSON
+parsing with Node, and runs npm build.

@@ -13,7 +13,7 @@ test('Asterian is registered as a code-geometry culture pack',()=>{
   const main=read('src/alpha/main.ts');
   const manifest=JSON.parse(read(`${ART}/manifest.json`));
   const registry=JSON.parse(read('public/art/ui/character-themes/CHARACTER_THEME_PACK_MANIFEST.json'));
-  assert.match(main,/IMPLEMENTED_CHARACTER_CULTURE_PACKS[^\n]*\["skeldran","asterian"\]/);
+  assert.match(main,/IMPLEMENTED_CHARACTER_CULTURE_PACKS[^\n]*\["skeldran","asterian","serathi"\]/);
   assert.equal(manifest.geometryOwner,'code');
   assert.equal(registry.culturePacks.asterian,'culture/asterian/manifest.json');
   assert.equal(registry.pendingCulturePacks.includes('asterian'),false);
@@ -34,20 +34,17 @@ test('Asterian 1F pieces preserve accepted dimensions and alpha',()=>{
   }
 });
 
-test('shared geometry excludes neutral while Asterian overrides art variables',()=>{
+test('neutral hides culture skins while accepted Asterian uses its fitted Creator assets',()=>{
   const css=read('public/alpha/styles.css');
-  assert.match(css,/\.creator-production-screen\[data-character-production1f="shipwright-ledger"\]\[data-culture-pack\]:not\(\[data-culture-pack="neutral"\]\)/);
-  assert.match(css,/culture\/asterian\/production1f\/civic_lintel\.png/);
-  assert.match(css,/\[data-character-refinement="frame-vignette-1e"\]\[data-culture-pack="asterian"\]:not\(\[data-culture-pack="neutral"\]\)/);
   assert.match(css,/\[data-culture-pack="neutral"\][\s\S]*\.character-culture-frame[\s\S]*display:none!important/);
+  assert.match(css,/\.creator-production-screen\[data-culture-pack="asterian"\]\{[\s\S]*--asterian-creator-frame:url\('\/art\/ui\/character-themes\/culture\/asterian\/production1i\/creator_frame\.png'\)/);
+  assert.match(css,/\.creator-production-screen\[data-culture-pack="asterian"\] \.character-culture-outer-frame\{[\s\S]*display:none!important/);
 });
 
-test('Asterian variable blocks match the shared fallback specificity',()=>{
+test('Asterian Creator and Captain remain isolated culture selectors',()=>{
   const css=read('public/alpha/styles.css');
-  for(const mode of [
-    'data-character-art="culture-religion-v2"',
-    'data-character-production="reference-locked-v1"',
-    'data-character-refinement="frame-vignette-1e"',
-    'data-character-production1f="shipwright-ledger"'
-  ]) assert.match(css,new RegExp(`\\[${mode}\\]\\[data-culture-pack="asterian"\\]:not\\(\\[data-culture-pack="neutral"\\]\\)`));
+  assert.match(css,/\.creator-production-screen\[data-culture-pack="asterian"\]/);
+  assert.match(css,/\.captain-sheet-screen\[data-culture-pack="asterian"\]/);
+  const captain=css.slice(css.indexOf('Production 1J — Asterian Civic-Maritime Captain'),css.indexOf('Production 1K — Serathi Salt-Limestone Ledger Creator'));
+  assert.doesNotMatch(captain,/data-culture-pack="serathi"|--serathi-/);
 });
